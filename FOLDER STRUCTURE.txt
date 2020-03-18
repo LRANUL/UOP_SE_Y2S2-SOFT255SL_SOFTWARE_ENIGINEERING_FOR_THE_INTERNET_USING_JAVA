@@ -1,0 +1,20 @@
+Common Workspace
+	Analysis.txt
+	Design.txt
+	Project
+Private Workspaces
+	Ranul
+		..
+	Lahiru
+		..
+	Nidula
+		..
+	Ishan
+		..
+	Ryan
+		..
+
+
+# YOU MAY TAKE A COPY OF THE MAIN PROJECT FOR TESTING FROM COMMON TO PRIVATE WORKSPACE.
+# PUBLISH ONLY PDF COPIES OF DIAGRAMS.
+# DOWNLOADED REQUIRED LIBRARIES AND PUT THEM TO COMMON WORKSPACE. i.e: Bootstrap, Google Fonts
