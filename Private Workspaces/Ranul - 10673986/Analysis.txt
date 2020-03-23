@@ -1,8 +1,26 @@
 ---------------------------------------------------------------------------------------------------
-						RANUL
+						RANUL - COMPLETED ON 21/03/2020
 ---------------------------------------------------------------------------------------------------
 
 
-Functional & Non-Fucntional
+Functional 
 
+	# System should Provide Free Public Access to Court Records which contains a brief summary of the 
+	case, by providing the Date of a record or Attorney Name or Record Number or Court Location.
+	# If a person has rights such as the designator of the court case or one of it's parties they can
+	request a printed copy court filings for a fee.
+	# System should keep records of all parties that request documents.
+	# System Administration is the only party having access to digital copies of the court filies, when
+	an request is made they will produces copies and mail it to the address of requester or hold at a 
+	collection counter at the Court Office for collection.
+
+Non-Functional
+	
+	# System will only allow registered users to request copies of court files.
+	# System will provide Accounts for both Administration and Registered Users.
+	# System will secure all pages by securing data transmitted by users, such  as registration
+	form data, login data, search and request data.
+	# All requests made will be provided with a feedback email to users if the files are available	for instant collection (2 Working Days)or if currently not digitalised it should be searched 
+	and printed (1 to 2 Weeks).
+	# Google reCAPTCHA will be used to prevent unnecessary attacks from bots or DDos Attacks.
 ___________________________________________________________________________________________________
