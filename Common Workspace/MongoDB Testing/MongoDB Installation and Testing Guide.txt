@@ -1,0 +1,22 @@
+Download and Install MongoDB Community Server from the provided link.
+	https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2012plus-4.2.5-signed.msi
+	(During installation process, tick checkbox to install MongoDB Compass Community)
+
+Refer Youtube Video for installation reference, https://www.youtube.com/watch?v=FwMwO8pXfq0&t=18s
+
+Create Database, "myLibrary"
+
+Create Collection, "books"
+
+Open MongoDB-Connection_Test-and-CRUD_Test project in netbeans.
+
+Run only the DBConnectionAndCRUD_Test.java file.
+
+
+
+----- Adding MongoDB Java Driver to a New Netbeans Project -----
+Create the project in the usual way.
+Under the newly created project, 
+	right click on "Libraries", 
+	click on "Add JAR/Folder".
+Add the MongoDB Java Driver.
