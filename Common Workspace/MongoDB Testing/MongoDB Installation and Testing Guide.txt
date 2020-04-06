@@ -1,14 +1,35 @@
+--------------------------------------------------------------------------------------------------
+Testing MongoDB from Cloud Database (MongoDB Atlas)-
+--------------------------------------------------------------------------------------------------
 Download and Install MongoDB Community Server from the provided link.
 	https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2012plus-4.2.5-signed.msi
 	(During installation process, tick checkbox to install MongoDB Compass Community)
 
 Refer Youtube Video for installation reference, https://www.youtube.com/watch?v=FwMwO8pXfq0&t=18s
 
+Open MongoDB_Testing project in netbeans.
+
+Run only the DBConnectionAndCRUD_Test.java file.
+
+
+--------------------------------------------------------------------------------------------------
+Testing MongoDB from Local Database-
+--------------------------------------------------------------------------------------------------
+Download and Install MongoDB Community Server from the provided link.
+	https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2012plus-4.2.5-signed.msi
+	(During installation process, tick checkbox to install MongoDB Compass Community)
+
+Refer Youtube Video for installation reference, https://www.youtube.com/watch?v=FwMwO8pXfq0&t=18s
+
+Enter and Run, "Mongod" in command prompt.
+
+Enter and Run, "Mongo" in command prompt.
+
 Create Database, "myLibrary"
 
 Create Collection, "books"
 
-Open MongoDB-Connection_Test-and-CRUD_Test project in netbeans.
+Open MongoDB_Testing project in netbeans.
 
 Run only the DBConnectionAndCRUD_Test.java file.
 

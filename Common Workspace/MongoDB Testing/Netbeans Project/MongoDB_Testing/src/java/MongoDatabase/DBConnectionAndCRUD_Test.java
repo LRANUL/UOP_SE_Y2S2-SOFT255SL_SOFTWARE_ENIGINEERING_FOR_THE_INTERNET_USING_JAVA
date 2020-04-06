@@ -7,6 +7,7 @@ package MongoDatabase;
 
 import com.mongodb.ErrorCategory;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.MongoWriteException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -25,10 +26,21 @@ public class DBConnectionAndCRUD_Test {
     public static void main(String args[]){
 
         try{
+            
+            /*
+            // MongoDB from local database
             // Connecting to the server
             MongoClient mongoClient = new MongoClient("localhost", 27017);
             System.out.println("Server Connection Successful");
+            */
+        
+            // MongoDB from cloud (Mongodb Atlas)
+            MongoClientURI uri = new MongoClientURI(
+                "mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
 
+            MongoClient mongoClient = new MongoClient(uri);
+            
+            
             // Connecting to the database
             MongoDatabase database = mongoClient.getDatabase("myLibrary");
             System.out.println("Database Connection Successful");
@@ -36,7 +48,7 @@ public class DBConnectionAndCRUD_Test {
 
             // To retrieve all database name
             List<String> dbNames = mongoClient.getDatabaseNames();
-            System.out.println("All Available Databases: " + dbNames);
+            System.out.println("\nAll Available Databases: " + dbNames);
 
             // Connecting to the collection in the database 
             MongoCollection collection = database.getCollection("books");
@@ -67,13 +79,13 @@ public class DBConnectionAndCRUD_Test {
             catch(MongoWriteException ex){
                 // Checking if the document ID is already existing error is shown
                 if(ex.getError().getCategory().equals(ErrorCategory.DUPLICATE_KEY)){
-                    System.out.println("Document ID Already Exists");
+                    System.out.println("\nDocument ID Already Exists");
                 }
             }
 
             // Retrieving all the documents
             MongoCursor cursor = collection.find().iterator();
-            System.out.println("All Documents in the Collection");
+            System.out.println("\n\nAll Documents in the Collection");
             try{
                 while(cursor.hasNext()){
                     System.out.println(cursor.next());
@@ -85,13 +97,13 @@ public class DBConnectionAndCRUD_Test {
 
             // Retrieving one document from the collection
             Document secondRetrival = (Document) collection.find(Filters.eq("_id", 2)).first();
-            System.out.println("Document ID 2: ");
+            System.out.println("\n\nDocument ID 2: ");
             System.out.println(secondRetrival.toJson());
 
             // Updating one key value pair in the document
             collection.updateOne(new Document("_id", 2), new Document("$set", new Document("bookTitle", "Coding in C#")));
             Document secondRetrivalOneUpdated = (Document) collection.find(Filters.eq("_id", 2)).first();
-            System.out.println("Document ID 2: (One Key Value Pair Updated): ");
+            System.out.println("\nDocument ID 2: (One Key Value Pair Updated): ");
             System.out.println(secondRetrivalOneUpdated.toJson());
 
             // Updating all the key value pairs in the document
@@ -100,21 +112,21 @@ public class DBConnectionAndCRUD_Test {
                             .append("lastName", "Fransis"))
                     .append("publishedDate", "12th July, 2015")));
             Document secondRetrivalAllUpdated = (Document) collection.find(Filters.eq("_id", 2)).first();
-            System.out.println("Document ID 2: (All Key Value Pair Updated): ");
+            System.out.println("\nDocument ID 2: (All Key Value Pair Updated): ");
             System.out.println(secondRetrivalAllUpdated.toJson());
 
             // Delete document from a collection
             collection.deleteOne(Filters.eq("_id", 1));
 
             // Delete all documents from a collection with document ID equal to 1 and greater
-            collection.deleteOne(Filters.gte("_id", 1));
+            // collection.deleteOne(Filters.gte("_id", 1));
 
             // Retrieving all the documents
             MongoCursor cursorSecond = collection.find().iterator();
-            System.out.println("All Documents in the Collection (No Documents)");
+            System.out.println("\n\nAll Documents in the Collection: ");
             try{
                 while(cursorSecond.hasNext()){
-                    System.out.println(cursor.next());
+                    System.out.println(cursorSecond.next());
                 }
             }
             finally{
