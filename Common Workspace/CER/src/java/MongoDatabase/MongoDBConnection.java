@@ -7,7 +7,10 @@ package MongoDatabase;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.bson.Document;
@@ -39,7 +42,21 @@ public class MongoDBConnection {
 
                 System.out.format("%s: %s%n", set.getKey(), set.getValue());
             }
+        // Case Search
+        MongoCollection<Document> collection = database.getCollection("cases");
+
+            try (MongoCursor<Document> col = collection.find().iterator()) {
+
+                while (col.hasNext()) {
+
+                    Document document = col.next();
+                    ArrayList<Object> cases = new ArrayList<>(document.values());
+                    System.out.printf("%s: %s%n", cases.get(1), cases.get(2));
+                }
+            }
     }
+    
+    
     
     // Non Static method (An object must be created)
     public String MongoDBConnectionURL(){
