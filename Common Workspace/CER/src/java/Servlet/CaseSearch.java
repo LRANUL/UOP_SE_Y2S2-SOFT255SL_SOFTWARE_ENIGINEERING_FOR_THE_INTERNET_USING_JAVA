@@ -89,16 +89,41 @@ public class CaseSearch extends HttpServlet {
         MongoDatabase database = mongoClient.getDatabase("CERdb");
 
         MongoCollection<Document> collection = database.getCollection("cases");
+        if (CaseNumber != null) {
+            BasicDBObject query = new BasicDBObject();
+            query.put("CaseNo", "'" + CaseNumber + "'");
+            FindIterable document = collection.find(query);
+            ArrayList<Document> docs = new ArrayList<Document>();
+            document.into(docs);
+            PrintWriter writer = response.getWriter();
 
-        BasicDBObject query = new BasicDBObject();
-        query.put("CaseNo", "'"+CaseNumber+"'");
-        FindIterable document = collection.find(query);
-        ArrayList<Document> docs = new ArrayList<Document>();
-        document.into(docs);
-        for (Document doc : docs) {
-            System.out.println(doc);
+            for (Document doc : docs) {
+                System.out.println(doc);
+                String htmlRespone = "<html>";
+                htmlRespone += "<h2>Search Results : " + doc + "</h2>";
+                htmlRespone += "</html>";
+                writer.println(htmlRespone);
+
+            }
+
         }
+        if (CourtLocation != null) {
+            BasicDBObject query = new BasicDBObject();
+            query.put("CourtLocation", "'" + CourtLocation + "'");
+            FindIterable document = collection.find(query);
+            ArrayList<Document> docs = new ArrayList<Document>();
+            document.into(docs);
+            PrintWriter writer = response.getWriter();
 
+            for (Document doc : docs) {
+                System.out.println(doc);
+                String htmlRespone = "<html>";
+                htmlRespone += "<h2>Search Results : " + doc + "</h2>";
+                htmlRespone += "</html>";
+                writer.println(htmlRespone);
+
+            }
+        }
     }
 
     @Override
