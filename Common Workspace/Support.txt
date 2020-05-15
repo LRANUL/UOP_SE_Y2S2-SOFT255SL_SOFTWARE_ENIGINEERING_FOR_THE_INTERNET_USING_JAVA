@@ -1,0 +1,2 @@
+Till Auth System is placed Access Dashboard by
+http://localhost:8080/CER/Office/Dashboard.html
