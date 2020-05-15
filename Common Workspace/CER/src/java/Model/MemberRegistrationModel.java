@@ -6,10 +6,14 @@
 package Model;
 
 import MongoDatabase.MongoDBConnection;
+import com.mongodb.ErrorCategory;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.MongoWriteException;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.List;
+import org.bson.Document;
 
 /**
  *
@@ -21,10 +25,8 @@ public class MemberRegistrationModel {
     MongoDBConnection mongoDB;
 
     public MemberRegistrationModel(){
-        
         // Creating new object to retrieve database connection url
         mongoDB = new MongoDBConnection();
-        
     }
     
     private String prefixName = null;
@@ -125,18 +127,43 @@ public class MemberRegistrationModel {
     
     public void newCustomerRegistration(){
        
-        MongoClientURI uri = new MongoClientURI(mongoDB.MongoDBConnectionURL());
-        
-        MongoClient mongoClient = new MongoClient(uri);
+        /* PROCESS OF INSERTING DATA INTO THE MONGODB DATABASE */
+        try{
+            // Establishing MongoDB URI Connection
+            MongoClientURI uri = new MongoClientURI(mongoDB.MongoDBConnectionURL());
+            MongoClient mongoClient = new MongoClient(uri);
 
-        // Connecting to the database
-        MongoDatabase database = mongoClient.getDatabase("myLibrary");
-        System.out.println("Database Connection Successful");
-        System.out.println("Database Name: " + database.getName());
+            // Connecting to the MongoDB database
+            MongoDatabase database = mongoClient.getDatabase("CERsDB");
 
-        // To retrieve all database name
-        List<String> dbNames = mongoClient.getDatabaseNames();
-        System.out.println("\nAll Available Databases: " + dbNames);
+            // Connecting to the MongoDB collection
+            MongoCollection collection = database.getCollection("users/");
+
+            // Creating a new document to store in the MongoDB collection
+            Document newDocument = new Document(); 
+
+            // Inserting relevant data into the document
+            newDocument.append("_id", 1)
+                    .append("bookTitle","Programming in Java")
+                    .append("author", 
+                            new Document("fistname", "James")
+                            .append("lastname", "Anderson"))
+                    .append("publishedDate","12th June, 2012");
+
+            // Inserting the created document into the MongoDB collection
+            try{
+                collection.insertOne(newDocument);      
+            }
+            catch(MongoWriteException ex){
+                // Checking if the newly created document ID is already existing error is returned
+                if(ex.getError().getCategory().equals(ErrorCategory.DUPLICATE_KEY)){
+                    System.out.println("\nNewly Created Document ID Already Exists in the Collection");
+                }
+            }
+        }
+        catch(Exception ex){
+            System.out.println("Error: " + ex);
+        }
         
     }
     
