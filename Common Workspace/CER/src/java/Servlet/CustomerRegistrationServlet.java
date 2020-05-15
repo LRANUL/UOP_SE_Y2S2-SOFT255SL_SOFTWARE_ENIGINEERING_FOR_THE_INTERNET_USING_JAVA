@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Model.MemberRegistrationModel;
+import java.io.File;
 
 /**
  *
@@ -96,7 +97,11 @@ public class CustomerRegistrationServlet extends HttpServlet {
         
         PrintWriter out = response.getWriter();
         
-        out.println("<h1 align='center:'>NIC: </h1>" + nic);
+        File rr1 = new File(nicPassportImage);
+        
+        out.println("<h1 align='center:'>NIC: </h1>" + nic);        
+        out.println("<h1 align='center:'>IMAGE: </h1>" + rr1);
+
     }
 
     /**
