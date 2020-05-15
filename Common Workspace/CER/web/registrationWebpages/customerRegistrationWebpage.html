@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -23,18 +22,21 @@
         // Checking if the user entered similar password in the password field and confirm password field
         if(document.customerRegistrationForm.password.value != document.customerRegistrationForm.confirmPassword.value){
           alert("ERROR: Entered Passwords Mismatch, Please Recheck");
+          return false;
         }
 
         // Checking if the user checked the terms and conditions checkbox
         if(document.getElementById('termsAndConditions').checked){
           // User has checked the checkbox
+          return true;
         }
         else{ 
           // User didn't check the checkbox
           alert("ERROR: Please tick Terms and Conditions checkbox");
+          return false;
         }
         
-        return false;
+        
       }
     </script>
 
@@ -116,7 +118,7 @@
                     transform: translateX(-50%);
                     top: 20px;">
           
-          <form name="customerRegistrationForm" method="POST" onSubmit="return validateUserData()">
+          <form name="customerRegistrationForm" action="../CustomerRegistrationServlet" method="POST" onSubmit="return validateUserData()">
             <div class="form-group">
               <label class="formTitle">Full Name</label>
               <div class="form-row">

@@ -1,0 +1,2 @@
+WEB-INF folder is an essential folder to run the MongoDB_Testing project in Netbeans IDE. 
+And git doesn't push empty folders, so this txt file will resolve this issue.
