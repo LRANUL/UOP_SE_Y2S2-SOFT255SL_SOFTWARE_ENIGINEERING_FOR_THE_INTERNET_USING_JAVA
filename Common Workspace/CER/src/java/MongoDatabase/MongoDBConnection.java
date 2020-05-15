@@ -5,6 +5,9 @@
  */
 package MongoDatabase;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -14,6 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.bson.Document;
+import com.mongodb.client.FindIterable;
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.gt;
+import static com.mongodb.client.model.Filters.lt;
 
 /**
  *
@@ -30,7 +37,6 @@ public class MongoDBConnection {
     *   COLLECTION NAME FOR DOCUMENTS = documents
     *   COLLECTION NAME FOR COMMENTS/MESSAGES = comments
      */
-
     // MAIN METHOD, CHECKING DATABASE CONNECTION STATUS
     public static void main(String[] args) {
         MongoClient mongoClient = MongoClients.create("mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
@@ -56,6 +62,15 @@ public class MongoDBConnection {
                 System.out.printf("Case Party: %s\n", cases.get(3));
                 System.out.printf("Date: %s\n", cases.get(4));
             }
+        }
+
+        BasicDBObject query = new BasicDBObject();
+        query.put("CaseNo", "1J85");
+        FindIterable document = collection.find(query);
+        ArrayList<Document> docs = new ArrayList<Document>();
+        document.into(docs);
+        for (Document doc : docs) {
+            System.out.println(doc);
         }
     }
 

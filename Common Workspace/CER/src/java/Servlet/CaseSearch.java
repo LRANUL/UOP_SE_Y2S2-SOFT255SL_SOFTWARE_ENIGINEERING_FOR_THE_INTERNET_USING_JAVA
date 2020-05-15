@@ -5,6 +5,8 @@
  */
 package Servlet;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.client.FindIterable;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,6 +21,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import java.util.ArrayList;
+
 /**
  *
  * @author ranul
@@ -43,7 +46,7 @@ public class CaseSearch extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CaseSearch</title>");            
+            out.println("<title>Servlet CaseSearch</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet CaseSearch at " + request.getContextPath() + "</h1>");
@@ -78,27 +81,26 @@ public class CaseSearch extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-    String CourtLocation = request.getParameter("CourtLocation");
-    String CaseNumber = request.getParameter("CaseNumber");  
+
+        String CourtLocation = request.getParameter("CourtLocation");
+        String CaseNumber = request.getParameter("CaseNumber");
 
         MongoClient mongoClient = MongoClients.create("mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
         MongoDatabase database = mongoClient.getDatabase("CERdb");
 
-            MongoCollection<Document> collection = database.getCollection("cases");
+        MongoCollection<Document> collection = database.getCollection("cases");
 
-            try (MongoCursor<Document> col = collection.find().iterator()) {
+        BasicDBObject query = new BasicDBObject();
+        query.put("CaseNo", "'"+CaseNumber+"'");
+        FindIterable document = collection.find(query);
+        ArrayList<Document> docs = new ArrayList<Document>();
+        document.into(docs);
+        for (Document doc : docs) {
+            System.out.println(doc);
+        }
 
-                while (col.hasNext()) {
-
-                    Document document = col.next();
-                    ArrayList<Object> cases = new ArrayList<>(document.values());
-                    System.out.printf("%s: %s%n", cases.get(1), cases.get(2));
-                }
-            }
-    
     }
- 
+
     @Override
     public String getServletInfo() {
         return "Short description";
