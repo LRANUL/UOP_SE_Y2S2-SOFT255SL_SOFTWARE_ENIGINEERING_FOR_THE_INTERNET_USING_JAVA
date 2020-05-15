@@ -1,0 +1,87 @@
+*{
+    margin: 0px;
+    padding: 0px;
+  }
+
+  #headerSection{
+    height: 155px;
+    width: 100%;
+  }
+
+  #headerTitleSection{
+    height: 70px;
+    width: 70%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #headerTitleText{
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    padding-top: 20px;
+    padding-left: 5px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  #headerBanner{
+    height: 85px;
+    width: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(to top, #0081CF 0%, #00A4DE 100%);
+  }
+
+  #headerBannerText{
+    text-align: center;
+    font-size: 25px;
+    letter-spacing: 2px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+  #bodyContentSection{
+    height: auto;
+    width: 100%;
+    background-color: rgb(241, 241, 241);
+    padding-bottom: 120px;
+  }
+
+  #returnButton{
+    height: 45px;
+    width: 150px;
+    position: relative;
+    top: 40px;
+    left: 23%;
+  }
+
+  #returnButtonIcon{
+    font-size: 20px;
+    position: absolute;
+    left: 15px;
+    margin-top: 5px;
+  }
+
+  #returnButtonText{
+    font-size: 18px;
+    letter-spacing: 2px;
+    position: relative;
+    left: 12px;
+  }
+
+  #footerSection{
+    width: 100%;
+    height: 50px;
+    background-color: rgb(241, 241, 241);
+  }
+
+  #footerSectionText{
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-align: center;
+  }
