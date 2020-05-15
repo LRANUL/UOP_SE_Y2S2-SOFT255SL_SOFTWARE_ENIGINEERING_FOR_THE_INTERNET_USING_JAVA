@@ -4,6 +4,10 @@
     Author     : ranul
 --%>
 
+<%@page import="org.bson.types.ObjectId"%>
+<%@page import="com.mongodb.DBObject"%>
+<%@page import="javax.swing.table.DefaultTableModel"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +26,30 @@
         <style>
             .nav-item.dropdown:hover .dropdown-menu {
                 display: block;
+            }
+        </style>
+        <style>
+            #cases {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            #cases td, #cases th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #cases tr:nth-child(even){background-color: #f2f2f2;}
+
+            #cases tr:hover {background-color: #ddd;}
+
+            #cases th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #585858;
+                color: white;
             }
         </style>
         <link rel="icon" href="assets/images/favicon.png" type="image/png">
@@ -67,101 +95,36 @@
                 </nav>
             </div>
             <!-- Jumbotron -->
-            <div class="jumbotron">
-                <div class="row">
-                    <div class="col-lg-auto">
-                        <h2>Find a Case</h2>
-                        <p class="text-left">Insert Your Case Number</p>
-                        <p></p>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <form name="CaseNoSearch" method="post" action="Case.jsp">
-                        <input type="text" name="CaseNo" class="form-control bg-white" placeholder="Case Number" >
-                        <button type="submit" class="btn-sm btn-outline-secondary">Search</button>
-                    </form>
-                </div>
-                <h4>Or by Court Location</h4>
-                <div class="input-group">
-                    <form name="CaseLocationSearch" method="post" action="Case.jsp">
-                        <input type="text" name="CourtLocation" class="form-control bg-white" placeholder="Court Location">
-                        <button type="submit" class="btn-sm btn-outline-secondary">Search</button>
-                    </form>
-                </div>
+            <h2>Search Results</h2>
+            <table id="cases">
+                <tbody>
+                    <tr>
+                        <th>Case No</th>
+                        <th>Party</th>
+                        <th>Court Location</th>
+                    </tr>
+                    <c:forEach items="${requestScope.cases}" var="case">
+                        <tr>
+                            <td><c:out value="${case.CaseNo}"></c:out></td>
+                            <td><c:out value="${case.Party}"></c:out></td>
+                            <td><c:out value="${case.CourtLocation}"></c:out></td>
+                            </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
 
-                <h2>Search Results</h2>
-                <%@page import="com.mongodb.BasicDBObject"%>
-                <%@page import="com.mongodb.client.FindIterable"%>
-                <%@page import="java.io.IOException"%>
-                <%@page import="java.io.PrintWriter"%>
-                <%@page import="javax.servlet.ServletException"%>
-                <%@page import="javax.servlet.annotation.WebServlet"%>
-                <%@page import="javax.servlet.http.HttpServlet"%>
-                <%@page import="javax.servlet.http.HttpServletRequest"%>
-                <%@page import="javax.servlet.http.HttpServletResponse"%>
-                <%@page import="com.mongodb.client.MongoClients"%>
-                <%@page import="com.mongodb.client.MongoCollection"%>
-                <%@page import="com.mongodb.client.MongoCursor"%>
-                <%@page import="com.mongodb.client.MongoClient"%>
-                <%@page import="org.bson.Document"%>
-                <%@page import="com.mongodb.client.MongoDatabase"%>
-                <%@page import="java.util.ArrayList"%>
-                <%
-
-                    String CourtLocation = request.getParameter("CourtLocation");
-                    String CaseNumber = request.getParameter("CaseNumber");
-                    MongoClient mongoClient = MongoClients.create("mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
-                    MongoDatabase database = mongoClient.getDatabase("CERdb");
-
-                    MongoCollection<Document> collection = database.getCollection("cases");
-//                    if (CaseNumber != null) {
-                        BasicDBObject query = new BasicDBObject();
-                        query.put("CaseNo", "'" + CaseNumber + "'");
-                        FindIterable document = collection.find(query);
-                        ArrayList<Document> docs = new ArrayList<Document>();
-                        document.into(docs);
-                        PrintWriter writer = response.getWriter();
-
-                        for (Document doc : docs) {
-                            System.out.println(doc);
-                            String htmlRespone = "<html>";
-                            htmlRespone += "<h2>Search Results : " + doc + "</h2>";
-                            htmlRespone += "</html>";
-                            writer.println(htmlRespone);
-
-                        }
-
-                    }
-                    if (CourtLocation != null) {
-                        BasicDBObject query = new BasicDBObject();
-                        query.put("CourtLocation", "'" + CourtLocation + "'");
-                        FindIterable document = collection.find(query);
-                        ArrayList<Document> docs = new ArrayList<Document>();
-                        document.into(docs);
-                        PrintWriter writer = response.getWriter();
-
-                        for (Document doc : docs) {
-                            System.out.println(doc);
-                            String htmlRespone = "<html>";
-                            htmlRespone += "<h2>Search Results : " + doc + "</h2>";
-                            htmlRespone += "</html>";
-                            writer.println(htmlRespone);
-
-                        }
-                    }
-                %>
-            </div>
-            <!-- Example row of columns -->
-            <!-- Site footer -->
-            <footer class="footer">
-                <p class="text-center">&copy; CER</p>
-            </footer>
         </div>
-        <!-- /container -->
+        <!-- Example row of columns -->
+        <!-- Site footer -->
+        <footer class="footer">
+            <p class="text-center">&copy; CER</p>
+        </footer>
+    </div>
+    <!-- /container -->
 
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/popper.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-    </body>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
 
 </html>

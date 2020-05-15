@@ -4,9 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/ranul/Documents/GitHub/2nd%20Year/2nd%20Semester/UOP_SE_Y2S2-SOFT255SL_SOFTWARE_ENIGINEERING_FOR_THE_INTERNET_USING_JAVA/Common%20Workspace/CER/web/Case.jsp</file>
-            <file>file:/C:/Users/ranul/Documents/GitHub/2nd%20Year/2nd%20Semester/UOP_SE_Y2S2-SOFT255SL_SOFTWARE_ENIGINEERING_FOR_THE_INTERNET_USING_JAVA/Common%20Workspace/CER/src/java/MongoDatabase/MongoDBConnection.java</file>
-            <file>file:/C:/Users/ranul/Documents/GitHub/2nd%20Year/2nd%20Semester/UOP_SE_Y2S2-SOFT255SL_SOFTWARE_ENIGINEERING_FOR_THE_INTERNET_USING_JAVA/Common%20Workspace/CER/web/Case.html</file>
-            <file>file:/C:/Users/ranul/Documents/GitHub/2nd%20Year/2nd%20Semester/UOP_SE_Y2S2-SOFT255SL_SOFTWARE_ENIGINEERING_FOR_THE_INTERNET_USING_JAVA/Common%20Workspace/CER/src/java/Servlet/CaseSearch.java</file>
+            <file>file:/C:/Users/ranul/Documents/GitHub/2nd%20Year/2nd%20Semester/UOP_SE_Y2S2-SOFT255SL_SOFTWARE_ENIGINEERING_FOR_THE_INTERNET_USING_JAVA/Common%20Workspace/CER/src/java/Servlet/DocumentSearch.java</file>
+            <file>file:/C:/Users/ranul/Documents/GitHub/2nd%20Year/2nd%20Semester/UOP_SE_Y2S2-SOFT255SL_SOFTWARE_ENIGINEERING_FOR_THE_INTERNET_USING_JAVA/Common%20Workspace/CER/web/Office/Search.html</file>
+            <file>file:/C:/Users/ranul/Documents/GitHub/2nd%20Year/2nd%20Semester/UOP_SE_Y2S2-SOFT255SL_SOFTWARE_ENIGINEERING_FOR_THE_INTERNET_USING_JAVA/Common%20Workspace/CER/web/Office/Search.jsp</file>
+            <file>file:/C:/Users/ranul/Documents/GitHub/2nd%20Year/2nd%20Semester/UOP_SE_Y2S2-SOFT255SL_SOFTWARE_ENIGINEERING_FOR_THE_INTERNET_USING_JAVA/Common%20Workspace/CER/src/java/Servlet/Office/OfficeSearch.java</file>
         </group>
     </open-files>
 </project-private>

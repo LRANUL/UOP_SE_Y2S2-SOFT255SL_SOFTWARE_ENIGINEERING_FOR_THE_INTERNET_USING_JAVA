@@ -16,11 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -81,48 +81,46 @@ public class CaseSearch extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String CourtLocation = request.getParameter("CourtLocation");
-        String CaseNumber = request.getParameter("CaseNumber");
+        String CaseNumber = request.getParameter("CaseNo");
 
         MongoClient mongoClient = MongoClients.create("mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
         MongoDatabase database = mongoClient.getDatabase("CERdb");
 
         MongoCollection<Document> collection = database.getCollection("cases");
-        if (CaseNumber != null) {
+
+        if (CaseNumber!=null) {
             BasicDBObject query = new BasicDBObject();
-            query.put("CaseNo", "'" + CaseNumber + "'");
+            query.put("CaseNo", CaseNumber);
             FindIterable document = collection.find(query);
             ArrayList<Document> docs = new ArrayList<Document>();
             document.into(docs);
-            PrintWriter writer = response.getWriter();
-
+            request.setAttribute("cases", docs);
+            RequestDispatcher rd = getServletContext().getRequestDispatcher(
+                    "/Case.jsp");
+            rd.forward(request, response);
             for (Document doc : docs) {
                 System.out.println(doc);
-                String htmlRespone = "<html>";
-                htmlRespone += "<h2>Search Results : " + doc + "</h2>";
-                htmlRespone += "</html>";
-                writer.println(htmlRespone);
-
             }
 
         }
-        if (CourtLocation != null) {
+
+        if (CourtLocation!=null) {
             BasicDBObject query = new BasicDBObject();
-            query.put("CourtLocation", "'" + CourtLocation + "'");
+            query.put("CourtLocation", CourtLocation);
             FindIterable document = collection.find(query);
             ArrayList<Document> docs = new ArrayList<Document>();
             document.into(docs);
-            PrintWriter writer = response.getWriter();
+            request.setAttribute("cases", docs);
 
+            RequestDispatcher rd = getServletContext().getRequestDispatcher(
+                    "/Case.jsp");
+            rd.forward(request, response);
             for (Document doc : docs) {
-                System.out.println(doc);
-                String htmlRespone = "<html>";
-                htmlRespone += "<h2>Search Results : " + doc + "</h2>";
-                htmlRespone += "</html>";
-                writer.println(htmlRespone);
 
+                System.out.println(doc);
             }
+
         }
     }
 
