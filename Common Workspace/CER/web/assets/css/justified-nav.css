@@ -53,3 +53,81 @@ body {
     padding-left: 0;
   }
 }
+
+
+/* LOGIN AND REGISTER BUTTON STYLES */
+
+/* SCREENS SIZE BELOW 767px */
+@media only screen and (max-width: 767px) {
+  #loginButton{
+      left: 60%;
+      top: 10px;
+  }
+  #registerButton{
+      left: 77%;
+      top: 10px;
+  }
+}
+
+/* SCREENS SIZE BETWEEN 767px and 922px */
+@media only screen and (min-width: 767px) and (max-width: 992px) {
+  #loginButton{
+      left: 73.5%;
+      top: -48px;
+  }
+  #registerButton{
+      left: 87%;
+      top: -48px;
+  }
+}
+
+/* SCREENS SIZE ABOVE 992px */
+@media only screen and (min-width: 992px) {
+  #loginButton{
+      left: 78.5%;
+      top: -48px;
+  }
+  #registerButton{
+      left: 87%;
+      top: -48px;
+  }
+}
+
+#loginButton{
+  color: rgb(14, 96, 134);
+  width: 80px;
+  height: 35px;
+  position: absolute;
+}
+
+#loginButton:hover{
+  color: rgb(12, 67, 92);
+}
+
+#loginButtonText{
+  letter-spacing: 2px;
+  font-weight: 600;
+  font-size: 18px;
+  margin-top: -4px;
+  margin-left: -5px;
+}
+
+#registerButton{
+  border-color: rgb(18, 121, 168);
+  background-color: rgb(18, 121, 168);
+  color: #ffffff;
+  width: 110px;
+  height: 35px;
+  position: absolute;
+}
+
+#registerButton:hover{
+  background-color: #ffffff;
+  color: rgb(18, 121, 168);
+}
+
+#registerButtonText{
+  letter-spacing: 2px;
+  font-weight: 500;
+  margin-top: -3px;
+}

@@ -55,16 +55,16 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="About.html">About</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">Account</a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                    <a class="dropdown-item" href="Login.html">Login</a>
-                                    <a class="dropdown-item" href="Register.html">Register</a>
-                                </div>
-                            </li>
                         </ul>
                     </div>
+                    <!-- LOGIN BUTTON -->
+                    <button class="btn" id="loginButton" type="button" onclick="location.href='Login.html'">
+                        <p id="loginButtonText">LOGIN</p>
+                    </button>
+                    <!-- REGISTER BUTTON -->
+                    <button class="btn" id="registerButton" type="button" onclick="location.href='Register.html'">
+                        <p id="registerButtonText">REGISTER</p>
+                    </button>
                 </nav>
             </div>
             <div>

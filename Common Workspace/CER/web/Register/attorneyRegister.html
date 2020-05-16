@@ -366,11 +366,12 @@
                                     <div class="col">
                                         <input type="file" class="form-control-file" style="position: relative;
                                                left: 45px;
-                                               top: 10px;" name="attorneyIdImage>
+                                               top: 10px;" name="attorneyIdImage">
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
 
                         <div class="form-group" style="margin-top: 30px;">
                             <label class="formTitle">Login Credentials</label>
@@ -389,27 +390,44 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="col">
-                                  <div style="width: 90%;
-                                              height: 65px;
-                                              border: #ccc solid 1px;
-                                              margin-top: 20px;
-                                              border-radius: 5px;
-                                              position: relative;
-                                              left: 3.5%;">
-                                    <p style="letter-spacing: 1px;
-                                              font-size: 16px;
-                                              width: 90%;
-                                              position: absolute;
-                                              padding: 1-px;
-                                              top: 50%;
-                                              left: 50%;
-                                              transform: translate(-50%,-50%);">
-                                      Password will provided by officer via email after registration request is approved
-                                    </p>
-                                  </div>
+                              <div class="col">
+                                <input type="password" class="form-control formItem" style="margin-top: 10px;
+                                        width: 88%;" placeholder="Enter Password" name="password" 
+                                data-toggle="popover" data-trigger="hover" title="MANDATORY, Password Guidelines:" data-html="true"
+                                data-content="Minimum 10 characters<br />
+                                              Maximum 25 characters<br />
+                                              At least ONE uppercase letter<br />
+                                              At least ONE numeric character<br />
+                                              At least ONE special character" required />
+                                <div style="color: rgb(255, 0, 0);
+                                            font-size: 24px;
+                                            font-weight: 600;
+                                            position: absolute;
+                                            right: 8%;
+                                            top: 5px;">
+                                  *
                                 </div>
-                            </div>
+                              </div>
+                              <div class="col">
+                                <input type="password" class="form-control formItem" style="margin-top: 10px;
+                                        margin-left: -5px;
+                                        width: 88%;" placeholder="Enter Confirm Password" name="confirmPassword" 
+                                data-toggle="popover" data-trigger="hover"title="MANDATORY, Password Guidelines:" data-html="true"
+                                data-content="Minimum 10 characters<br />
+                                              Maximum 25 characters<br />
+                                              At least ONE uppercase letter<br />
+                                              At least ONE numeric character<br />
+                                              At least ONE special character" required />
+                                <div style="color: rgb(255, 0, 0);
+                                            font-size: 24px;
+                                            font-weight: 600;
+                                            position: absolute;
+                                            right: 16%;
+                                            top: 5px;">
+                                  *
+                                </div>
+                              </div>
+                          </div>
                         </div>
                         
                         <div class="form-group">

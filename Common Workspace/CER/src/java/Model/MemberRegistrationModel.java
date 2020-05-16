@@ -169,7 +169,7 @@ public class MemberRegistrationModel {
             MongoDatabase database = mongoClient.getDatabase("CERdb");
 
             // Connecting to the MongoDB collection
-            MongoCollection collection = database.getCollection("customerUsers");
+            MongoCollection collection = database.getCollection("users");
             
             
             // Retrieving the latest inserted document
@@ -214,6 +214,7 @@ public class MemberRegistrationModel {
             
             // Inserting relevant data into the document
             newDocument.append("_id", newDocumentID)
+                    .append("userType", "customer")
                     .append("emailAddress", emailAddress)                    
                     .append("passwordHash", hashedPasswordValue)                    
                     .append("nic", nic)                    
@@ -265,7 +266,7 @@ public class MemberRegistrationModel {
             MongoDatabase database = mongoClient.getDatabase("CERdb");
 
             // Connecting to the MongoDB collection
-            MongoCollection collection = database.getCollection("attorneyUsers");
+            MongoCollection collection = database.getCollection("users");
             
             
             // Retrieving the latest inserted document
@@ -310,8 +311,9 @@ public class MemberRegistrationModel {
             
             // Inserting relevant data into the document
             newDocument.append("_id", newDocumentID)
+                    .append("userType", "attorney")
                     .append("emailAddress", emailAddress)                    
-                    .append("passwordHash", "")                    
+                    .append("passwordHash", hashedPasswordValue)                    
                     .append("nic", nic)  
                     .append("attorneyId", attorneyId)
                     .append("name", 
