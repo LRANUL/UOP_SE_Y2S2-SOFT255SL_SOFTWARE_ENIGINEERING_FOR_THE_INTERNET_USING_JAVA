@@ -31,13 +31,13 @@
             function validateUserData() {
 
                 // Checking if the user entered passwords characters length in greater than or equal to 10
-                if(document.customerRegistrationForm.password.value.length <= 10 || document.customerRegistrationForm.password.value.length <= 10){
+                if(document.customerRegistrationForm.password.value.length < 10 || document.customerRegistrationForm.password.value.length < 10){
                   alert("ERROR: Rechecked Entered Password, Password length is below 10 characters");
                   return false;
                 }
 
                 // Checking if the user entered passwords characters length in lower than or equal to 25
-                if(document.customerRegistrationForm.password.value.length >= 25 || document.customerRegistrationForm.confirmPassword.value.length >= 25){
+                if(document.customerRegistrationForm.password.value.length > 25 || document.customerRegistrationForm.confirmPassword.value.length > 25){
                   alert("ERROR: Rechecked Entered Password, Password length is above 25 characters");
                   return false;
                 }
@@ -152,7 +152,7 @@
                      transform: translateX(-50%);
                      top: 20px;">
 
-                    <form name="attorneyRegistrationForm" action="../AttroneyRegistrationServlet" method="POST" onSubmit="return validateUserData()">
+                    <form name="attorneyRegistrationForm" action="../AttroneyRegistrationServlet" method="POST" onSubmit="return validateUserData()" enctype="multipart/form-data">
                         <div class="form-group">
                             <label class="formTitle">Full Name</label>
                             <div class="form-row">

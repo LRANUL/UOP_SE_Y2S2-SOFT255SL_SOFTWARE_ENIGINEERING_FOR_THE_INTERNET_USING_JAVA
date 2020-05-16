@@ -162,7 +162,7 @@
                                 <td><c:out value="${case.CourtLocation}"></c:out></td>
                                 <td><c:out value="${case.Date}"></c:out></td>
                                 </tr>
-
+                            </c:foreach>
                                 </tbody>
                         </table>
                     </div>

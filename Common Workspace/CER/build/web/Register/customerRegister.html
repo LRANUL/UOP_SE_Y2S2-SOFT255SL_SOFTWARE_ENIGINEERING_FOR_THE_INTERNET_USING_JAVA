@@ -1,3 +1,10 @@
+<%-- 
+    Document   : newjsp
+    Created on : May 16, 2020, 6:58:13 PM
+    Author     : Lucas.L.H.H
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -29,19 +36,20 @@
 
             /* CUSTOMER REGISTRATION FORM USER DATA VALIDATION */
             function validateUserData() {
-
+                
+                
                 // Checking if the user entered passwords characters length in greater than or equal to 10
-                if (document.customerRegistrationForm.password.value.length <= 10 || document.customerRegistrationForm.password.value.length <= 10) {
+                if (document.customerRegistrationForm.password.value.length < 10 || document.customerRegistrationForm.password.value.length < 10) {
                     alert("ERROR: Rechecked Entered Password, Password length is below 10 characters");
                     return false;
                 }
 
                 // Checking if the user entered passwords characters length in lower than or equal to 25
-                if (document.customerRegistrationForm.password.value.length >= 25 || document.customerRegistrationForm.confirmPassword.value.length >= 25) {
+                if (document.customerRegistrationForm.password.value.length > 25 || document.customerRegistrationForm.confirmPassword.value.length > 25) {
                     alert("ERROR: Rechecked Entered Password, Password length is above 25 characters");
                     return false;
                 }
-
+                
                 // Checking if the user entered similar password in the password field and confirm password field
                 if (document.customerRegistrationForm.password.value != document.customerRegistrationForm.confirmPassword.value) {
                     alert("ERROR: Entered Passwords Mismatch, Please Recheck");
@@ -210,7 +218,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="col">
-                                    <input type="text" class="form-control formItem" style="margin-top: 10px;" placeholder="Enter Last Name"
+                                    <input type="text" class="form-control formItem" style="margin-top: 10px;" name="lastName" placeholder="Enter Last Name"
                                            data-toggle="tooltip" data-placement="right" title="MANDATORY, Enter Last Name" required />
                                     <div style="color: rgb(255, 0, 0);
                                          font-size: 24px;
@@ -516,7 +524,7 @@
 
         <!-- FOOTER SECTION - BEGIN -->
         <div id="footerSection">
-            <p id="footerSectionText">© CER</p>
+            <p id="footerSectionText">Â© CER</p>
         </div>
         <!-- FOOTER SECTION - END -->
 

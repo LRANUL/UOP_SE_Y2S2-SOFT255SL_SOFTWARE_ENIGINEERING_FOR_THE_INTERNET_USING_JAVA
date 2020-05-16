@@ -69,7 +69,7 @@ public class MemberRegistrationModel {
 
     // Declaring global variables used for attorney registration
     private String attorneyId = null;
-    private String attorneyIdImage = null;
+    private Part attorneyIdImage = null;
 
     // Assigning SALT value for salting user entered password value
     public static final String SALT = "SOFT255SL - CERWebApp";
@@ -131,7 +131,7 @@ public class MemberRegistrationModel {
         return attorneyId;
     }
 
-    public String getAttorneyIdImage() {
+    public Part getAttorneyIdImage() {
         return attorneyIdImage;
     }
 
@@ -192,7 +192,7 @@ public class MemberRegistrationModel {
         this.attorneyId = attorneyId;
     }
 
-    public void setAttorneyIdImage(String attorneyIdImage) {
+    public void setAttorneyIdImage(Part attorneyIdImage) {
         this.attorneyIdImage = attorneyIdImage;
     }
     @Context
@@ -233,19 +233,32 @@ public class MemberRegistrationModel {
             String saltedPasswordValue = SALT + confirmPassword;
             // Generating hash value of the salted password
             String hashedPasswordValue = generateHashValue(saltedPasswordValue);
-            String fileName = (String) getFileName(nicPassportImage);
+            
+            /*
             // UPLOADING USER IMAGE TO THE DATABASE 
             DB db = mongoClient.getDB("CERAssetsDB");
-            File imageFile = new File(fileName);
+            System.out.println("1");
+            File imageFile = new File(nicPassportImage);
+            System.out.println("2");
             System.out.println("Image: " + imageFile);
+            System.out.println("3");
             System.out.println("Path: " + imageFile.getPath());
+            System.out.println("4");
             System.out.println("Absolute path:" + imageFile.getAbsolutePath());
+            System.out.println("5");
             String newImageFileName = "nicPassportImageTest";
+            System.out.println("6");
             GridFS gfsPhoto = new GridFS(db, "photo");
+            System.out.println("7");
             GridFSInputFile gfsFile = gfsPhoto.createFile(imageFile);
+            System.out.println("8");
             gfsFile.setFilename(newImageFileName);
+            System.out.println("9");            
+            System.out.println("mm: "+gfsFile);
             gfsFile.save();
-
+            System.out.println("10");
+            */
+            
             // Creating a new document to store in the MongoDB collection
             Document newDocument = new Document();
 
@@ -319,12 +332,14 @@ public class MemberRegistrationModel {
             // Incrementing latest document id by one to identify the new document id
             int newDocumentID = ++latestDocumentID;
 
+            
             /* GENERATING SHA1 HASH PASSWORD VALUE WITH SALTING */
             // Salting entered password value
             String saltedPasswordValue = SALT + confirmPassword;
             // Generating hash value of the salted password
             String hashedPasswordValue = generateHashValue(saltedPasswordValue);
 
+            
             /*
             // UPLOADING USER IMAGE TO THE DATABASE 
             DB db = mongoClient.getDB("CERAssetsDB");
@@ -338,6 +353,7 @@ public class MemberRegistrationModel {
             gfsFile.setFilename(newImageFileName);
             gfsFile.save();
              */
+            
             // Creating a new document to store in the MongoDB collection
             Document newDocument = new Document();
 

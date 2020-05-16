@@ -93,7 +93,7 @@ public class CustomerRegistrationServlet extends HttpServlet {
         String city = request.getParameter("city");
         String district = request.getParameter("district");
         String zipPostalCode = request.getParameter("zipPostalCode");
-        Part nicPassportImage = request.getPart("nicPassportImage");
+        Part nicPassportImage = request.getPart("nicPassportImage");        
         String emailAddress = request.getParameter("emailAddress");
         String confirmPassword = request.getParameter("confirmPassword");
 
@@ -120,20 +120,23 @@ public class CustomerRegistrationServlet extends HttpServlet {
 
         /*
         PrintWriter out = response.getWriter();
-        out.println("<h1 align='center:'>NIC: </h1>" + prefixName);   
-        out.println("<h1 align='center:'>NIC: </h1>" + firstName); 
-        out.println("<h1 align='center:'>NIC: </h1>" + middleName); 
-        out.println("<h1 align='center:'>NIC: </h1>" + lastName); 
-        out.println("<h1 align='center:'>NIC: </h1>" + nic); 
-        out.println("<h1 align='center:'>NIC: </h1>" + dateOfBirth); 
-        out.println("<h1 align='center:'>NIC: </h1>" + streetAddress); 
-        out.println("<h1 align='center:'>NIC: </h1>" + city); 
-        out.println("<h1 align='center:'>NIC: </h1>" + district); 
-        out.println("<h1 align='center:'>NIC: </h1>" + zipPostalCode); 
-        out.println("<h1 align='center:'>NIC: </h1>" + emailAddress); 
-        out.println("<h1 align='center:'>NIC: </h1>" + confirmPassword); 
-        out.println("<h1 align='center:'>IMAGE: </h1>" + nicPassportImage);        
-        */
+        out.println("<h1 align='center:'>prefixName: </h1>" + prefixName);   
+        out.println("<h1 align='center:'>firstName: </h1>" + firstName); 
+        out.println("<h1 align='center:'>middleName: </h1>" + middleName); 
+        out.println("<h1 align='center:'>lastName: </h1>" + lastName); 
+        out.println("<h1 align='center:'>nic: </h1>" + nic); 
+        out.println("<h1 align='center:'>dateOfBirth: </h1>" + dateOfBirth); 
+        out.println("<h1 align='center:'>streetAddress: </h1>" + streetAddress); 
+        out.println("<h1 align='center:'>city: </h1>" + city); 
+        out.println("<h1 align='center:'>district: </h1>" + district); 
+        out.println("<h1 align='center:'>zipPostalCode: </h1>" + zipPostalCode); 
+        out.println("<h1 align='center:'>emailAddress: </h1>" + emailAddress); 
+        out.println("<h1 align='center:'>confirmPassword: </h1>" + confirmPassword); 
+        out.println("<h1 align='center:'>nicPassportImage: </h1>" + nicPassportImage);           
+        /
+
+     
+        
 
     }
 

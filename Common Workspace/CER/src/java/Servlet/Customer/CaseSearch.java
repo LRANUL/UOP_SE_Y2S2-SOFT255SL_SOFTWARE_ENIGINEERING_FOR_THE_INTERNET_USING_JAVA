@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ranul
  */
-@WebServlet(name = "Case", urlPatterns = {"/Customer/Case"})
+@WebServlet(name = "Case", urlPatterns = {"/Account/Case"})
 public class CaseSearch extends HttpServlet {
 
     /**
@@ -95,7 +95,7 @@ public class CaseSearch extends HttpServlet {
             document.into(docs);
             request.setAttribute("cases", docs);
             RequestDispatcher rd = getServletContext().getRequestDispatcher(
-                    "/Customer/Account.jsp");
+                    "/Account/Account.jsp");
             rd.forward(request, response);
             for (org.bson.Document doc : docs) {
                 System.out.println(doc);
