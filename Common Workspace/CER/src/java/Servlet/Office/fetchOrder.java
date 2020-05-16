@@ -27,6 +27,7 @@ import org.bson.Document;
  *
  * @author ranul
  */
+@WebServlet(name = "fetchOrder", urlPatterns = {"/Office/fetchOrder"})
 public class fetchOrder extends HttpServlet {
 
     /**
@@ -85,15 +86,13 @@ public class fetchOrder extends HttpServlet {
         MongoDatabase database = mongoClient.getDatabase("CERdb");
 
         MongoCollection<Document> collection = database.getCollection("orders");
-        BasicDBObject query = new BasicDBObject();
-        ArrayList<Document> order = new ArrayList<Document>();
-        request.setAttribute("order", order);
+        FindIterable document = collection.find();
+        ArrayList<org.bson.Document> orders = new ArrayList<org.bson.Document>();
+        document.into(orders);
+        request.setAttribute("orders", orders);
         RequestDispatcher rd = getServletContext().getRequestDispatcher(
                 "/Office/Order.jsp");
         rd.forward(request, response);
-        for (Document doc : order) {
-            System.out.println(doc);
-        }
     }
 
     /**

@@ -143,9 +143,9 @@
                                     <th>Customer</th>
                                     <th>No of Copies</th>
                                     <th>Date</th>
-                                    <td>Reply</td>
+                                    <th>Respond</th>
                                 </tr>
-                            <c:forEach items="${requestScope.order}" var="order">
+                            <c:forEach items="${requestScope.orders}" var="order">
                                 <tr>
                                 <td><c:out value="${order.CaseNo}"></c:out></td>
                                 <td><c:out value="${order.Customer}"></c:out></td>
