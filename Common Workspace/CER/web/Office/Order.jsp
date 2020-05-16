@@ -145,19 +145,23 @@
                                     <th>Date</th>
                                     <th>Respond</th>
                                 </tr>
-                            <c:forEach items="${requestScope.orders}" var="order">
-                                <tr>
-                                <td><c:out value="${order.CaseNo}"></c:out></td>
-                                <td><c:out value="${order.Customer}"></c:out></td>
-                                <td><c:out value="${order.NoOfCopies}"></c:out></td>
-                                <td><c:out value="${order.Date}"></c:out></td>
-                                <td><form action="sendReply" method="post">
-                                        <button type="submit" name="button" value="Available">Available</button>
-                                        <button type="submit" name="button" value="NotAvailable">Not Available</button>
-                                    </form></td>
-                                </tr>
-                            </c:forEach>
-                                </tbody>
+                                <c:forEach items="${requestScope.orders}" var="order">
+                                    <tr>
+                                        <td><c:out value="${order.CaseNo}"></c:out></td>
+                                        <td><c:out value="${order.Customer}"></c:out></td>
+                                        <td><c:out value="${order.NoOfCopies}"></c:out></td>
+                                        <td><c:out value="${order.Date}"></c:out></td>
+                                            <td><form action="../Office/SendMail" method="post" name="form">
+                                                    <select name="Reply">
+                                                        <option value="Available">Available</option>
+                                                        <option value="NotAvailable">Not Available</option>
+                                                    </select>
+                                                        <input hidden type="text" name="Email" value="<c:out value="${order.Customer}"></c:out>"/>
+                                                        <button type="submit" name="submit">Send</button>
+                                                </form></td>
+                                        </tr>
+                                </c:forEach>
+                            </tbody>
                         </table>
                     </div>
                 </main>
