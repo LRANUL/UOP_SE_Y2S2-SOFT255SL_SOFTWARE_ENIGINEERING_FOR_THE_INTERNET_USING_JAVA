@@ -210,8 +210,9 @@ public class MemberRegistrationModel {
             MongoDatabase database = mongoClient.getDatabase("CERdb");
 
             // Connecting to the MongoDB collection
-            MongoCollection collection = database.getCollection("customerUsers");
-
+            MongoCollection collection = database.getCollection("users");
+            
+            
             // Retrieving the latest inserted document
             Document latestDocument = (Document) collection.find().sort(new Document("_id", -1)).first();
             // Declaring variable to store the latest document id
@@ -250,10 +251,11 @@ public class MemberRegistrationModel {
 
             // Inserting relevant data into the document
             newDocument.append("_id", newDocumentID)
-                    .append("emailAddress", emailAddress)
-                    .append("passwordHash", hashedPasswordValue)
-                    .append("nic", nic)
-                    .append("name",
+                    .append("userType", "customer")
+                    .append("emailAddress", emailAddress)                    
+                    .append("passwordHash", hashedPasswordValue)                    
+                    .append("nic", nic)                    
+                    .append("name", 
                             new Document("prefix", prefixName)
                                     .append("firstName", firstName)
                                     .append("middleName", middleName)
@@ -299,8 +301,9 @@ public class MemberRegistrationModel {
             MongoDatabase database = mongoClient.getDatabase("CERdb");
 
             // Connecting to the MongoDB collection
-            MongoCollection collection = database.getCollection("attorneyUsers");
-
+            MongoCollection collection = database.getCollection("users");
+            
+            
             // Retrieving the latest inserted document
             Document latestDocument = (Document) collection.find().sort(new Document("_id", -1)).first();
             // Declaring variable to store the latest document id
@@ -340,9 +343,10 @@ public class MemberRegistrationModel {
 
             // Inserting relevant data into the document
             newDocument.append("_id", newDocumentID)
-                    .append("emailAddress", emailAddress)
-                    .append("passwordHash", "")
-                    .append("nic", nic)
+                    .append("userType", "attorney")
+                    .append("emailAddress", emailAddress)                    
+                    .append("passwordHash", hashedPasswordValue)                    
+                    .append("nic", nic)  
                     .append("attorneyId", attorneyId)
                     .append("name",
                             new Document("prefix", prefixName)
