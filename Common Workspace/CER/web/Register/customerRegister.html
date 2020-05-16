@@ -5,19 +5,42 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
+        <!-- FAVICON ICON -->
+        <link rel="icon" type="image/png" href="../assets/images/favicon.png">
         <title>CER - Customer Registration</title>
         <!-- Importing CSS for Webpage Layout from Localhost -->
         <link rel="stylesheet" type="text/css" href="../assets/css/registrationWebpages.css">
-        <!-- Importing Bootstrap from Localhost -->
-        <link href="../assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css" rel="stylesheet">
+        <!-- Importing files necessary for Bootstrap from Localhost -->
+        <link rel="stylesheet" type="text/css" href="../assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css">
+        <script src="../assets/externalLibraries/bootstrap-v4.4.1/js/jquery.min.js"></script>
+        <script src="../assets/externalLibraries/bootstrap-v4.4.1/js/popper.min.js"></script>
+        <script src="../assets/externalLibraries/bootstrap-v4.4.1/js/bootstrap.min.js"></script>
         <!-- Importing Fontawesome from Localhost -->
         <link rel="stylesheet" type="text/css" href="../assets/externalLibraries/fontawesome-v5.13.0/css/all.css">
         <!-- Importing Google Fonts from the Internet -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap" rel="stylesheet">
 
         <script>
+            /* jQuery for BOOTSTRAP TOOLTIP AND BOOTSTRAP POPOVER */
+            $(document).ready(function(){
+              $('[data-toggle="tooltip"]').tooltip(); 
+              $('[data-toggle="popover"]').popover();     
+            });
+
             /* CUSTOMER REGISTRATION FORM USER DATA VALIDATION */
             function validateUserData() {
+
+                // Checking if the user entered passwords characters length in greater than or equal to 10
+                if(document.customerRegistrationForm.password.value.length <= 10 || document.customerRegistrationForm.password.value.length <= 10){
+                  alert("ERROR: Rechecked Entered Password, Password length is below 10 characters");
+                  return false;
+                }
+
+                // Checking if the user entered passwords characters length in lower than or equal to 25
+                if(document.customerRegistrationForm.password.value.length >= 25 || document.customerRegistrationForm.confirmPassword.value.length >= 25){
+                  alert("ERROR: Rechecked Entered Password, Password length is above 25 characters");
+                  return false;
+                }
 
                 // Checking if the user entered similar password in the password field and confirm password field
                 if (document.customerRegistrationForm.password.value != document.customerRegistrationForm.confirmPassword.value) {
@@ -37,7 +60,20 @@
 
             }
         </script>
+        <style>
+          /* SELECT (DROP DOWN) STYLES */
+          select:required:invalid{
+              color: gray;
+            }
 
+            option[value=""][disabled]{
+              display: none;
+            }
+
+            option{
+              color: black;
+            }
+        </style>
     </head>
     <body>
         <!-- HEADER SECTION - BEGIN -->
@@ -97,7 +133,7 @@
                  transform: translateX(-50%);
                  border-radius: 15px;
                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                 padding-bottom: 80px;
+                 padding-bottom: 110px;
                  margin-bottom: 50px;">
                 <!-- CARD HEADING -->
                 <p style="text-align: center;
@@ -122,7 +158,9 @@
                             <div class="form-row">
                                 <div class="col">
                                     <select class="form-control formItem" name="prefixName" style="padding: 0px;
-                                            height: 45px;" >
+                                                                                                  height: 45px;
+                                                                                                  padding-left: 18px;" 
+                                    data-toggle="tooltip" data-placement="right" title="MANDATORY, Select Prefix" required>
                                         <option value="" selected>Select Prefix</option>
                                         <option value="Mr.">Mr.</option>
                                         <option value="Sir.">Sir.</option>
@@ -131,22 +169,57 @@
                                         <option value="Miss.">Miss.</option>
                                         <option value="Ms.">Ms.</option>
                                     </select>
+                                    <div style="color: rgb(255, 0, 0);
+                                                font-size: 24px;
+                                                font-weight: 600;
+                                                position: absolute;
+                                                right: 8%;
+                                                top: 15px;">
+                                      *
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col">
                                     <input type="text" class="form-control formItem" style="margin-top: 10px;
-                                           width: 88%;" placeholder="Enter First Name" name="firstName"  />
+                                           width: 88%;" placeholder="Enter First Name" name="firstName" 
+                                           data-toggle="tooltip" data-placement="right" title="MANDATORY, Enter First Name" required />
+                                    <div style="color: rgb(255, 0, 0);
+                                                font-size: 24px;
+                                                font-weight: 600;
+                                                position: absolute;
+                                                right: 8%;
+                                                top: 5px;">
+                                      *
+                                    </div>
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control formItem" style="margin-top: 10px;
                                            margin-left: -5px;
-                                           width: 88%;" placeholder="Enter Middle Name" name="middleName" />
+                                           width: 88%;" placeholder="Enter Middle Name" name="middleName" 
+                                           data-toggle="tooltip" data-placement="right" title="MANDATORY, Enter Middle Name" required />
+                                    <div style="color: rgb(255, 0, 0);
+                                              font-size: 24px;
+                                              font-weight: 600;
+                                              position: absolute;
+                                              right: 16%;
+                                              top: 5px;">
+                                      *
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col">
-                                    <input type="text" class="form-control formItem" style="margin-top: 10px;" placeholder="Enter Last Name" name="lastName"  />
+                                    <input type="text" class="form-control formItem" style="margin-top: 10px;" placeholder="Enter Last Name"
+                                    data-toggle="tooltip" data-placement="right" title="MANDATORY, Enter Last Name" required />
+                                    <div style="color: rgb(255, 0, 0);
+                                              font-size: 24px;
+                                              font-weight: 600;
+                                              position: absolute;
+                                              right: 8%;
+                                              top: 5px;">
+                                      *
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +228,16 @@
                             <label class="formTitle">National Identity Card</label>
                             <div class="form-row">
                                 <div class="col">
-                                    <input type="text" class="form-control formItem" placeholder="Enter NIC" name="nic"  />
+                                    <input type="text" class="form-control formItem" placeholder="Enter NIC Number" name="nic" 
+                                    data-toggle="tooltip" data-placement="right" title="MANDATORY, Enter NIC Number" required />
+                                    <div style="color: rgb(255, 0, 0);
+                                              font-size: 24px;
+                                              font-weight: 600;
+                                              position: absolute;
+                                              right: 8%;
+                                              top: 15px;">
+                                      *
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +246,16 @@
                             <label class="formTitle">Date Of Birth</label>
                             <div class="form-row">
                                 <div class="col">
-                                    <input type="text" class="form-control formItem" placeholder="DD/MM/YYYY" name="dateOfBirth"  />
+                                    <input type="text" class="form-control formItem" placeholder="DD/MM/YYYY" name="dateOfBirth" 
+                                    data-toggle="tooltip" data-placement="right" title="MANDATORY, Enter Date of Birth, Format: DD/MM/YYYY" required />
+                                    <div style="color: rgb(255, 0, 0);
+                                              font-size: 24px;
+                                              font-weight: 600;
+                                              position: absolute;
+                                              right: 8%;
+                                              top: 15px;">
+                                      *
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -173,18 +264,38 @@
                             <label class="formTitle">Address</label>
                             <div class="form-row">
                                 <div class="col">
-                                    <input type="text" class="form-control formItem" placeholder="Enter Street Address" style="width: 88%;" name="streetAddress"  />
+                                    <input type="text" class="form-control formItem" placeholder="Enter Street Address" style="width: 88%;" name="streetAddress" 
+                                    data-toggle="tooltip" data-placement="right" title="MANDATORY, Enter Street Address" required />
+                                    <div style="color: rgb(255, 0, 0);
+                                              font-size: 24px;
+                                              font-weight: 600;
+                                              position: absolute;
+                                              right: 8%;
+                                              top: 15px;">
+                                      *
+                                    </div>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control formItem" placeholder="Enter City" style="width: 88%;
-                                           margin-left: -10px;" name="city"  />
+                                    <input type="text" class="form-control formItem" placeholder="Enter City" style="width: 88%; 
+                                                                                                                    margin-left: -10px;" 
+                                    name="city" data-toggle="tooltip" data-placement="right" title="MANDATORY, Enter City" required />
+                                    <div style="color: rgb(255, 0, 0);
+                                              font-size: 24px;
+                                              font-weight: 600;
+                                              position: absolute;
+                                              right: 18%;
+                                              top: 15px;">
+                                      *
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col">
                                     <select class="form-control formItem" style="padding: 0px;
-                                            height: 45px;
-                                            width: 88%;" name="district"  >
+                                                                                height: 45px;
+                                                                                width: 88%;
+                                                                                padding-left: 18px;" 
+                                    name="district" data-toggle="tooltip" data-placement="right" title="MANDATORY, Select District" required >
                                         <option value="" selected>Select District</option>
                                         <option value="Jaffna">Jaffna</option>
                                         <option value="Kilinochchi">Kilinochchi</option>
@@ -212,15 +323,31 @@
                                         <option value="Matara">Matara</option>
                                         <option value="Galle">Galle</option>
                                     </select>
+                                    <div style="color: rgb(255, 0, 0);
+                                              font-size: 24px;
+                                              font-weight: 600;
+                                              position: absolute;
+                                              right: 8%;
+                                              top: 15px;">
+                                      *
+                                    </div>
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control formItem" placeholder="Enter Zip/Postal Code" style="width: 88%;
-                                           margin-left: -10px;" name="zipPostalCode"  />
+                                           margin-left: -10px;" name="zipPostalCode" data-toggle="tooltip" data-placement="right" title="MANDATORY, Enter Zip/Postal Code" required />
+                                    <div style="color: rgb(255, 0, 0);
+                                            font-size: 24px;
+                                            font-weight: 600;
+                                            position: absolute;
+                                            right: 18%;
+                                            top: 15px;">
+                                    *
+                                  </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" data-toggle="tooltip" data-placement="right" title="NOT AVAILABLE YET">
                             <label class="formTitle">Proof Of Citizenship</label>
                             <div style="border: #ccc solid 1px;
                                  border-radius: 5px;
@@ -239,7 +366,7 @@
                                     <div class="col">
                                         <input type="file" class="form-control-file" style="position: relative;
                                                left: 45px;
-                                               top: 10px;" name="nicPassportImage" >
+                                               top: 10px;" name="nicPassportImage">
                                     </div>
                                 </div>
                             </div>
@@ -249,47 +376,94 @@
                             <label class="formTitle">Login Credentials</label>
                             <div class="form-row">
                                 <div class="col">
-                                    <input type="email" class="form-control formItem" style="width: 90%;" placeholder="Enter Email Address" name="emailAddress"  />
+                                  <input type="email" class="form-control formItem" style="width: 90%;" placeholder="Enter Email Address" name="emailAddress" 
+                                  data-toggle="tooltip" data-placement="right" title="MANDATORY, Enter VALID Email Address" required />
+                                  <div style="color: rgb(255, 0, 0);
+                                            font-size: 24px;
+                                            font-weight: 600;
+                                            position: absolute;
+                                            right: 8%;
+                                            top: 15px;">
+                                    *
+                                  </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col">
-                                    <input type="password" class="form-control formItem" style="margin-top: 10px;
-                                           width: 88%;" placeholder="Enter Password" name="password"  />
+                                  <input type="password" class="form-control formItem" style="margin-top: 10px;
+                                          width: 88%;" placeholder="Enter Password" name="password" 
+                                  data-toggle="popover" data-trigger="hover" title="MANDATORY, Password Guidelines:" data-html="true"
+                                  data-content="Minimum 10 characters<br />
+                                                Maximum 25 characters<br />
+                                                At least ONE uppercase letter<br />
+                                                At least ONE numeric character<br />
+                                                At least ONE special character" required />
+                                  <div style="color: rgb(255, 0, 0);
+                                              font-size: 24px;
+                                              font-weight: 600;
+                                              position: absolute;
+                                              right: 8%;
+                                              top: 5px;">
+                                    *
+                                  </div>
                                 </div>
                                 <div class="col">
-                                    <input type="password" class="form-control formItem" style="margin-top: 10px;
-                                           margin-left: -5px;
-                                           width: 88%;" placeholder="Enter Confirm Password" name="confirmPassword"  />
+                                  <input type="password" class="form-control formItem" style="margin-top: 10px;
+                                          margin-left: -5px;
+                                          width: 88%;" placeholder="Enter Confirm Password" name="confirmPassword" 
+                                  data-toggle="popover" data-trigger="hover"title="MANDATORY, Password Guidelines:" data-html="true"
+                                  data-content="Minimum 10 characters<br />
+                                                Maximum 25 characters<br />
+                                                At least ONE uppercase letter<br />
+                                                At least ONE numeric character<br />
+                                                At least ONE special character" required />
+                                  <div style="color: rgb(255, 0, 0);
+                                              font-size: 24px;
+                                              font-weight: 600;
+                                              position: absolute;
+                                              right: 16%;
+                                              top: 5px;">
+                                    *
+                                  </div>
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
-                            <label class="formTitle">Terms & Conditions</label>
+                            <label class="formTitle" style="margin-bottom: -10px;">Terms & Conditions</label>
                             <div class="form-row">
                                 <div class="col">
                                     <p class="formItem" style="border: none;
                                        letter-spacing: 2px;
                                        line-height: 30px;">
-                                        Please read through the Terms and Conditions and agree to it by <br> ticking the below box to continue the registration
+                                        Please read through the <a href="#"><span style="text-decoration: none;
+                                                                                        color: rgb(5, 130, 168);">Terms and Conditions</span></a> and agree to it by <br> ticking the below box to continue the registration
                                     </p>
                                 </div>
                             </div>
-                            <div class="form-row">
+                            <div class="form-row" data-toggle="tooltip" data-placement="right" title="MANDATORY, Tick on Terms & Conditions Checkbox">
                                 <div class="col">
                                     <div class="form-check" style="margin-left: 50px;
                                          margin-top: 40px;">
                                         <input class="form-check-input" type="checkbox" style="width: 20px;
-                                               height: 20px;" id="termsAndConditions" >
+                                               height: 20px;" id="termsAndConditions" required >
                                         <label class="form-check-label" style="margin-left: 20px;">
                                             I have read and I agree to the Terms and Conditions
                                         </label>
+                                        <div style="color: rgb(255, 0, 0);
+                                              font-size: 24px;
+                                              font-weight: 600;
+                                              position: absolute;
+                                              right: 35%;
+                                              top: -10px;">
+                                          *
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- FORM SUBMIT BUTTON -->
                         <button class="btn btn-primary btn-block" style="height: 45px;
                                 position: relative;
                                 top: 20px;" type="submit">
@@ -300,6 +474,36 @@
                                font-size: 20px;
                                margin-left: 30px;">REGISTER</p>
                         </button>
+
+                        <!-- FORM RESET BUTTON STYLES -->
+                        <style>
+                          #resetButton{
+                            border: rgb(7, 86, 122);
+                            background-color: rgb(3, 119, 173);
+                            color: #ffffff;
+                          }
+        
+                          #resetButton:hover{
+                            border: rgb(7, 75, 107);
+                            background-color: rgb(2, 95, 138);
+                          }
+                        </style>
+        
+                        <!-- FORM RESET BUTTON -->
+                        <button style="height: 45px;
+                              width: 110px;
+                              position: relative;
+                              top: 70px;
+                              left: -130px;" class="btn" id="resetButton" type="reset">
+                          <i class="fas fa-undo-alt" style="position: absolute;
+                                                            left: 15px;
+                                                            margin-top: 8px;"></i>
+                          <p style="letter-spacing: 1px;
+                                    font-size: 18px;
+                                    margin-left: 25px;
+                                    margin-top: 2px;">RESET</p>
+                        </button>
+
                     </form>
 
                 </div>
