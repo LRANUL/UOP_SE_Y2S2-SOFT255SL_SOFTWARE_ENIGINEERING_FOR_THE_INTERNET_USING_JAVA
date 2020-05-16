@@ -6,12 +6,22 @@
 package Model;
 
 import MongoDatabase.MongoDBConnection;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
 import com.mongodb.ErrorCategory;
+import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.MongoWriteException;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.gridfs.GridFS;
+import com.mongodb.gridfs.GridFSInputFile;
+import java.io.File;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.List;
 import org.bson.Document;
 
@@ -20,7 +30,7 @@ import org.bson.Document;
  * @author Lucas.L.H.H
  */
 public class MemberRegistrationModel {
-    
+
     // Creating new object for database connection url
     MongoDBConnection mongoDB;
 
@@ -42,6 +52,9 @@ public class MemberRegistrationModel {
     private String nicPassportImage = null;
     private String emailAddress = null;
     private String confirmPassword = null;
+    
+    // Assigning SALT value for salting user entered password value
+    public static final String SALT = "SOFT255SL - CERWebApp";
     
     // GETTERS
     public String getPrefixName(){
@@ -127,28 +140,77 @@ public class MemberRegistrationModel {
     
     public void newCustomerRegistration(){
        
-        /* PROCESS OF INSERTING DATA INTO THE MONGODB DATABASE */
+        /* PROCESS OF INSERTING USER ENTETED VALUES INTO THE MONGODB DATABASE */
         try{
             // Establishing MongoDB URI Connection
             MongoClientURI uri = new MongoClientURI(mongoDB.MongoDBConnectionURL());
             MongoClient mongoClient = new MongoClient(uri);
 
             // Connecting to the MongoDB database
-            MongoDatabase database = mongoClient.getDatabase("CERsDB");
+            MongoDatabase database = mongoClient.getDatabase("CERdb");
 
             // Connecting to the MongoDB collection
-            MongoCollection collection = database.getCollection("users/");
-
+            MongoCollection collection = database.getCollection("customerUsers");
+            
+            
+            // Retrieving the latest inserted document
+            Document latestDocument = (Document) collection.find().sort(new Document("_id", -1)).first();
+            // Retrieving the doucment id of the latest inserted document
+            int latestDocumentID = (int) latestDocument.get("_id");
+            // Incrementing latest document id by one to identify new document id
+            int newDocumentID = ++latestDocumentID;
+            
+            
+            /* GENERATING SHA1 HASH PASSWORD VALUE WITH SALTING */
+            // Salting entered password value
+            String saltedPasswordValue = SALT + confirmPassword;
+            // Generating hash value of the salted password
+            String hashedPasswordValue = generateHashValue(saltedPasswordValue);
+            
+            /*
+            // UPLOADING USER IMAGE TO THE DATABASE 
+            MongoClientURI uril= new MongoClientURI(mongoDB.MongoDBConnectionURL());
+            MongoClient mongop = new MongoClient(uril);
+            DB db = mongop.getDB("imagedb");
+            File imageFile = new File(nicPassportImage);
+            System.out.println("Image: "+imageFile);
+            System.out.println("Path: "+ imageFile.getPath()); 
+            System.out.println("Absolute path:" + imageFile.getAbsolutePath()); 
+            String newImageFileName = "Test";
+            GridFS gfsPhoto = new GridFS(db, "photo");
+            GridFSInputFile gfsFile = gfsPhoto.createFile(imageFile);
+            gfsFile.setFilename(newImageFileName);
+            gfsFile.save();
+            */
+            
             // Creating a new document to store in the MongoDB collection
             Document newDocument = new Document(); 
-
+            
             // Inserting relevant data into the document
-            newDocument.append("_id", 1)
-                    .append("bookTitle","Programming in Java")
-                    .append("author", 
-                            new Document("fistname", "James")
-                            .append("lastname", "Anderson"))
-                    .append("publishedDate","12th June, 2012");
+            newDocument.append("_id", newDocumentID)
+                    .append("emailAddress", emailAddress)                    
+                    .append("passwordHash", hashedPasswordValue)                    
+                    .append("nic", nic)                    
+                    .append("name", 
+                            new Document("prefix", prefixName)
+                            .append("firstName", firstName)
+                            .append("middleName", middleName)
+                            .append("lastName", lastName))
+                    .append("dateOfBirth", dateOfBirth)
+                    .append("address", 
+                            new Document("streetAddress", streetAddress)
+                            .append("city", city)
+                            .append("zipPostalCode", zipPostalCode)
+                            .append("district", district))
+                    .append("proofOfCitizenship_fileName", "")
+                    .append("registration", 
+                            new Document("userRequestDateTime", new Date())
+                            .append("officerResponseDateTime", "")
+                            .append("status", "Pending"))
+                    .append("sessionActivity", 
+                            new Document("loginDateTime", new Date())
+                            .append("loginDateTime", "")
+                            .append("logoutDateTime", ""));
 
             // Inserting the created document into the MongoDB collection
             try{
@@ -162,9 +224,30 @@ public class MemberRegistrationModel {
             }
         }
         catch(Exception ex){
-            System.out.println("Error: " + ex);
+            System.out.println("ERROR: " + ex);
         }
         
+    }
+    
+    /* PROCESS OF GENERATING SHA1 HASH VALUE OF PASSWORD */
+    public static String generateHashValue(String passwordValue) {
+        StringBuilder hashValue = new StringBuilder();
+
+        try {
+            MessageDigest sha = MessageDigest.getInstance("SHA-1");
+            byte[] hashedValueBytes = sha.digest(passwordValue.getBytes());
+            char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                            'a', 'b', 'c', 'd', 'e', 'f' };
+            for(int x = 0; x < hashedValueBytes.length; ++x) {
+                    byte b = hashedValueBytes[x];
+                    hashValue.append(digits[(b & 0xf0) >> 4]);
+                    hashValue.append(digits[b & 0x0f]);
+            }
+        } 
+        catch (NoSuchAlgorithmException ex) {
+            System.out.println("ERROR: " + ex);
+        }
+        return hashValue.toString();
     }
     
 

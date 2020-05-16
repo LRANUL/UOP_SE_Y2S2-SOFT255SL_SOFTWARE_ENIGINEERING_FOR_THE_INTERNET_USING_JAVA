@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Model.MemberRegistrationModel;
+import com.mongodb.gridfs.GridFS;
+import com.mongodb.gridfs.GridFSInputFile;
 import java.io.File;
 
 /**
@@ -77,12 +79,13 @@ public class CustomerRegistrationServlet extends HttpServlet {
             throws ServletException, IOException {
         // processRequest(request, response);
         
+        // Retrieving user enter values from frontend
         String prefixName = request.getParameter("prefixName");
         String firstName = request.getParameter("firstName");        
         String middleName = request.getParameter("middleName");     
         String lastName = request.getParameter("lastName");
         String nic = request.getParameter("nic");
-        String dateOfBirth = request.getParameter("dataOfBirth");
+        String dateOfBirth = request.getParameter("dateOfBirth");
         String streetAddress = request.getParameter("streetAddress");
         String city = request.getParameter("city");
         String district = request.getParameter("district");
@@ -91,16 +94,32 @@ public class CustomerRegistrationServlet extends HttpServlet {
         String emailAddress = request.getParameter("emailAddress");
         String confirmPassword = request.getParameter("confirmPassword");
 
+        // Creating new object of MemberRegistrationModel class
         MemberRegistrationModel newUser = new MemberRegistrationModel();
         
+        // Passing the user entered values to the model 
+        newUser.setPrefixName(prefixName);
+        newUser.setFirstName(firstName);
+        newUser.setMiddleName(middleName);
+        newUser.setLastName(lastName);
+        newUser.setNIC(nic);
+        newUser.setDateOfBirth(dateOfBirth);
+        newUser.setStreetAddress(streetAddress);
+        newUser.setCity(city);
+        newUser.setDistrict(district);
+        newUser.setZipPostalCode(zipPostalCode);
+        newUser.setNICPassportImage(nicPassportImage);
+        newUser.setEmailAddress(emailAddress);
+        newUser.setConfirmPassword(confirmPassword);
+        
+        // Calling function throught the newly created object
         newUser.newCustomerRegistration();
-        
+
+        /*
         PrintWriter out = response.getWriter();
-        
-        File rr1 = new File(nicPassportImage);
-        
-        out.println("<h1 align='center:'>NIC: </h1>" + nic);        
-        out.println("<h1 align='center:'>IMAGE: </h1>" + rr1);
+        out.println("<h1 align='center:'>NIC: </h1>" + nic);                              
+        out.println("<h1 align='center:'>IMAGE: </h1>" + nicPassportImage);        
+        */
 
     }
 
