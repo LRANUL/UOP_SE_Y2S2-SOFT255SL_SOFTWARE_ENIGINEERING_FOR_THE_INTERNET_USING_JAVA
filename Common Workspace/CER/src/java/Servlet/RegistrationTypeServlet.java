@@ -5,29 +5,20 @@
  */
 package Servlet;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.bson.Document;
 
 /**
  *
- * @author ranul
+ * @author Lucas.L.H.H
  */
-@WebServlet(name = "DocumentSearch", urlPatterns = {"/DocumentSearch"})
-public class DocumentSearch extends HttpServlet {
+@WebServlet(name = "RegistrationTypeServlet", urlPatterns = {"/RegistrationTypeServlet"})
+public class RegistrationTypeServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,10 +37,10 @@ public class DocumentSearch extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DocumentSearch</title>");
+            out.println("<title>Servlet RegistrationTypeServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DocumentSearch at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RegistrationTypeServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -67,7 +58,7 @@ public class DocumentSearch extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     /**
@@ -81,28 +72,25 @@ public class DocumentSearch extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String CaseNumber = request.getParameter("CaseNumber");
-
-        MongoClient mongoClient = MongoClients.create("mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
-        MongoDatabase database = mongoClient.getDatabase("CERdb");
-
-        MongoCollection<Document> collection = database.getCollection("documents");
-
-        if (CaseNumber != null) {
-            BasicDBObject query = new BasicDBObject();
-            query.put("CaseNo", CaseNumber);
-            FindIterable document = collection.find(query);
-            ArrayList<Document> docs = new ArrayList<Document>();
-            document.into(docs);
-            request.setAttribute("documents", docs);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher(
-                    "/DocumentResults.jsp");
-            rd.forward(request, response);
-            for (Document doc : docs) {
-                System.out.println(doc);
-            }
-
+        // processRequest(request, response);
+        
+        // Retrieving user selected member registration type from the frontend
+        String memberRegistrationType = request.getParameter("memberRegistrationTypeSelect");
+        
+        // Checking the selected member registration type and redirecting user to relavant webpage.
+        if("".equals(memberRegistrationType)){
+            // If the member registration type was not selected
+            System.out.println("Member Registration Type not selected");
         }
+        else if("Customer".equals(memberRegistrationType)){   
+            // If the selected member registration type is customer, user will be redirected to customer registration webpage
+            response.sendRedirect(request.getContextPath() + "/Register/CustomerRegister.html");
+        }
+        else if("Attorney".equals(memberRegistrationType)){
+            // If the selected member registration type is attorney, user will be redirected to attorney registration webpage
+            response.sendRedirect(request.getContextPath() + "/Register/AttorneyRegister.html");
+        }
+        
     }
 
     /**

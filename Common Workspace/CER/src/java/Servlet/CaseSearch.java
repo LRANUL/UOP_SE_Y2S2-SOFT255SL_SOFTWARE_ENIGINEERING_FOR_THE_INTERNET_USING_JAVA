@@ -97,7 +97,7 @@ public class CaseSearch extends HttpServlet {
             document.into(docs);
             request.setAttribute("cases", docs);
             RequestDispatcher rd = getServletContext().getRequestDispatcher(
-                    "/Case.jsp");
+                    "/CaseResults.jsp");
             rd.forward(request, response);
             for (Document doc : docs) {
                 System.out.println(doc);

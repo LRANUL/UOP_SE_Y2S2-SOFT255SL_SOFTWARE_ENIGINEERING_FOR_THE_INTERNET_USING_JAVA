@@ -1,12 +1,17 @@
 <%-- 
     Document   : Case
-    Created on : May 17, 2020, 3:05:19 AM
+    Created on : May 15, 2020, 5:00:36 PM
     Author     : ranul
 --%>
 
+<%@page import="org.bson.types.ObjectId"%>
+<%@page import="com.mongodb.DBObject"%>
+<%@page import="javax.swing.table.DefaultTableModel"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,8 +21,6 @@
         <title>CER - Home</title>
         <!-- Bootstrap core CSS -->
         <link href="assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css" rel="stylesheet">
-        <!-- Importing Fontawesome from Localhost -->
-        <link rel="stylesheet" type="text/css" href="assets/externalLibraries/fontawesome-v5.13.0/css/all.css">
         <!-- Custom styles for this template -->
         <link href="assets/css/justified-nav.css" rel="stylesheet">
         <style>
@@ -25,8 +28,34 @@
                 display: block;
             }
         </style>
+        <style>
+            #cases {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            #cases td, #cases th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #cases tr:nth-child(even){background-color: #f2f2f2;}
+
+            #cases tr:hover {background-color: #ddd;}
+
+            #cases th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #585858;
+                color: white;
+            }
+        </style>
         <link rel="icon" href="assets/images/favicon.png" type="image/png">
+
     </head>
+
     <body>
         <div class="container">
             <div class="masthead">
@@ -67,42 +96,39 @@
                 </nav>
             </div>
             <!-- Jumbotron -->
-            <div class="jumbotron">
-                <div class="row">
-                    <div class="col-lg-auto">
-                        <h2>Find a Case</h2>
-                        <p class="text-left">Insert Your Case Number</p>
-                        <p></p>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <form name="CaseNoSearch" method="post" action="CaseSearch">
-                        <input type="text" name="CaseNo" class="form-control bg-white" placeholder="Case Number" >
-                        <button type="submit" class="btn-sm btn-outline-secondary">Search</button>
-                    </form>
-                </div>
-                <h4>Or by Court Location</h4>
-                <div class="input-group">
-                    <form name="CaseLocationSearch" method="post" action="CaseSearch">
-                        <input type="text" name="CourtLocation" class="form-control bg-white" placeholder="Court Location">
-                        <button type="submit" class="btn-sm btn-outline-secondary">Search</button>
-                    </form>
-                </div>
-            </div>
-            <!-- Example row of columns -->
-            <!-- Site footer -->
-            <footer class="footer">
-                <p class="text-center">&copy; CER</p>
-            </footer>
-            <!-- Retrieving RegisterModal Webpage -->
-            <%@include file="RegisterModal.html" %>
+            <h2>Search Results</h2>
+            <table id="cases">
+                <tbody>
+                    <tr>
+                        <th>Case No</th>
+                        <th>Party</th>
+                        <th>Court Location</th>
+                    </tr>
+                    <c:forEach items="${requestScope.cases}" var="case">
+                        <tr>
+                            <td><c:out value="${case.CaseNo}"></c:out></td>
+                            <td><c:out value="${case.Party}"></c:out></td>
+                            <td><c:out value="${case.CourtLocation}"></c:out></td>
+                            </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
         </div>
-        <!-- /container -->
-        <!-- Bootstrap core JavaScript
+        <!-- Example row of columns -->
+        <!-- Site footer -->
+        <footer class="footer">
+            <p class="text-center">&copy; CER</p>
+        </footer>
+        <!-- Retrieving RegisterModal Webpage -->
+        <%@include file="RegisterModal.html" %>
+    </div>
+    <!-- /container -->
+     <!-- Bootstrap core JavaScript
     ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="assets/externalLibraries/bootstrap-v4.4.1/js/jquery.min.js"></script>
         <script src="assets/externalLibraries/bootstrap-v4.4.1/js/popper.min.js"></script>
         <script src="assets/externalLibraries/bootstrap-v4.4.1/js/bootstrap.min.js"></script>
-    </body>
+</body>
+
 </html>

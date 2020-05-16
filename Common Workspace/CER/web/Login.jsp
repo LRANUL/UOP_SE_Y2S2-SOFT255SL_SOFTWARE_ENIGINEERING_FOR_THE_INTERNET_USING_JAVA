@@ -1,3 +1,10 @@
+<%-- 
+    Document   : Login
+    Created on : May 17, 2020, 3:13:30 AM
+    Author     : ranul
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,6 +16,8 @@
         <title>CER - Home</title>
         <!-- Bootstrap core CSS -->
         <link href="assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css" rel="stylesheet">
+        <!-- Importing Fontawesome from Localhost -->
+        <link rel="stylesheet" type="text/css" href="assets/externalLibraries/fontawesome-v5.13.0/css/all.css">
         <!-- Custom styles for this template -->
         <link href="assets/css/justified-nav.css" rel="stylesheet"><style>
             .nav-item.dropdown:hover .dropdown-menu {display: block;}
@@ -26,28 +35,25 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav text-md-center nav-justified w-100">
                             <li class="nav-item active">
-                                <a class="nav-link" href="Home.html">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="Home.jsp">Home <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Case.html">Find a Case</a>
+                                <a class="nav-link" href="Case.jsp">Find a Case</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Document.html">Request Case Documents</a>
+                                <a class="nav-link" href="Document.jsp">Request Case Documents</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Services.html">Services</a>
+                                <a class="nav-link" href="Services.jsp">Services</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="About.html">About</a>
+                                <a class="nav-link" href="About.jsp">About</a>
                             </li>
                         </ul>
                     </div>
-                    <!-- LOGIN BUTTON -->
-                    <button class="btn" id="loginButton" type="button" onclick="location.href='Login.html'">
-                        <p id="loginButtonText">LOGIN</p>
-                    </button>
                     <!-- REGISTER BUTTON -->
-                    <button class="btn" id="registerButton" type="button" onclick="location.href='Register.html'">
+                    <button class="btn" id="registerButton" type="button"
+                    data-toggle="modal" data-target="#registerModal">
                         <p id="registerButtonText">REGISTER</p>
                     </button>
                 </nav>
@@ -73,18 +79,20 @@
             </div>
             <!-- Example row of columns -->
             <div class="row">
-</div>
+            </div>
             <!-- Site footer -->
             <footer class="footer">
                 <p class="text-center">&copy; CER</p>
             </footer>
+            <!-- Retrieving RegisterModal Webpage -->
+            <%@include file="RegisterModal.html" %>
         </div>         
         <!-- /container -->
-        <!-- Bootstrap core JavaScript
+         <!-- Bootstrap core JavaScript
     ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/popper.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/externalLibraries/bootstrap-v4.4.1/js/jquery.min.js"></script>
+        <script src="assets/externalLibraries/bootstrap-v4.4.1/js/popper.min.js"></script>
+        <script src="assets/externalLibraries/bootstrap-v4.4.1/js/bootstrap.min.js"></script>
     </body>
 </html>

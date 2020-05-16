@@ -1,10 +1,3 @@
-<%-- 
-    Document   : newjsp
-    Created on : May 16, 2020, 6:58:13 PM
-    Author     : Lucas.L.H.H
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -60,6 +53,15 @@
                 if (document.getElementById('termsAndConditions').checked) {
                     // User has checked the checkbox
                     return true;
+
+                    // Showing the user the registration process will continue and verifying the entered values
+                    var confirmContinueRegisterNewUser = confirm("New user will be registered, are all the entered details correct?");
+                    if(confirmContinueRegisterNewUser == true){
+                        return true;
+                    }
+                    else if(confirmContinueRegisterNewUser == false){
+                        return false;
+                    }
                 } else {
                     // User didn't check the checkbox
                     alert("ERROR: Please tick Terms and Conditions checkbox");
@@ -126,7 +128,9 @@
 
         <!-- RETURN BUTTON -->
         <div id="bodyContentSection">
-            <button class="btn btn-info" id="returnButton">
+            <button class="btn btn-info" id="returnButton" 
+            onClick="var selectedOption = confirm('All the entered details will be DISCARDED. Do you want to continue?');
+                    if(selectedOption == true){ location.href='../Home.jsp'; };">
                 <i class="fas fa-angle-double-left" id="returnButtonIcon"></i>
                 <p id="returnButtonText">RETURN</p>
             </button>

@@ -1,12 +1,14 @@
 <%-- 
-    Document   : Case
-    Created on : May 17, 2020, 3:05:19 AM
+    Document   : Document.jsp
+    Created on : May 16, 2020, 1:59:31 AM
     Author     : ranul
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,7 +28,9 @@
             }
         </style>
         <link rel="icon" href="assets/images/favicon.png" type="image/png">
+
     </head>
+
     <body>
         <div class="container">
             <div class="masthead">
@@ -66,29 +70,23 @@
                     </button>
                 </nav>
             </div>
-            <!-- Jumbotron -->
-            <div class="jumbotron">
-                <div class="row">
-                    <div class="col-lg-auto">
-                        <h2>Find a Case</h2>
-                        <p class="text-left">Insert Your Case Number</p>
-                        <p></p>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <form name="CaseNoSearch" method="post" action="CaseSearch">
-                        <input type="text" name="CaseNo" class="form-control bg-white" placeholder="Case Number" >
-                        <button type="submit" class="btn-sm btn-outline-secondary">Search</button>
-                    </form>
-                </div>
-                <h4>Or by Court Location</h4>
-                <div class="input-group">
-                    <form name="CaseLocationSearch" method="post" action="CaseSearch">
-                        <input type="text" name="CourtLocation" class="form-control bg-white" placeholder="Court Location">
-                        <button type="submit" class="btn-sm btn-outline-secondary">Search</button>
-                    </form>
-                </div>
+            <div>
+                <img src="assets/images/doc_cover.jpg" style="width:100%;height:200px">
             </div>
+            <!-- Jumbotron -->
+            <h1>Search Results</h1>
+            <c:forEach items="${requestScope.documents}" var="case">
+                <h3>Case No: <c:out value="${case.CaseNo}"></c:out> held at Court: <c:out value="${case.CourtLocation}"></c:out></h3>
+                <h6>Party - <c:out value="${case.Party}"></c:out></h6><br>
+                <h6>Co-Parties - <c:out value="${case.CoParty}"></c:out></h6>
+                <h6>Documents Available - <c:out value="${case.DocumentNo}"></c:out></h6>
+                <h6>Next Hearing - <c:out value="${case.Hearing}"></c:out></h6>
+                <h6>Description - <c:out value="${case.Description}"></c:out></h6>
+                    <h5>Available as Print Cost LKR: 350.00</h5>
+                    <p><i>LKR: 150.00 each additional copy.</i></p>
+                    <p> Please Login to request documents </p> <a href="Login.jsp">Login</a>
+            </c:forEach>
+
             <!-- Example row of columns -->
             <!-- Site footer -->
             <footer class="footer">
@@ -98,11 +96,12 @@
             <%@include file="RegisterModal.html" %>
         </div>
         <!-- /container -->
-        <!-- Bootstrap core JavaScript
+         <!-- Bootstrap core JavaScript
     ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="assets/externalLibraries/bootstrap-v4.4.1/js/jquery.min.js"></script>
         <script src="assets/externalLibraries/bootstrap-v4.4.1/js/popper.min.js"></script>
         <script src="assets/externalLibraries/bootstrap-v4.4.1/js/bootstrap.min.js"></script>
     </body>
+
 </html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+        // Verifying the selected member registration type by showing conform box
+        function verifyingSelectedMemberRegistrationType(){
+          // Retrieving the user selected registration type
+          var selectedType = document.getElementById("registerFormSelect").value;
+          // Showing confirm box to verify user selected member registration type
+          var selectedTypeConfirm = confirm("You have selected, "+ selectedType +" Registration, are you sure you want to continue? ");
+          if(selectedTypeConfirm == true){
+            // If user clicks on 'OK' button in confirm box
+            return true;
+          }
+          else if(selectedTypeConfirm == false){
+            // If user clicks on 'Cancel' button in confirm box
+            return false;
+          }
+        }
+      </script>
+    </head>
+    <body>
+
+      <style>
+        .modal-backdrop {
+          background: linear-gradient(to top, #0069a7  0%, #7bc3c9 100%);
+        }
+
+        .modal-content{
+          border: none;
+          border-radius: 10px;
+        }
+
+        .modal-body{
+          background-color: rgb(241, 241, 241);
+        }
+
+        .modal-title{
+          letter-spacing: 2px;
+        }
+
+        #registerFormCard{
+          width: 90%;
+          height: 235px;
+          background-color: #ffffff;
+          position: relative;
+          left: 50%;
+          transform: translateX(-50%);
+          border-radius: 10px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .modalBodyText{
+          font-size: 20px;
+          letter-spacing: 1px;
+          position: relative;
+          left: 80px;
+          top: 30px;
+        }
+
+        #registerFormSelect{
+          height: 50px;
+          width: 80%;
+          padding: 10px;
+          position: relative;
+          left: 50%;
+          top: 25px;
+          transform: translateX(-50%);
+          border-radius: 5px;
+          font-size: 18px;
+        }
+
+        #registerFormContinueButton{
+          width: 80%;
+          height: 45px;
+          border-radius: 50px;
+          position: relative;
+          left: 50.3%;
+          transform: translateX(-49.7%);
+          top: 45px;
+          background-color: #015f96;
+          border-color: #015f96;
+          color: #ffffff;
+        }
+
+        #registerFormContinueButton:hover{
+          background-color: #ffffff;
+          color: #015f96;
+        }
+
+        #registerFormContinueButtonText{
+          letter-spacing: 2px;
+          margin-top: -1px;
+          font-size: 20px;
+        }
+
+        .modal-footer{
+          height: 60px;
+        }
+
+        select:required:invalid{
+          color: gray;
+        }
+
+        option[value=""][disabled]{
+          display: none;
+        }
+
+        option{
+          color: black;
+        }
+
+      </style>
+
+      <!-- BOOTSTRAP MODAL - REGISTER MODAL -->
+      <div class="modal fade" id="registerModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+
+            <!-- REGISTER MODAL - HEADER -->
+            <div class="modal-header">
+              <h4 class="modal-title">Register to Court Electronic Record System</h4>
+              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">
+                <i class="fas fa-times" style="font-size: 20px;"></i>
+              </button>
+            </div>
+
+            <!-- REGISTER MODAL - BODY -->
+            <div class="modal-body">
+              <div id="registerFormCard">
+                <p class="modalBodyText">Select Registration Type</p>
+                <form method="POST" action="RegistrationTypeServlet" onSubmit="return verifyingSelectedMemberRegistrationType()">
+                  <i class="fa fa-group"></i>
+                  <select name="memberRegistrationTypeSelect" id="registerFormSelect" required>
+                    <option value="" selected>Registration Type</option>
+                    <option value="Customer">Customer</option>
+                    <option value="Attorney">Attorney</option>
+                  </select>
+                  <br>
+                  <button type="submit" name="signUp" id="registerFormContinueButton" class="btn btn-primary">
+                    <p id="registerFormContinueButtonText">CONTINUE</p>
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- REGISTER MODAL - FOOTER -->
+            <div class="modal-footer">
+              <p style="font-size: 18px;">
+                Already have an account? 
+                <a href="Login.jsp">
+                  Login<i class="fas fa-angle-double-right"></i>
+                </a>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+ 
+    </body>
+
+    
+
+</html>
