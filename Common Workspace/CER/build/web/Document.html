@@ -59,6 +59,9 @@
                 </div>
             </nav>
         </div>
+        <div>
+                <img src="assets/images/doc_cover.jpg" style="width:100%;height:200px">
+            </div>
         <!-- Jumbotron -->
         <div class="jumbotron">
             <div class="row">
@@ -69,8 +72,10 @@
                 </div>
             </div>
             <div class="input-group">
-                <input type="text" class="form-control bg-white" placeholder="Case Number" style="width: 30%;">
-                <button class="btn-sm btn-outline-secondary">Search</button>
+                 <form name="CaseNoSearch" method="post" action="DocumentSearch">
+                        <input type="text" name="CaseNumber" class="form-control bg-white" placeholder="Case Number" >
+                        <button type="submit" class="btn-sm btn-outline-secondary">Search</button>
+                    </form>
             </div>
         </div>
         <!-- Example row of columns -->

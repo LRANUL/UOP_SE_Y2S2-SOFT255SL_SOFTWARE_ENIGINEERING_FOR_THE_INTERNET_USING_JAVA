@@ -5,6 +5,8 @@
  */
 package Servlet;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.client.FindIterable;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,11 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
+
 /**
  *
  * @author ranul
@@ -43,7 +46,7 @@ public class CaseSearch extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CaseSearch</title>");            
+            out.println("<title>Servlet CaseSearch</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet CaseSearch at " + request.getContextPath() + "</h1>");
@@ -78,27 +81,49 @@ public class CaseSearch extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-    String CourtLocation = request.getParameter("CourtLocation");
-    String CaseNumber = request.getParameter("CaseNumber");  
+        String CourtLocation = request.getParameter("CourtLocation");
+        String CaseNumber = request.getParameter("CaseNo");
 
         MongoClient mongoClient = MongoClients.create("mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
         MongoDatabase database = mongoClient.getDatabase("CERdb");
 
-            MongoCollection<Document> collection = database.getCollection("cases");
+        MongoCollection<Document> collection = database.getCollection("cases");
 
-            try (MongoCursor<Document> col = collection.find().iterator()) {
-
-                while (col.hasNext()) {
-
-                    Document document = col.next();
-                    ArrayList<Object> cases = new ArrayList<>(document.values());
-                    System.out.printf("%s: %s%n", cases.get(1), cases.get(2));
-                }
+        if (CaseNumber!=null) {
+            BasicDBObject query = new BasicDBObject();
+            query.put("CaseNo", CaseNumber);
+            FindIterable document = collection.find(query);
+            ArrayList<Document> docs = new ArrayList<Document>();
+            document.into(docs);
+            request.setAttribute("cases", docs);
+            RequestDispatcher rd = getServletContext().getRequestDispatcher(
+                    "/Case.jsp");
+            rd.forward(request, response);
+            for (Document doc : docs) {
+                System.out.println(doc);
             }
-    
+
+        }
+
+        if (CourtLocation!=null) {
+            BasicDBObject query = new BasicDBObject();
+            query.put("CourtLocation", CourtLocation);
+            FindIterable document = collection.find(query);
+            ArrayList<Document> docs = new ArrayList<Document>();
+            document.into(docs);
+            request.setAttribute("cases", docs);
+
+            RequestDispatcher rd = getServletContext().getRequestDispatcher(
+                    "/Case.jsp");
+            rd.forward(request, response);
+            for (Document doc : docs) {
+
+                System.out.println(doc);
+            }
+
+        }
     }
- 
+
     @Override
     public String getServletInfo() {
         return "Short description";
