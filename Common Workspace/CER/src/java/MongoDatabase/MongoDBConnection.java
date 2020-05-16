@@ -72,6 +72,24 @@ public class MongoDBConnection {
         for (Document doc : docs) {
             System.out.println(doc);
         }
+        
+        
+      /*ADD TO LOGIN SERVLET TO SEND TABLE UPDATES TO DASHBOARD.JSP*/
+//    MongoClient mongoClient = MongoClients.create("mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
+//    MongoDatabase database = mongoClient.getDatabase("CERdb");
+//
+//    // Case Load to Table
+//    MongoCollection<Document> collection = database.getCollection("cases");
+//
+//     MongoCursor<Document> col = collection.find().iterator();%>
+//
+//    while (col.hasNext()) {
+//        Document document = col.next();
+//        ArrayList<Object> cases = new ArrayList<>(document.values());
+//        request.setAttribute("cases", cases);
+//    }
+
+
     }
 
     // Non Static method (An object must be created)
