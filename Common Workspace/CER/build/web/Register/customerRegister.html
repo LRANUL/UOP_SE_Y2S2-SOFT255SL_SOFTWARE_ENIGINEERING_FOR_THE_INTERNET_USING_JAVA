@@ -1,321 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>CER - Customer Registration</title>
-    <!-- Importing CSS for Webpage Layout from Localhost -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/registrationWebpages.css">
-    <!-- Importing Bootstrap from Localhost -->
-    <link href="../assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css" rel="stylesheet">
-    <!-- Importing Fontawesome from Localhost -->
-    <link rel="stylesheet" type="text/css" href="../assets/externalLibraries/fontawesome-v5.13.0/css/all.css">
-    <!-- Importing Google Fonts from the Internet -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap" rel="stylesheet">
-    
-    <script>
-      /* CUSTOMER REGISTRATION FORM USER DATA VALIDATION */
-      function validateUserData(){
-        
-        // Checking if the user entered similar password in the password field and confirm password field
-        if(document.customerRegistrationForm.password.value != document.customerRegistrationForm.confirmPassword.value){
-          alert("ERROR: Entered Passwords Mismatch, Please Recheck");
-          return false;
-        }
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>CER - Customer Registration</title>
+        <!-- Importing CSS for Webpage Layout from Localhost -->
+        <link rel="stylesheet" type="text/css" href="../assets/css/registrationWebpages.css">
+        <!-- Importing Bootstrap from Localhost -->
+        <link href="../assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css" rel="stylesheet">
+        <!-- Importing Fontawesome from Localhost -->
+        <link rel="stylesheet" type="text/css" href="../assets/externalLibraries/fontawesome-v5.13.0/css/all.css">
+        <!-- Importing Google Fonts from the Internet -->
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap" rel="stylesheet">
 
-        // Checking if the user checked the terms and conditions checkbox
-        if(document.getElementById('termsAndConditions').checked){
-          // User has checked the checkbox
-          return true;
-        }
-        else{ 
-          // User didn't check the checkbox
-          alert("ERROR: Please tick Terms and Conditions checkbox");
-          return false;
-        }   
-        
-      }
-    </script>
+        <script>
+            /* CUSTOMER REGISTRATION FORM USER DATA VALIDATION */
+            function validateUserData() {
 
-  </head>
-  <body>
-    <!-- HEADER SECTION - BEGIN -->
-    <div id="headerSection">
-      <div id="headerTitleSection">
-        <p id="headerTitleText">
-          Court Electronic Record System (CERs) 
-        </p>
-      </div>
-      <div id="headerBanner">
-        <p id="headerBannerText">
-          MEMBER REGISTRATION
-        </p>
-      </div>
-    </div>
-    <!-- HEADER SECTION - END -->
+                // Checking if the user entered similar password in the password field and confirm password field
+                if (document.customerRegistrationForm.password.value != document.customerRegistrationForm.confirmPassword.value) {
+                    alert("ERROR: Entered Passwords Mismatch, Please Recheck");
+                    return false;
+                }
 
+                // Checking if the user checked the terms and conditions checkbox
+                if (document.getElementById('termsAndConditions').checked) {
+                    // User has checked the checkbox
+                    return true;
+                } else {
+                    // User didn't check the checkbox
+                    alert("ERROR: Please tick Terms and Conditions checkbox");
+                    return false;
+                }
 
+            }
+        </script>
 
-    <!-- BODY SECTION - BEGIN -->
-
-    <!-- REGISTRATION FORM STYLES -->
-    <style>
-      .formTitle{
-        font-size: 20px;
-        position: relative;
-        left: 50px;
-        top: 20px;
-        letter-spacing: 1px;
-      }
-
-      .formItem{
-        width: 90%;
-        height: 45px;
-        padding: 20px;
-        border-radius: 5px;
-        border: #ccc solid 1px;
-        margin-left: 25px;
-        margin-top: 20px;
-      }
-    </style>
-
-    <!-- RETURN BUTTON -->
-    <div id="bodyContentSection">
-      <button class="btn btn-info" id="returnButton">
-        <i class="fas fa-angle-double-left" id="returnButtonIcon"></i>
-        <p id="returnButtonText">RETURN</p>
-      </button>
-  
-      <!-- CUSTOMER REGISTRATION FORM CARD -->
-      <div style="width: 60%;
-                  height: auto;
-                  background-color: #ffffff;
-                  position: relative;
-                  left: 50%;
-                  top: 70px;
-                  transform: translateX(-50%);
-                  border-radius: 15px;
-                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                  padding-bottom: 80px;
-                  margin-bottom: 50px;">
-        <!-- CARD HEADING -->
-        <p style="text-align: center;
-                  font-size: 25px;
-                  letter-spacing: 2px;
-                  position: relative;
-                  top: 15px;
-                  font-weight: 600;">Customer Registration</p>
-
-        
-        <!-- CUSTOMER REGISTRATION FORM -->
-        <div style="height: auto;
-                    width: 70%;
-                    position: relative;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    top: 20px;">
-          
-          <form name="customerRegistrationForm" action="../CustomerRegistrationServlet" method="POST" onSubmit="return validateUserData()">
-            <div class="form-group">
-              <label class="formTitle">Full Name</label>
-              <div class="form-row">
-                <div class="col">
-                  <select class="form-control formItem" name="prefixName" style="padding: 0px;
-                                                                                height: 45px;" >
-                    <option value="" selected>Select Prefix</option>
-                    <option value="Mr.">Mr.</option>
-                    <option value="Sir.">Sir.</option>
-                    <option value="Dr.">Dr.</option>
-                    <option value="Mrs.">Mrs.</option>
-                    <option value="Miss.">Miss.</option>
-                    <option value="Ms.">Ms.</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="col">
-                  <input type="text" class="form-control formItem" style="margin-top: 10px;
-                                                                          width: 88%;" placeholder="Enter First Name" name="firstName"  />
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control formItem" style="margin-top: 10px;
-                                                                          margin-left: -5px;
-                                                                          width: 88%;" placeholder="Enter Middle Name" name="middleName" />
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="col">
-                  <input type="text" class="form-control formItem" style="margin-top: 10px;" placeholder="Enter Last Name" name="lastName"  />
-                </div>
-              </div>
+    </head>
+    <body>
+        <!-- HEADER SECTION - BEGIN -->
+        <div id="headerSection">
+            <div id="headerTitleSection">
+                <p id="headerTitleText">
+                    Court Electronic Record System (CERs) 
+                </p>
             </div>
-              
-            <div class="form-group">
-              <label class="formTitle">National Identity Card</label>
-              <div class="form-row">
-                <div class="col">
-                  <input type="text" class="form-control formItem" placeholder="Enter NIC" name="nic"  />
-                </div>
-              </div>
+            <div id="headerBanner">
+                <p id="headerBannerText">
+                    MEMBER REGISTRATION
+                </p>
             </div>
+        </div>
+        <!-- HEADER SECTION - END -->
 
-            <div class="form-group">
-              <label class="formTitle">Date Of Birth</label>
-              <div class="form-row">
-                <div class="col">
-                  <input type="text" class="form-control formItem" placeholder="DD/MM/YYYY" name="dateOfBirth"  />
-                </div>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="formTitle">Address</label>
-              <div class="form-row">
-                <div class="col">
-                  <input type="text" class="form-control formItem" placeholder="Enter Street Address" style="width: 88%;" name="streetAddress"  />
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control formItem" placeholder="Enter City" style="width: 88%;
-                                                                                                  margin-left: -10px;" name="city"  />
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="col">
-                  <select class="form-control formItem" style="padding: 0px;
-                                                              height: 45px;
-                                                              width: 88%;" name="district"  >
-                    <option value="" selected>Select District</option>
-                    <option value="Jaffna">Jaffna</option>
-                    <option value="Kilinochchi">Kilinochchi</option>
-                    <option value="Mannar">Mannar</option>
-                    <option value="Mullaitivu">Mullaitivu</option>
-                    <option value="Vavuniya">Vavuniya</option>
-                    <option value="Puttalam">Puttalam</option>
-                    <option value="Kurunegala">Kurunegala</option>
-                    <option value="Gampaha">Gampaha</option>
-                    <option value="Colombo">Colombo</option>
-                    <option value="Kalutara">Kalutara</option>
-                    <option value="Anuradhapura">Anuradhapura</option>
-                    <option value="Polonnaruwa">Polonnaruwa</option>
-                    <option value="Matale">Matale</option>
-                    <option value="Kandy">Kandy</option>
-                    <option value="Nuwara Eliya">Nuwara Eliya</option>
-                    <option value="Kegalle">Kegalle</option>
-                    <option value="Ratnapura">Ratnapura</option>
-                    <option value="Trincomalee">Trincomalee</option>
-                    <option value="Batticaloa">Batticaloa</option>
-                    <option value="Ampara">Ampara</option>
-                    <option value="Badulla">Badulla</option>
-                    <option value="Monaragala">Monaragala</option>
-                    <option value="Hambantota">Hambantota</option>
-                    <option value="Matara">Matara</option>
-                    <option value="Galle">Galle</option>
-                  </select>
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control formItem" placeholder="Enter Zip/Postal Code" style="width: 88%;
-                                                                                                              margin-left: -10px;" name="zipPostalCode"  />
-                </div>
-              </div>
-            </div>
 
-            <div class="form-group">
-              <label class="formTitle">Proof Of Citizenship</label>
-              <div style="border: #ccc solid 1px;
-                          border-radius: 5px;
-                          height: 120px;
-                          width: 89%;
-                          position: relative;
-                          top: 15px;
-                          left: 25px;">
-                <div class="form-row" style="margin-top: 20px;
-                                          margin-left: 40px;">
-                  <div class="col">
-                    <label>Select Image of NIC/Passport</label>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="col">
-                    <input type="file" class="form-control-file" style="position: relative;
-                                                                              left: 45px;
-                                                                              top: 10px;" name="nicPassportImage" >
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div class="form-group" style="margin-top: 30px;">
-              <label class="formTitle">Login Credentials</label>
-              <div class="form-row">
-                <div class="col">
-                  <input type="email" class="form-control formItem" style="width: 90%;" placeholder="Enter Email Address" name="emailAddress"  />
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="col">
-                  <input type="password" class="form-control formItem" style="margin-top: 10px;
-                                                                                  width: 88%;" placeholder="Enter Password" name="password"  />
-                </div>
-                <div class="col">
-                  <input type="password" class="form-control formItem" style="margin-top: 10px;
-                                                                                  margin-left: -5px;
-                                                                                  width: 88%;" placeholder="Enter Confirm Password" name="confirmPassword"  />
-                </div>
-              </div>
-            </div>
+        <!-- BODY SECTION - BEGIN -->
 
-            <div class="form-group">
-              <label class="formTitle">Terms & Conditions</label>
-              <div class="form-row">
-                <div class="col">
-                  <p class="formItem" style="border: none;
-                                            letter-spacing: 2px;
-                                            line-height: 30px;">
-                    Please read through the Terms and Conditions and agree to it by <br> ticking the below box to continue the registration
-                  </p>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="col">
-                  <div class="form-check" style="margin-left: 50px;
-                                                margin-top: 40px;">
-                    <input class="form-check-input" type="checkbox" style="width: 20px;
-                                                                                    height: 20px;" id="termsAndConditions" >
-                    <label class="form-check-label" style="margin-left: 20px;">
-                      I have read and I agree to the Terms and Conditions
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <button class="btn btn-primary btn-block" style="height: 45px;
-                                                            position: relative;
-                                                            top: 20px;" type="submit">
-              <i class="fas fa-user-plus" style="position: absolute;
-                                                left: 40%;
-                                                margin-top: 7px;"></i>
-              <p style="letter-spacing: 2px;
-                        font-size: 20px;
-                        margin-left: 30px;">REGISTER</p>
+        <!-- REGISTRATION FORM STYLES -->
+        <style>
+            .formTitle{
+                font-size: 20px;
+                position: relative;
+                left: 50px;
+                top: 20px;
+                letter-spacing: 1px;
+            }
+
+            .formItem{
+                width: 90%;
+                height: 45px;
+                padding: 20px;
+                border-radius: 5px;
+                border: #ccc solid 1px;
+                margin-left: 25px;
+                margin-top: 20px;
+            }
+        </style>
+
+        <!-- RETURN BUTTON -->
+        <div id="bodyContentSection">
+            <button class="btn btn-info" id="returnButton">
+                <i class="fas fa-angle-double-left" id="returnButtonIcon"></i>
+                <p id="returnButtonText">RETURN</p>
             </button>
-          </form>
+
+            <!-- CUSTOMER REGISTRATION FORM CARD -->
+            <div style="width: 60%;
+                 height: auto;
+                 background-color: #ffffff;
+                 position: relative;
+                 left: 50%;
+                 top: 70px;
+                 transform: translateX(-50%);
+                 border-radius: 15px;
+                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                 padding-bottom: 80px;
+                 margin-bottom: 50px;">
+                <!-- CARD HEADING -->
+                <p style="text-align: center;
+                   font-size: 25px;
+                   letter-spacing: 2px;
+                   position: relative;
+                   top: 15px;
+                   font-weight: 600;">Customer Registration</p>
+
+
+                <!-- CUSTOMER REGISTRATION FORM -->
+                <div style="height: auto;
+                     width: 70%;
+                     position: relative;
+                     left: 50%;
+                     transform: translateX(-50%);
+                     top: 20px;">
+
+                    <form name="customerRegistrationForm" action="../CustomerRegistrationServlet" method="POST" onSubmit="return validateUserData()">
+                        <div class="form-group">
+                            <label class="formTitle">Full Name</label>
+                            <div class="form-row">
+                                <div class="col">
+                                    <select class="form-control formItem" name="prefixName" style="padding: 0px;
+                                            height: 45px;" >
+                                        <option value="" selected>Select Prefix</option>
+                                        <option value="Mr.">Mr.</option>
+                                        <option value="Sir.">Sir.</option>
+                                        <option value="Dr.">Dr.</option>
+                                        <option value="Mrs.">Mrs.</option>
+                                        <option value="Miss.">Miss.</option>
+                                        <option value="Ms.">Ms.</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="text" class="form-control formItem" style="margin-top: 10px;
+                                           width: 88%;" placeholder="Enter First Name" name="firstName"  />
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control formItem" style="margin-top: 10px;
+                                           margin-left: -5px;
+                                           width: 88%;" placeholder="Enter Middle Name" name="middleName" />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="text" class="form-control formItem" style="margin-top: 10px;" placeholder="Enter Last Name" name="lastName"  />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="formTitle">National Identity Card</label>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="text" class="form-control formItem" placeholder="Enter NIC" name="nic"  />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="formTitle">Date Of Birth</label>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="text" class="form-control formItem" placeholder="DD/MM/YYYY" name="dateOfBirth"  />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="formTitle">Address</label>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="text" class="form-control formItem" placeholder="Enter Street Address" style="width: 88%;" name="streetAddress"  />
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control formItem" placeholder="Enter City" style="width: 88%;
+                                           margin-left: -10px;" name="city"  />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <select class="form-control formItem" style="padding: 0px;
+                                            height: 45px;
+                                            width: 88%;" name="district"  >
+                                        <option value="" selected>Select District</option>
+                                        <option value="Jaffna">Jaffna</option>
+                                        <option value="Kilinochchi">Kilinochchi</option>
+                                        <option value="Mannar">Mannar</option>
+                                        <option value="Mullaitivu">Mullaitivu</option>
+                                        <option value="Vavuniya">Vavuniya</option>
+                                        <option value="Puttalam">Puttalam</option>
+                                        <option value="Kurunegala">Kurunegala</option>
+                                        <option value="Gampaha">Gampaha</option>
+                                        <option value="Colombo">Colombo</option>
+                                        <option value="Kalutara">Kalutara</option>
+                                        <option value="Anuradhapura">Anuradhapura</option>
+                                        <option value="Polonnaruwa">Polonnaruwa</option>
+                                        <option value="Matale">Matale</option>
+                                        <option value="Kandy">Kandy</option>
+                                        <option value="Nuwara Eliya">Nuwara Eliya</option>
+                                        <option value="Kegalle">Kegalle</option>
+                                        <option value="Ratnapura">Ratnapura</option>
+                                        <option value="Trincomalee">Trincomalee</option>
+                                        <option value="Batticaloa">Batticaloa</option>
+                                        <option value="Ampara">Ampara</option>
+                                        <option value="Badulla">Badulla</option>
+                                        <option value="Monaragala">Monaragala</option>
+                                        <option value="Hambantota">Hambantota</option>
+                                        <option value="Matara">Matara</option>
+                                        <option value="Galle">Galle</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control formItem" placeholder="Enter Zip/Postal Code" style="width: 88%;
+                                           margin-left: -10px;" name="zipPostalCode"  />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="formTitle">Proof Of Citizenship</label>
+                            <div style="border: #ccc solid 1px;
+                                 border-radius: 5px;
+                                 height: 120px;
+                                 width: 89%;
+                                 position: relative;
+                                 top: 15px;
+                                 left: 25px;">
+                                <div class="form-row" style="margin-top: 20px;
+                                     margin-left: 40px;">
+                                    <div class="col">
+                                        <label>Select Image of NIC/Passport</label>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="file" class="form-control-file" style="position: relative;
+                                               left: 45px;
+                                               top: 10px;" name="nicPassportImage" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 30px;">
+                            <label class="formTitle">Login Credentials</label>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="email" class="form-control formItem" style="width: 90%;" placeholder="Enter Email Address" name="emailAddress"  />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="password" class="form-control formItem" style="margin-top: 10px;
+                                           width: 88%;" placeholder="Enter Password" name="password"  />
+                                </div>
+                                <div class="col">
+                                    <input type="password" class="form-control formItem" style="margin-top: 10px;
+                                           margin-left: -5px;
+                                           width: 88%;" placeholder="Enter Confirm Password" name="confirmPassword"  />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="formTitle">Terms & Conditions</label>
+                            <div class="form-row">
+                                <div class="col">
+                                    <p class="formItem" style="border: none;
+                                       letter-spacing: 2px;
+                                       line-height: 30px;">
+                                        Please read through the Terms and Conditions and agree to it by <br> ticking the below box to continue the registration
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="form-check" style="margin-left: 50px;
+                                         margin-top: 40px;">
+                                        <input class="form-check-input" type="checkbox" style="width: 20px;
+                                               height: 20px;" id="termsAndConditions" >
+                                        <label class="form-check-label" style="margin-left: 20px;">
+                                            I have read and I agree to the Terms and Conditions
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-block" style="height: 45px;
+                                position: relative;
+                                top: 20px;" type="submit">
+                            <i class="fas fa-user-plus" style="position: absolute;
+                               left: 40%;
+                               margin-top: 7px;"></i>
+                            <p style="letter-spacing: 2px;
+                               font-size: 20px;
+                               margin-left: 30px;">REGISTER</p>
+                        </button>
+                    </form>
+
+                </div>
+            </div>
 
         </div>
-      </div>
-  
-    </div>
-    
-    <!-- BODY SECTION - END -->
+
+        <!-- BODY SECTION - END -->
 
 
-    <!-- FOOTER SECTION - BEGIN -->
-    <div id="footerSection">
-      <p id="footerSectionText">© CER</p>
-    </div>
-    <!-- FOOTER SECTION - END -->
+        <!-- FOOTER SECTION - BEGIN -->
+        <div id="footerSection">
+            <p id="footerSectionText">© CER</p>
+        </div>
+        <!-- FOOTER SECTION - END -->
 
-  </body>
+    </body>
 </html>

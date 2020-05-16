@@ -155,9 +155,18 @@ public class MemberRegistrationModel {
             
             // Retrieving the latest inserted document
             Document latestDocument = (Document) collection.find().sort(new Document("_id", -1)).first();
-            // Retrieving the doucment id of the latest inserted document
-            int latestDocumentID = (int) latestDocument.get("_id");
-            // Incrementing latest document id by one to identify new document id
+            // Declaring variable to store the latest document id
+            int latestDocumentID = 0;
+            // Checking if there is a document existing in the collection
+            if(latestDocument == null){
+                // If there is no document latestDocumentID is set to initial value, zero
+                latestDocumentID = 0;
+            }
+            else if(latestDocument != null){
+                // If there is a latest document, it's id will be retrieved and assgined to the latestDcouemntID variable
+                latestDocumentID = (int) latestDocument.get("_id");
+            } 
+            // Incrementing latest document id by one to identify the new document id
             int newDocumentID = ++latestDocumentID;
             
             
@@ -208,8 +217,7 @@ public class MemberRegistrationModel {
                             .append("officerResponseDateTime", "")
                             .append("status", "Pending"))
                     .append("sessionActivity", 
-                            new Document("loginDateTime", new Date())
-                            .append("loginDateTime", "")
+                            new Document("loginDateTime", "")
                             .append("logoutDateTime", ""));
 
             // Inserting the created document into the MongoDB collection

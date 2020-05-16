@@ -115,11 +115,22 @@ public class CustomerRegistrationServlet extends HttpServlet {
         // Calling function throught the newly created object
         newUser.newCustomerRegistration();
 
-        /*
+        
         PrintWriter out = response.getWriter();
-        out.println("<h1 align='center:'>NIC: </h1>" + nic);                              
+        out.println("<h1 align='center:'>NIC: </h1>" + prefixName);   
+        out.println("<h1 align='center:'>NIC: </h1>" + firstName); 
+        out.println("<h1 align='center:'>NIC: </h1>" + middleName); 
+        out.println("<h1 align='center:'>NIC: </h1>" + lastName); 
+        out.println("<h1 align='center:'>NIC: </h1>" + nic); 
+        out.println("<h1 align='center:'>NIC: </h1>" + dateOfBirth); 
+        out.println("<h1 align='center:'>NIC: </h1>" + streetAddress); 
+        out.println("<h1 align='center:'>NIC: </h1>" + city); 
+        out.println("<h1 align='center:'>NIC: </h1>" + district); 
+        out.println("<h1 align='center:'>NIC: </h1>" + zipPostalCode); 
+        out.println("<h1 align='center:'>NIC: </h1>" + emailAddress); 
+        out.println("<h1 align='center:'>NIC: </h1>" + confirmPassword); 
         out.println("<h1 align='center:'>IMAGE: </h1>" + nicPassportImage);        
-        */
+        
 
     }
 
