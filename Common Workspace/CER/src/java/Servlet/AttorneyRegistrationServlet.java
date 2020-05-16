@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Model.MemberRegistrationModel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,17 +14,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Model.MemberRegistrationModel;
-import com.mongodb.gridfs.GridFS;
-import com.mongodb.gridfs.GridFSInputFile;
-import java.io.File;
-
 /**
  *
  * @author Lucas.L.H.H
  */
-@WebServlet(name = "CustomerRegistrationServlet", urlPatterns = {"/CustomerRegistrationServlet"})
-public class CustomerRegistrationServlet extends HttpServlet {
+@WebServlet(name = "AttorneyRegistrationServlet", urlPatterns = {"/AttorneyRegistrationServlet"})
+public class AttorneyRegistrationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +38,10 @@ public class CustomerRegistrationServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CustomerRegistrationServlet</title>");            
+            out.println("<title>Servlet AttorneyRegistrationServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CustomerRegistrationServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AttorneyRegistrationServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -85,12 +81,12 @@ public class CustomerRegistrationServlet extends HttpServlet {
         String middleName = request.getParameter("middleName");     
         String lastName = request.getParameter("lastName");
         String nic = request.getParameter("nic");
-        String dateOfBirth = request.getParameter("dateOfBirth");
+        String attorneyId = request.getParameter("attorneyId");
         String streetAddress = request.getParameter("streetAddress");
         String city = request.getParameter("city");
         String district = request.getParameter("district");
         String zipPostalCode = request.getParameter("zipPostalCode");
-        String nicPassportImage = request.getParameter("nicPassportImage");
+        String attorneyIdImage = request.getParameter("attorneyIdImage");
         String emailAddress = request.getParameter("emailAddress");
         String confirmPassword = request.getParameter("confirmPassword");
 
@@ -103,12 +99,12 @@ public class CustomerRegistrationServlet extends HttpServlet {
         newUser.setMiddleName(middleName);
         newUser.setLastName(lastName);
         newUser.setNIC(nic);
-        newUser.setDateOfBirth(dateOfBirth);
+        newUser.setAttorneyId(attorneyId);
         newUser.setStreetAddress(streetAddress);
         newUser.setCity(city);
         newUser.setDistrict(district);
         newUser.setZipPostalCode(zipPostalCode);
-        newUser.setNICPassportImage(nicPassportImage);
+        newUser.setAttorneyIdImage(attorneyIdImage);
         newUser.setEmailAddress(emailAddress);
         newUser.setConfirmPassword(confirmPassword);
         
