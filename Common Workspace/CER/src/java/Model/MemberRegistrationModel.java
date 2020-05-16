@@ -19,10 +19,21 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSInputFile;
 import java.io.File;
+import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import static java.util.stream.DoubleStream.iterate;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
+import javax.ws.rs.core.Context;
+import static jdk.nashorn.internal.objects.NativeError.getFileName;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.bson.Document;
 
 /**
@@ -34,11 +45,11 @@ public class MemberRegistrationModel {
     // Creating new object for database connection url
     MongoDBConnection mongoDB;
 
-    public MemberRegistrationModel(){
+    public MemberRegistrationModel() {
         // Creating new object to retrieve database connection url
         mongoDB = new MongoDBConnection();
     }
-    
+
     // Declaring global variables used for customer and attorney registration
     private String prefixName = null;
     private String firstName = null;
@@ -51,116 +62,146 @@ public class MemberRegistrationModel {
     private String zipPostalCode = null;
     private String emailAddress = null;
     private String confirmPassword = null;
-    
+
     // Declaring global variables used for customer registration
     private String dateOfBirth = null;
-    private String nicPassportImage = null;
-    
+    private Part  nicPassportImage = null;
+
     // Declaring global variables used for attorney registration
     private String attorneyId = null;
     private String attorneyIdImage = null;
-    
+
     // Assigning SALT value for salting user entered password value
     public static final String SALT = "SOFT255SL - CERWebApp";
-    
+
     // GETTERS
-    public String getPrefixName(){
+    public String getPrefixName() {
         return prefixName;
     }
-    public String getFirstName(){
+
+    public String getFirstName() {
         return firstName;
     }
-    public String getMiddleName(){
+
+    public String getMiddleName() {
         return middleName;
     }
-    public String getLastName(){
+
+    public String getLastName() {
         return lastName;
     }
-    public String getNIC(){
+
+    public String getNIC() {
         return nic;
     }
-    public String getStreetAddress(){
+
+    public String getStreetAddress() {
         return streetAddress;
     }
-    public String getCity(){
+
+    public String getCity() {
         return city;
     }
-    public String getDistrict(){
+
+    public String getDistrict() {
         return district;
     }
-    public String getZipPostalCode(){
+
+    public String getZipPostalCode() {
         return zipPostalCode;
-    } 
-    public String getEmailAddress(){
+    }
+
+    public String getEmailAddress() {
         return emailAddress;
     }
-    public String getConfirmPassword(){
+
+    public String getConfirmPassword() {
         return confirmPassword;
     }
-    public String getDateOfBirth(){
+
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
-    public String getNICPassportImage(){
+
+    public Part getNICPassportImage() {
         return nicPassportImage;
     }
-    public String getAttorneyId(){
+
+    public String getAttorneyId() {
         return attorneyId;
     }
-    public String getAttorneyIdImage(){
+
+    public String getAttorneyIdImage() {
         return attorneyIdImage;
     }
-    
+
     // SETTERS
-    public void setPrefixName(String prefixName){
+    public void setPrefixName(String prefixName) {
         this.prefixName = prefixName;
     }
-    public void setFirstName(String firstName){
+
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-    public void setMiddleName(String middleName){
+
+    public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
-    public void setLastName(String lastName){
+
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public void setNIC(String nic){
+
+    public void setNIC(String nic) {
         this.nic = nic;
     }
-    public void setStreetAddress(String streetAddress){
+
+    public void setStreetAddress(String streetAddress) {
         this.streetAddress = streetAddress;
     }
-    public void setCity(String city){
+
+    public void setCity(String city) {
         this.city = city;
     }
-    public void setDistrict(String district){
+
+    public void setDistrict(String district) {
         this.district = district;
     }
-    public void setZipPostalCode(String zipPostalCode){
+
+    public void setZipPostalCode(String zipPostalCode) {
         this.zipPostalCode = zipPostalCode;
     }
-    public void setEmailAddress(String emailAddress){
+
+    public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
-    public void setConfirmPassword(String confirmPassword){
+
+    public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
-    public void setDateOfBirth(String dateOfBirth){
+
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-    public void setNICPassportImage(String nicPassportImage){
+
+    public void setNICPassportImage(Part nicPassportImage) {
         this.nicPassportImage = nicPassportImage;
     }
-    public void setAttorneyId(String attorneyId){
+
+    public void setAttorneyId(String attorneyId) {
         this.attorneyId = attorneyId;
     }
-    public void setAttorneyIdImage(String attorneyIdImage){
+
+    public void setAttorneyIdImage(String attorneyIdImage) {
         this.attorneyIdImage = attorneyIdImage;
     }
-    
+    @Context
+    HttpServletRequest request;
+
     /* PROCESS OF REGISTERING A NEW CUSTOMER USER */
-    public void newCustomerRegistration(){
+    public void newCustomerRegistration() {
         /* PROCESS OF INSERTING USER ENTETED VALUES INTO THE MONGODB DATABASE */
-        try{
+        try {
             // Establishing MongoDB URI Connection
             MongoClientURI uri = new MongoClientURI(mongoDB.MongoDBConnectionURL());
             MongoClient mongoClient = new MongoClient(uri);
@@ -177,41 +218,37 @@ public class MemberRegistrationModel {
             // Declaring variable to store the latest document id
             int latestDocumentID = 0;
             // Checking if there is a document existing in the collection
-            if(latestDocument == null){
+            if (latestDocument == null) {
                 // If there is no document latestDocumentID is set to initial value, zero
                 latestDocumentID = 0;
-            }
-            else if(latestDocument != null){
+            } else if (latestDocument != null) {
                 // If there is a latest document, it's id will be retrieved and assgined to the latestDcouemntID variable
                 latestDocumentID = (int) latestDocument.get("_id");
-            } 
+            }
             // Incrementing latest document id by one to identify the new document id
             int newDocumentID = ++latestDocumentID;
-            
-            
+
             /* GENERATING SHA1 HASH PASSWORD VALUE WITH SALTING */
             // Salting entered password value
             String saltedPasswordValue = SALT + confirmPassword;
             // Generating hash value of the salted password
             String hashedPasswordValue = generateHashValue(saltedPasswordValue);
-            
-            /*
+            String fileName = (String) getFileName(nicPassportImage);
             // UPLOADING USER IMAGE TO THE DATABASE 
             DB db = mongoClient.getDB("CERAssetsDB");
-            File imageFile = new File(nicPassportImage);
-            System.out.println("Image: "+imageFile);
-            System.out.println("Path: "+ imageFile.getPath()); 
-            System.out.println("Absolute path:" + imageFile.getAbsolutePath()); 
+            File imageFile = new File(fileName);
+            System.out.println("Image: " + imageFile);
+            System.out.println("Path: " + imageFile.getPath());
+            System.out.println("Absolute path:" + imageFile.getAbsolutePath());
             String newImageFileName = "nicPassportImageTest";
             GridFS gfsPhoto = new GridFS(db, "photo");
             GridFSInputFile gfsFile = gfsPhoto.createFile(imageFile);
             gfsFile.setFilename(newImageFileName);
             gfsFile.save();
-            */
-            
+
             // Creating a new document to store in the MongoDB collection
-            Document newDocument = new Document(); 
-            
+            Document newDocument = new Document();
+
             // Inserting relevant data into the document
             newDocument.append("_id", newDocumentID)
                     .append("userType", "customer")
@@ -220,44 +257,42 @@ public class MemberRegistrationModel {
                     .append("nic", nic)                    
                     .append("name", 
                             new Document("prefix", prefixName)
-                            .append("firstName", firstName)
-                            .append("middleName", middleName)
-                            .append("lastName", lastName))
+                                    .append("firstName", firstName)
+                                    .append("middleName", middleName)
+                                    .append("lastName", lastName))
                     .append("dateOfBirth", dateOfBirth)
-                    .append("address", 
+                    .append("address",
                             new Document("streetAddress", streetAddress)
-                            .append("city", city)
-                            .append("zipPostalCode", zipPostalCode)
-                            .append("district", district))
-                    .append("proofOfCitizenship_fileName", "")
-                    .append("registration", 
+                                    .append("city", city)
+                                    .append("zipPostalCode", zipPostalCode)
+                                    .append("district", district))
+                    .append("proofOfCitizenship_fileName", nicPassportImage)
+                    .append("registration",
                             new Document("userRequestDateTime", new Date())
-                            .append("officerResponseDateTime", "")
-                            .append("status", "Pending"))
-                    .append("sessionActivity", 
+                                    .append("officerResponseDateTime", "")
+                                    .append("status", "Pending"))
+                    .append("sessionActivity",
                             new Document("loginDateTime", "")
-                            .append("logoutDateTime", ""));
+                                    .append("logoutDateTime", ""));
 
             // Inserting the created document into the MongoDB collection
-            try{
-                collection.insertOne(newDocument);      
-            }
-            catch(MongoWriteException ex){
+            try {
+                collection.insertOne(newDocument);
+            } catch (MongoWriteException ex) {
                 // Checking if the newly created document ID is already existing error is returned
-                if(ex.getError().getCategory().equals(ErrorCategory.DUPLICATE_KEY)){
+                if (ex.getError().getCategory().equals(ErrorCategory.DUPLICATE_KEY)) {
                     System.out.println("\nNewly Created Document ID Already Exists in the Collection");
                 }
             }
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println("ERROR: " + ex);
-        }  
+        }
     }
-    
+
     /* PROCESS OF REGISTERING A NEW ATTORNEY USER */
-    public void newAttorneyRegistration(){
+    public void newAttorneyRegistration() {
         /* PROCESS OF INSERTING USER ENTETED VALUES INTO THE MONGODB DATABASE */
-        try{
+        try {
             // Establishing MongoDB URI Connection
             MongoClientURI uri = new MongoClientURI(mongoDB.MongoDBConnectionURL());
             MongoClient mongoClient = new MongoClient(uri);
@@ -274,24 +309,22 @@ public class MemberRegistrationModel {
             // Declaring variable to store the latest document id
             int latestDocumentID = 0;
             // Checking if there is a document existing in the collection
-            if(latestDocument == null){
+            if (latestDocument == null) {
                 // If there is no document latestDocumentID is set to initial value, zero
                 latestDocumentID = 0;
-            }
-            else if(latestDocument != null){
+            } else if (latestDocument != null) {
                 // If there is a latest document, it's id will be retrieved and assgined to the latestDcouemntID variable
                 latestDocumentID = (int) latestDocument.get("_id");
-            } 
+            }
             // Incrementing latest document id by one to identify the new document id
             int newDocumentID = ++latestDocumentID;
-            
-            
+
             /* GENERATING SHA1 HASH PASSWORD VALUE WITH SALTING */
             // Salting entered password value
             String saltedPasswordValue = SALT + confirmPassword;
             // Generating hash value of the salted password
             String hashedPasswordValue = generateHashValue(saltedPasswordValue);
-            
+
             /*
             // UPLOADING USER IMAGE TO THE DATABASE 
             DB db = mongoClient.getDB("CERAssetsDB");
@@ -304,11 +337,10 @@ public class MemberRegistrationModel {
             GridFSInputFile gfsFile = gfsPhoto.createFile(imageFile);
             gfsFile.setFilename(newImageFileName);
             gfsFile.save();
-            */
-            
+             */
             // Creating a new document to store in the MongoDB collection
-            Document newDocument = new Document(); 
-            
+            Document newDocument = new Document();
+
             // Inserting relevant data into the document
             newDocument.append("_id", newDocumentID)
                     .append("userType", "attorney")
@@ -316,43 +348,39 @@ public class MemberRegistrationModel {
                     .append("passwordHash", hashedPasswordValue)                    
                     .append("nic", nic)  
                     .append("attorneyId", attorneyId)
-                    .append("name", 
+                    .append("name",
                             new Document("prefix", prefixName)
-                            .append("firstName", firstName)
-                            .append("middleName", middleName)
-                            .append("lastName", lastName))
-                    .append("address", 
+                                    .append("firstName", firstName)
+                                    .append("middleName", middleName)
+                                    .append("lastName", lastName))
+                    .append("address",
                             new Document("streetAddress", streetAddress)
-                            .append("city", city)
-                            .append("zipPostalCode", zipPostalCode)
-                            .append("district", district))
+                                    .append("city", city)
+                                    .append("zipPostalCode", zipPostalCode)
+                                    .append("district", district))
                     .append("attorneyIdValidity_fileName", "")
-                    .append("registration", 
+                    .append("registration",
                             new Document("userRequestDateTime", new Date())
-                            .append("officerResponseDateTime", "")
-                            .append("status", "Pending"))
-                    .append("sessionActivity", 
+                                    .append("officerResponseDateTime", "")
+                                    .append("status", "Pending"))
+                    .append("sessionActivity",
                             new Document("loginDateTime", "")
-                            .append("logoutDateTime", ""));
+                                    .append("logoutDateTime", ""));
 
             // Inserting the created document into the MongoDB collection
-            try{
-                collection.insertOne(newDocument);    
-            }
-            catch(MongoWriteException ex){
+            try {
+                collection.insertOne(newDocument);
+            } catch (MongoWriteException ex) {
                 // Checking if the newly created document ID is already existing error is returned
-                if(ex.getError().getCategory().equals(ErrorCategory.DUPLICATE_KEY)){
+                if (ex.getError().getCategory().equals(ErrorCategory.DUPLICATE_KEY)) {
                     System.out.println("\nNewly Created Document ID Already Exists in the Collection");
                 }
             }
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println("ERROR: " + ex);
-        }  
+        }
     }
-    
-    
-    
+
     /* PROCESS OF GENERATING SHA1 HASH VALUE OF PASSWORD */
     public static String generateHashValue(String passwordValue) {
         StringBuilder hashValue = new StringBuilder();
@@ -360,19 +388,17 @@ public class MemberRegistrationModel {
         try {
             MessageDigest sha = MessageDigest.getInstance("SHA-1");
             byte[] hashedValueBytes = sha.digest(passwordValue.getBytes());
-            char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                            'a', 'b', 'c', 'd', 'e', 'f' };
-            for(int x = 0; x < hashedValueBytes.length; ++x) {
-                    byte b = hashedValueBytes[x];
-                    hashValue.append(digits[(b & 0xf0) >> 4]);
-                    hashValue.append(digits[b & 0x0f]);
+            char[] digits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                'a', 'b', 'c', 'd', 'e', 'f'};
+            for (int x = 0; x < hashedValueBytes.length; ++x) {
+                byte b = hashedValueBytes[x];
+                hashValue.append(digits[(b & 0xf0) >> 4]);
+                hashValue.append(digits[b & 0x0f]);
             }
-        } 
-        catch (NoSuchAlgorithmException ex) {
+        } catch (NoSuchAlgorithmException ex) {
             System.out.println("ERROR: " + ex);
         }
         return hashValue.toString();
     }
-    
 
 }

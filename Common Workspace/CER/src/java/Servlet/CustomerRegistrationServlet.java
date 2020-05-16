@@ -17,11 +17,14 @@ import Model.MemberRegistrationModel;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSInputFile;
 import java.io.File;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Lucas.L.H.H
  */
+@MultipartConfig
 @WebServlet(name = "CustomerRegistrationServlet", urlPatterns = {"/CustomerRegistrationServlet"})
 public class CustomerRegistrationServlet extends HttpServlet {
 
@@ -90,7 +93,7 @@ public class CustomerRegistrationServlet extends HttpServlet {
         String city = request.getParameter("city");
         String district = request.getParameter("district");
         String zipPostalCode = request.getParameter("zipPostalCode");
-        String nicPassportImage = request.getParameter("nicPassportImage");
+        Part nicPassportImage = request.getPart("nicPassportImage");
         String emailAddress = request.getParameter("emailAddress");
         String confirmPassword = request.getParameter("confirmPassword");
 
