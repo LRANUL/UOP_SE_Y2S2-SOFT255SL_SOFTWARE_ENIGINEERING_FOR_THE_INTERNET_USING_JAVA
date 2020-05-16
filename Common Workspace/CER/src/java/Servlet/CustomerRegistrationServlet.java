@@ -133,7 +133,7 @@ public class CustomerRegistrationServlet extends HttpServlet {
         out.println("<h1 align='center:'>emailAddress: </h1>" + emailAddress); 
         out.println("<h1 align='center:'>confirmPassword: </h1>" + confirmPassword); 
         out.println("<h1 align='center:'>nicPassportImage: </h1>" + nicPassportImage);           
-        /
+        */
 
      
         

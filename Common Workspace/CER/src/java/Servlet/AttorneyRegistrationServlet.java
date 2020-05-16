@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -86,7 +87,7 @@ public class AttorneyRegistrationServlet extends HttpServlet {
         String city = request.getParameter("city");
         String district = request.getParameter("district");
         String zipPostalCode = request.getParameter("zipPostalCode");
-        String attorneyIdImage = request.getParameter("attorneyIdImage");
+        Part attorneyIdImage = request.getPart("attorneyIdImage");
         String emailAddress = request.getParameter("emailAddress");
         String confirmPassword = request.getParameter("confirmPassword");
 
