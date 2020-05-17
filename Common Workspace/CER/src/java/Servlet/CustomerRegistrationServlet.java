@@ -124,6 +124,7 @@ public class CustomerRegistrationServlet extends HttpServlet {
         }
         else if(registrationStatus == false){
             // Redirecting to ERROR page
+            response.sendRedirect("Register/MemberRegisterError.html");  
         }
 
         /*

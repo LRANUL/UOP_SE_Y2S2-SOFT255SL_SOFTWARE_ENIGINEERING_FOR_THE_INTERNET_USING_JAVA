@@ -120,7 +120,9 @@ public class AttorneyRegistrationServlet extends HttpServlet {
         }
         else if(registrationStatus == false){
             // Redirecting to ERROR page
+            response.sendRedirect("Register/MemberRegisterError.html");  
         }
+        
 
         /*
         PrintWriter out = response.getWriter();

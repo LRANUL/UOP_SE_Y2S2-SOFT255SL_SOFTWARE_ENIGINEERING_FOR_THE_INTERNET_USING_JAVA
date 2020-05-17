@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- FAVICON ICON -->
+        <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+        <title>CER - Customer Registration</title>
+        <!-- Importing CSS for Webpage Layout from Localhost -->
+        <link rel="stylesheet" type="text/css" href="../assets/css/registrationWebpages.css">
+        <!-- Importing files necessary for Bootstrap from Localhost -->
+        <link rel="stylesheet" type="text/css" href="../assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css">
+        <script src="../assets/externalLibraries/bootstrap-v4.4.1/js/jquery.min.js"></script>
+        <script src="../assets/externalLibraries/bootstrap-v4.4.1/js/popper.min.js"></script>
+        <script src="../assets/externalLibraries/bootstrap-v4.4.1/js/bootstrap.min.js"></script>
+        <!-- Importing Fontawesome from Localhost -->
+        <link rel="stylesheet" type="text/css" href="../assets/externalLibraries/fontawesome-v5.13.0/css/all.css">
+        <!-- Importing Google Fonts from the Internet -->
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap" rel="stylesheet">
+
+        <script>
+            /* Executed upon page load */
+            $(document).ready(function () {
+                // Alert box showing error has occurred during registration process message
+                alert('ERROR OCCURRED DURING REGISTRATION');
+                // jQuery for BOOTSTRAP TOOLTIP
+                $('[data-toggle="tooltip"]').tooltip();
+                // jQuery for BOOTSTRAP POPOVER
+                $('[data-toggle="popover"]').popover();
+            });
+
+            /* CUSTOMER REGISTRATION FORM USER DATA VALIDATION */
+            function validateUserData() {
+                
+                
+                // Checking if the user entered passwords characters length in greater than or equal to 10
+                if (document.customerRegistrationForm.password.value.length < 10 || document.customerRegistrationForm.password.value.length < 10) {
+                    alert("ERROR: Rechecked Entered Password, Password length is below 10 characters");
+                    return false;
+                }
+
+                // Checking if the user entered passwords characters length in lower than or equal to 25
+                if (document.customerRegistrationForm.password.value.length > 25 || document.customerRegistrationForm.confirmPassword.value.length > 25) {
+                    alert("ERROR: Rechecked Entered Password, Password length is above 25 characters");
+                    return false;
+                }
+                
+                // Checking if the user entered similar password in the password field and confirm password field
+                if (document.customerRegistrationForm.password.value != document.customerRegistrationForm.confirmPassword.value) {
+                    alert("ERROR: Entered Passwords Mismatch, Please Recheck");
+                    return false;
+                }
+
+                // Checking if the user checked the terms and conditions checkbox
+                if (document.getElementById('termsAndConditions').checked) {
+                    // User has checked the checkbox
+
+                    // Showing the user the registration process will continue and verifying the entered values
+                    var confirmContinueRegisterNewUser = confirm("New user will be registered, are all the entered details correct?");
+                    if(confirmContinueRegisterNewUser == true){
+                        return true;
+                    }
+                    else if(confirmContinueRegisterNewUser == false){
+                        return false;
+                    }
+                } else {
+                    // User didn't check the checkbox
+                    alert("ERROR: Please tick Terms and Conditions checkbox");
+                    return false;
+                }
+
+            }
+        </script>
+        <style>
+            /* SELECT (DROP DOWN) STYLES */
+            select:required:invalid{
+                color: gray;
+            }
+
+            option[value=""][disabled]{
+                display: none;
+            }
+
+            option{
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- HEADER SECTION - BEGIN -->
+        <div id="headerSection">
+            <div id="headerTitleSection">
+                <p id="headerTitleText">
+                    Court Electronic Record System (CERs) 
+                </p>
+            </div>
+            <div id="headerBanner">
+                <p id="headerBannerText">
+                    MEMBER REGISTRATION
+                </p>
+            </div>
+        </div>
+        <!-- HEADER SECTION - END -->
+
+
+
+        <!-- BODY SECTION - BEGIN -->
+
+        <!-- REGISTRATION FORM STYLES -->
+        <style>
+            .formTitle{
+                font-size: 20px;
+                position: relative;
+                left: 50px;
+                top: 20px;
+                letter-spacing: 1px;
+            }
+
+            .formItem{
+                width: 90%;
+                height: 45px;
+                padding: 20px;
+                border-radius: 5px;
+                border: #ccc solid 1px;
+                margin-left: 25px;
+                margin-top: 20px;
+            }
+        </style>
+
+        <!-- BODY CONTENT SECTION -->
+        <div id="bodyContentSection" style="height: 880px;">
+
+            <!-- RETURN BUTTON -->
+            <button class="btn btn-info" id="returnButton" style="width: 250px;"
+            onClick="location.href='../Home.jsp'">
+                <i class="fas fa-angle-double-left" id="returnButtonIcon"></i>
+                <p id="returnButtonText">RETURN TO HOME</p>
+            </button>
+
+            <!-- CUSTOMER REGISTRATION FORM CARD -->
+            <div style="width: 60%;
+                 height: auto;
+                 background-color: #ffffff;
+                 position: relative;
+                 left: 50%;
+                 top: 70px;
+                 transform: translateX(-50%);
+                 border-radius: 15px;
+                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                 padding-bottom: 110px;
+                 margin-bottom: 50px;">
+                <!-- CARD HEADING -->
+                <p style="text-align: center;
+                   font-size: 25px;
+                   letter-spacing: 2px;
+                   position: relative;
+                   top: 15px;
+                   font-weight: 600;">REGISTRATION ERROR</p>
+                
+                <!-- HELP - MORE INFORMATION POPOVER -->
+                <button class="btn btn-light" style="border-radius: 25px;
+                                                            height: 40px;
+                                                            width: 40px;
+                                                            position: absolute;
+                                                            left: 95%;
+                                                            top: 10px;"
+                data-toggle="popover" data-trigger="hover" data-placement="top" title="REGISTRATION ERROR" 
+                data-content="An error has occurred during the registration process, 
+                            please click on 'RETURN TO HOME' button to redirect to the HOME page. <br>
+                            Apologies for the inconvenience."
+                data-html="true">
+                    <i class="fas fa-question-circle" style="position: relative;
+                                                            left: 50%;
+                                                            transform: translateX(-50%);
+                                                            font-size: 22px;"></i>
+                </button>
+
+                <p style="font-size: 18px;
+                        width: 80%;
+                        letter-spacing: 2px;
+                        position: relative;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        top: 35px;
+                        line-height: 35px;
+                        text-align: center;">
+                    An ERROR has occurred during the registration process.<br>
+                    New Member Registration was Unsuccessful.
+                    Apologies for the inconvenience.<br>
+                    Please click on 'RETURN TO HOME' button to redirect to the HOME page.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- BODY SECTION - END -->
+
+
+        <!-- FOOTER SECTION - BEGIN -->
+        <div id="footerSection">
+            <p id="footerSectionText">© CER</p>
+        </div>
+        <!-- FOOTER SECTION - END -->
+
+    </body>
+</html>

@@ -84,11 +84,11 @@ public class RegistrationTypeServlet extends HttpServlet {
         }
         else if("Customer".equals(memberRegistrationType)){   
             // If the selected member registration type is customer, user will be redirected to customer registration webpage
-            response.sendRedirect(request.getContextPath() + "/Register/CustomerRegister.html");
+            response.sendRedirect("Register/CustomerRegister.html");
         }
         else if("Attorney".equals(memberRegistrationType)){
             // If the selected member registration type is attorney, user will be redirected to attorney registration webpage
-            response.sendRedirect(request.getContextPath() + "/Register/AttorneyRegister.html");
+            response.sendRedirect("Register/AttorneyRegister.html");
         }
         
     }
