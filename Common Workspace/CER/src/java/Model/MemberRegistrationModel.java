@@ -195,11 +195,11 @@ public class MemberRegistrationModel {
     public void setAttorneyIdImage(Part attorneyIdImage) {
         this.attorneyIdImage = attorneyIdImage;
     }
-    @Context
-    HttpServletRequest request;
+    //@Context
+    //HttpServletRequest request;
 
     /* PROCESS OF REGISTERING A NEW CUSTOMER USER */
-    public void newCustomerRegistration() {
+    public Boolean newCustomerRegistration() {
         /* PROCESS OF INSERTING USER ENTETED VALUES INTO THE MONGODB DATABASE */
         try {
             // Establishing MongoDB URI Connection
@@ -225,14 +225,16 @@ public class MemberRegistrationModel {
                 // If there is a latest document, it's id will be retrieved and assgined to the latestDcouemntID variable
                 latestDocumentID = (int) latestDocument.get("_id");
             }
+            
+            
             // Incrementing latest document id by one to identify the new document id
             int newDocumentID = ++latestDocumentID;
-
             /* GENERATING SHA1 HASH PASSWORD VALUE WITH SALTING */
             // Salting entered password value
             String saltedPasswordValue = SALT + confirmPassword;
             // Generating hash value of the salted password
             String hashedPasswordValue = generateHashValue(saltedPasswordValue);
+            
             
             /*
             // UPLOADING USER IMAGE TO THE DATABASE 
@@ -259,9 +261,9 @@ public class MemberRegistrationModel {
             System.out.println("10");
             */
             
+            
             // Creating a new document to store in the MongoDB collection
             Document newDocument = new Document();
-
             // Inserting relevant data into the document
             newDocument.append("_id", newDocumentID)
                     .append("userType", "customer")
@@ -279,7 +281,7 @@ public class MemberRegistrationModel {
                                     .append("city", city)
                                     .append("zipPostalCode", zipPostalCode)
                                     .append("district", district))
-                    .append("proofOfCitizenship_fileName", nicPassportImage)
+                    .append("proofOfCitizenship_fileName", "")
                     .append("registration",
                             new Document("userRequestDateTime", new Date())
                                     .append("officerResponseDateTime", "")
@@ -291,19 +293,24 @@ public class MemberRegistrationModel {
             // Inserting the created document into the MongoDB collection
             try {
                 collection.insertOne(newDocument);
-            } catch (MongoWriteException ex) {
+                return true;
+            } 
+            catch (MongoWriteException ex) {
                 // Checking if the newly created document ID is already existing error is returned
                 if (ex.getError().getCategory().equals(ErrorCategory.DUPLICATE_KEY)) {
                     System.out.println("\nNewly Created Document ID Already Exists in the Collection");
                 }
+                return false;
             }
-        } catch (Exception ex) {
+        } 
+        catch (Exception ex) {
             System.out.println("ERROR: " + ex);
+            return false;
         }
     }
 
     /* PROCESS OF REGISTERING A NEW ATTORNEY USER */
-    public void newAttorneyRegistration() {
+    public Boolean newAttorneyRegistration() {
         /* PROCESS OF INSERTING USER ENTETED VALUES INTO THE MONGODB DATABASE */
         try {
             // Establishing MongoDB URI Connection
@@ -386,14 +393,19 @@ public class MemberRegistrationModel {
             // Inserting the created document into the MongoDB collection
             try {
                 collection.insertOne(newDocument);
-            } catch (MongoWriteException ex) {
+                return true;
+            } 
+            catch (MongoWriteException ex) {
                 // Checking if the newly created document ID is already existing error is returned
                 if (ex.getError().getCategory().equals(ErrorCategory.DUPLICATE_KEY)) {
                     System.out.println("\nNewly Created Document ID Already Exists in the Collection");
                 }
+                return false;
             }
-        } catch (Exception ex) {
+        } 
+        catch (Exception ex) {
             System.out.println("ERROR: " + ex);
+            return false;
         }
     }
 
