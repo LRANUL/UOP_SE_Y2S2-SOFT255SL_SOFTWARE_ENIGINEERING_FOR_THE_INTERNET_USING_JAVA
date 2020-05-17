@@ -49,15 +49,25 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="About.jsp">About</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Contact.html">Contact</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                    <a class="dropdown-item" href="Home.jsp">English</a>
+                                    <a class="dropdown-item" href="Sinhala.html">සිංහල</a>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                     <!-- LOGIN BUTTON -->
-                    <button class="btn" id="loginButton" type="button" onclick="location.href='Login.jsp'">
+                    <button class="btn" id="loginButton" type="button" onclick="location.href = 'Login.jsp'">
                         <p id="loginButtonText">LOGIN</p>
                     </button>
                     <!-- REGISTER BUTTON -->
                     <button class="btn" id="registerButton" type="button"
-                    data-toggle="modal" data-target="#registerModal">
+                            data-toggle="modal" data-target="#registerModal">
                         <p id="registerButtonText">REGISTER</p>
                     </button>
                 </nav>
@@ -85,6 +95,7 @@
                     <p>We deliver instant updates of court record status, for documents depending on availabliilty it will take 3 working days to prepare it.</p>
                     <p><a class="btn btn-primary" href="About.jsp" role="button">View details &raquo;</a></p>
                 </div>
+                
             </div>
             <!-- Site footer -->
             <footer class="footer">

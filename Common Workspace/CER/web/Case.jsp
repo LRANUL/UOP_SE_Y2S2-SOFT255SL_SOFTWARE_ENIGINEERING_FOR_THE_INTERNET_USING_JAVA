@@ -39,10 +39,10 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav text-md-center nav-justified w-100">
                             <li class="nav-item active">
-                                <a class="nav-link" href="Home.jsp">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="Home.jsp">Home </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Case.jsp">Find a Case</a>
+                                <a class="nav-link" href="Case.jsp">Find a Case<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="Document.jsp">Request Case Documents</a>
@@ -52,6 +52,16 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="About.jsp">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Contact.html">Contact</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                    <a class="dropdown-item" href="Home.jsp">English</a>
+                                    <a class="dropdown-item" href="Sinhala.html">සිංහල</a>
+                                </div>
                             </li>
                         </ul>
                     </div>
