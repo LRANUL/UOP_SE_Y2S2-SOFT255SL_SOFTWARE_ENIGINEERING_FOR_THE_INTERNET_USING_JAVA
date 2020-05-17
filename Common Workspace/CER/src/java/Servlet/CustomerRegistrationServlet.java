@@ -14,9 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Model.MemberRegistrationModel;
-import com.mongodb.gridfs.GridFS;
-import com.mongodb.gridfs.GridFSInputFile;
-import java.io.File;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
 

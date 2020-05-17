@@ -6,34 +6,16 @@
 package Model;
 
 import MongoDatabase.MongoDBConnection;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
 import com.mongodb.ErrorCategory;
-import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.MongoWriteException;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.gridfs.GridFS;
-import com.mongodb.gridfs.GridFSInputFile;
-import java.io.File;
-import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import static java.util.stream.DoubleStream.iterate;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
-import javax.ws.rs.core.Context;
-import static jdk.nashorn.internal.objects.NativeError.getFileName;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.bson.Document;
 
 /**
