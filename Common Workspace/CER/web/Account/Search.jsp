@@ -57,7 +57,7 @@
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">CERs Account</a>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="Home.html">Sign out</a>
+                <a class="nav-link" href="Home.jsp">Sign out</a>
             </li>
         </ul>
     </nav>
@@ -68,7 +68,7 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link " href="Account.html"> <svg xmlns="http://www.w3.org/2000/svg"
+                            <a class="nav-link " href="Account.jsp"> <svg xmlns="http://www.w3.org/2000/svg"
                                     width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                     class="feather feather-home">
@@ -78,7 +78,7 @@
                                 Home <span class="sr-only">(current)</span> </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="Search.html"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                            <a class="nav-link active" href="Document.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                     height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
                                     <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
@@ -86,7 +86,7 @@
                                 </svg>&nbsp;Request Documents</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Orders.html"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                            <a class="nav-link" href="Orders.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                     height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
                                     class="feather feather-shopping-cart">
@@ -96,7 +96,7 @@
                                 </svg>&nbsp;Past Orders</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Feedback.html">
+                            <a class="nav-link" href="Feedback.jsp">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-message-circle">
@@ -106,7 +106,7 @@
                                 </svg>&nbsp;Feedback</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Settings.html"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                            <a class="nav-link" href="Settings.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                     height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings">
                                     <circle cx="12" cy="12" r="3"></circle>

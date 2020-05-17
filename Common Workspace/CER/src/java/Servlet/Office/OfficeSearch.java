@@ -95,7 +95,7 @@ public class OfficeSearch extends HttpServlet {
             document.into(docs);
             request.setAttribute("documents", docs);
             RequestDispatcher rd = getServletContext().getRequestDispatcher(
-                    "/Office/Search.jsp");
+                    "/Office/SearchResult.jsp");
             rd.forward(request, response);
             for (Document doc : docs) {
                 System.out.println(doc);

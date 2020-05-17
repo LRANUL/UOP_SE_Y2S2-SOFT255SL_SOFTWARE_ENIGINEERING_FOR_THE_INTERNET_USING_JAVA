@@ -3,7 +3,25 @@
     Created on : May 16, 2020, 2:04:02 PM
     Author     : ranul
 --%>
+<%@page import="org.bson.Document"%>
+<%@page import="com.mongodb.client.MongoDatabase"%>
+<%@page import="com.mongodb.client.MongoClients"%>
+<%@page import="com.mongodb.client.MongoClient"%>
+<%@page import="com.mongodb.client.MongoCollection"%>
+<%@page import="com.mongodb.client.FindIterable"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%
+ MongoClient mongoClient = MongoClients.create("mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
+        MongoDatabase database = mongoClient.getDatabase("CERdb");
+
+        MongoCollection<Document> collection = database.getCollection("cases");
+        FindIterable document = collection.find();
+        ArrayList<org.bson.Document> cases = new ArrayList<org.bson.Document>();
+        document.into(cases);
+        request.setAttribute("cases", cases);
+
 
 %>
 <!DOCTYPE html>
@@ -27,7 +45,7 @@
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">CERs- Officer</a>
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="../Home.html">Sign out</a>
+                    <a class="nav-link" href="../Home.jsp">Sign out</a>
                 </li>
             </ul>
         </nav>
@@ -38,7 +56,7 @@
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" href="Dashboard.html"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                <a class="nav-link active" href="Dashboard.jsp"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                                        height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
                                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -47,7 +65,7 @@
                                     Dashboard <span class="sr-only">(current)</span> </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="CaseUpload.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                <a class="nav-link" href="CaseUpload.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                                                 viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                                                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
                                     <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
@@ -55,7 +73,7 @@
                                     </svg>&nbsp;Cases/Documents</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Orders.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                <a class="nav-link" href="Orders.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                                             viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                                             stroke-linecap="round" stroke-linejoin="round"
                                                                             class="feather feather-shopping-cart">
@@ -65,7 +83,7 @@
                                     </svg>&nbsp;Print Orders</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Customer.html"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                <a class="nav-link" href="Customer.jsp"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                                                viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
                                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -76,7 +94,7 @@
                                     Customers </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Search.html"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                <a class="nav-link" href="Search.jsp"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                                              viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                                              stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
                                     <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -86,7 +104,7 @@
                                     Search Reports </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Feedback.html">
+                                <a class="nav-link" href="Feedback.jsp">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                          stroke-linejoin="round" class="feather feather-message-circle">
@@ -96,7 +114,7 @@
                                     </svg>&nbsp;Feedback</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Settings.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                <a class="nav-link" href="Settings.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                                               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                                               stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings">
                                     <circle cx="12" cy="12" r="3"></circle>
@@ -161,8 +179,8 @@
                                 <td><c:out value="${case.Party}"></c:out></td>
                                 <td><c:out value="${case.CourtLocation}"></c:out></td>
                                 <td><c:out value="${case.Date}"></c:out></td>
+                                </c:forEach>
                                 </tr>
-                            </c:foreach>
                                 </tbody>
                         </table>
                     </div>
