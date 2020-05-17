@@ -9,6 +9,7 @@ import Model.MemberRegistrationModel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import javax.servlet.http.Part;
  *
  * @author Lucas.L.H.H
  */
+@MultipartConfig
 @WebServlet(name = "AttorneyRegistrationServlet", urlPatterns = {"/AttorneyRegistrationServlet"})
 public class AttorneyRegistrationServlet extends HttpServlet {
 
@@ -109,8 +111,18 @@ public class AttorneyRegistrationServlet extends HttpServlet {
         newUser.setEmailAddress(emailAddress);
         newUser.setConfirmPassword(confirmPassword);
         
-        // Calling function throught the newly created object
-        newUser.newCustomerRegistration();
+        // Calling function to register new member and returning the registration status (TRUE or FALSE)
+        Boolean registrationStatus = newUser.newAttorneyRegistration();
+        
+        if(registrationStatus == true){
+            // Redirecting to LOGIN webpage
+            response.sendRedirect("Login.jsp");
+        }
+        else if(registrationStatus == false){
+            // Redirecting to ERROR page
+            response.sendRedirect("Register/MemberRegisterError.html");  
+        }
+        
 
         /*
         PrintWriter out = response.getWriter();

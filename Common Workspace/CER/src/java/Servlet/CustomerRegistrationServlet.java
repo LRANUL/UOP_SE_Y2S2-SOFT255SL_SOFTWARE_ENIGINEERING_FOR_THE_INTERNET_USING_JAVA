@@ -115,8 +115,17 @@ public class CustomerRegistrationServlet extends HttpServlet {
         newUser.setEmailAddress(emailAddress);
         newUser.setConfirmPassword(confirmPassword);
         
-        // Calling function throught the newly created object
-        newUser.newCustomerRegistration();
+        // Calling function to register new member and returning the registration status (TRUE or FALSE)
+        Boolean registrationStatus = newUser.newCustomerRegistration();
+        
+        if(registrationStatus == true){
+            // Redirecting to LOGIN webpage
+            response.sendRedirect("Login.jsp");
+        }
+        else if(registrationStatus == false){
+            // Redirecting to ERROR page
+            response.sendRedirect("Register/MemberRegisterError.html");  
+        }
 
         /*
         PrintWriter out = response.getWriter();
