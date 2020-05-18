@@ -95,7 +95,7 @@ public final class Dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\r\n");
       out.write("        <meta name=\"description\" content=\"\">\r\n");
       out.write("        <meta name=\"author\" content=\"\">\r\n");
-      out.write("        <title>Dashboard</title>\r\n");
+      out.write("        <title>ADMIN - CER</title>\r\n");
       out.write("        <link href=\"../assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css\" rel=\"stylesheet\">\r\n");
       out.write("        <link href=\"../assets/css/dashboard.css\" rel=\"stylesheet\">\r\n");
       out.write("        <link rel=\"icon\" href=\"../assets/images/favicon.png\" type=\"image/png\">\r\n");
@@ -103,7 +103,7 @@ public final class Dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("    <body>\r\n");
       out.write("        <nav class=\"navbar navbar-dark fixed-top bg-light flex-md-nowrap p-0 shadow\">\r\n");
-      out.write("            <a class=\"navbar-brand col-sm-3 col-md-2 mr-0\" href=\"#\">Admin CER</a>\r\n");
+      out.write("            <a class=\"navbar-brand col-sm-3 col-md-2 mr-0\" href=\"#\">ADMIN CER</a>\r\n");
       out.write("            <ul class=\"navbar-nav px-3\">\r\n");
       out.write("                <li class=\"nav-item text-nowrap\">\r\n");
       out.write("                    <a class=\"nav-link\" style=\"color: black\" href=\"../Home.jsp\" >Sign out</a>\r\n");
@@ -126,7 +126,7 @@ public final class Dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    Dashboard <span class=\"sr-only\">(current)</span> </a>\r\n");
       out.write("                            </li>\r\n");
       out.write("                            <li class=\"nav-item\">\r\n");
-      out.write("                                <a class=\"nav-link \" href=\"Users.jsp\"> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\"\r\n");
+      out.write("                                <a class=\"nav-link \" href=\"OfficeUsers.jsp\"> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\"\r\n");
       out.write("                                                                            height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\r\n");
       out.write("                                                                            stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-users\">\r\n");
       out.write("                                    <path d=\"M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\"></path>\r\n");
@@ -134,7 +134,7 @@ public final class Dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <path d=\"M23 21v-2a4 4 0 0 0-3-3.87\"></path>\r\n");
       out.write("                                    <path d=\"M16 3.13a4 4 0 0 1 0 7.75\"></path>\r\n");
       out.write("                                    </svg>\r\n");
-      out.write("                                    Manage Users </a>\r\n");
+      out.write("                                    Manage Office Users </a>\r\n");
       out.write("                            </li>\r\n");
       out.write("                            <li class=\"nav-item\">\r\n");
       out.write("                                <a class=\"nav-link\" href=\"Settings.jsp\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\"\r\n");
@@ -354,7 +354,7 @@ public final class Dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_c_forEach_1.setParent(null);
     _jspx_th_c_forEach_1.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.dbstats}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
     _jspx_th_c_forEach_1.setVar("dbstats");
-    _jspx_th_c_forEach_1.setBegin(2);
+    _jspx_th_c_forEach_1.setBegin(1);
     int[] _jspx_push_body_count_c_forEach_1 = new int[] { 0 };
     try {
       int _jspx_eval_c_forEach_1 = _jspx_th_c_forEach_1.doStartTag();
@@ -412,7 +412,7 @@ public final class Dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_c_forEach_2.setParent(null);
     _jspx_th_c_forEach_2.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.dbstats}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
     _jspx_th_c_forEach_2.setVar("dbstats");
-    _jspx_th_c_forEach_2.setBegin(2);
+    _jspx_th_c_forEach_2.setBegin(1);
     int[] _jspx_push_body_count_c_forEach_2 = new int[] { 0 };
     try {
       int _jspx_eval_c_forEach_2 = _jspx_th_c_forEach_2.doStartTag();

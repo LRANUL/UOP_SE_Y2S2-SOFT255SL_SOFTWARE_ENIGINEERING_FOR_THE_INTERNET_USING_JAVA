@@ -41,7 +41,7 @@
                 }
 
                 // Checking if the user entered passwords characters length in lower than or equal to 25
-                if(document.customerRegistrationForm.password.value.length > 25 || document.customerRegistrationForm.confirmPassword.value.length > 25){
+                if(document.customerRegistrationForm.confirmPassword.value.length > 25 || document.customerRegistrationForm.confirmPassword.value.length > 25){
                   alert("ERROR: Rechecked Entered Password, Password length is above 25 characters");
                   return false;
                 }

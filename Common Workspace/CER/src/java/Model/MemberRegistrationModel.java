@@ -182,7 +182,7 @@ public class MemberRegistrationModel {
 
     /* PROCESS OF REGISTERING A NEW CUSTOMER USER */
     public Boolean newCustomerRegistration() {
-        /* PROCESS OF INSERTING USER ENTETED VALUES INTO THE MONGODB DATABASE */
+        /* PROCESS OF INSERTING USER ENTETED VALUES INTO THE MONGODB */
         try {
             // Establishing MongoDB URI Connection
             MongoClientURI uri = new MongoClientURI(mongoDB.MongoDBConnectionURL());
@@ -195,6 +195,7 @@ public class MemberRegistrationModel {
             MongoCollection collection = database.getCollection("users");
             
             
+            /* PROCESS OF IDENTIFYING NEW DOCUMENT ID */
             // Retrieving the latest inserted document
             Document latestDocument = (Document) collection.find().sort(new Document("_id", -1)).first();
             // Declaring variable to store the latest document id
@@ -207,10 +208,10 @@ public class MemberRegistrationModel {
                 // If there is a latest document, it's id will be retrieved and assgined to the latestDcouemntID variable
                 latestDocumentID = (int) latestDocument.get("_id");
             }
-            
-            
             // Incrementing latest document id by one to identify the new document id
             int newDocumentID = ++latestDocumentID;
+            
+            
             /* GENERATING SHA1 HASH PASSWORD VALUE WITH SALTING */
             // Salting entered password value
             String saltedPasswordValue = SALT + confirmPassword;
@@ -293,7 +294,7 @@ public class MemberRegistrationModel {
 
     /* PROCESS OF REGISTERING A NEW ATTORNEY USER */
     public Boolean newAttorneyRegistration() {
-        /* PROCESS OF INSERTING USER ENTETED VALUES INTO THE MONGODB DATABASE */
+        /* PROCESS OF INSERTING USER ENTETED VALUES INTO THE MONGODB */
         try {
             // Establishing MongoDB URI Connection
             MongoClientURI uri = new MongoClientURI(mongoDB.MongoDBConnectionURL());
@@ -306,6 +307,7 @@ public class MemberRegistrationModel {
             MongoCollection collection = database.getCollection("users");
             
             
+            /* PROCESS OF IDENTIFYING NEW DOCUMENT ID */
             // Retrieving the latest inserted document
             Document latestDocument = (Document) collection.find().sort(new Document("_id", -1)).first();
             // Declaring variable to store the latest document id
