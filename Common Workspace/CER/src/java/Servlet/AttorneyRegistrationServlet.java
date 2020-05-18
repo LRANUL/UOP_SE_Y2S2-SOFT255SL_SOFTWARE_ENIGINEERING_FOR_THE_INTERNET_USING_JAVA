@@ -94,25 +94,25 @@ public class AttorneyRegistrationServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirmPassword");
 
         // Creating new object of MemberRegistrationModel class
-        MemberRegistrationModel newUser = new MemberRegistrationModel();
+        MemberRegistrationModel newAttorneyUser = new MemberRegistrationModel();
         
         // Passing the user entered values to the model 
-        newUser.setPrefixName(prefixName);
-        newUser.setFirstName(firstName);
-        newUser.setMiddleName(middleName);
-        newUser.setLastName(lastName);
-        newUser.setNIC(nic);
-        newUser.setAttorneyId(attorneyId);
-        newUser.setStreetAddress(streetAddress);
-        newUser.setCity(city);
-        newUser.setDistrict(district);
-        newUser.setZipPostalCode(zipPostalCode);
-        newUser.setAttorneyIdImage(attorneyIdImage);
-        newUser.setEmailAddress(emailAddress);
-        newUser.setConfirmPassword(confirmPassword);
+        newAttorneyUser.setPrefixName(prefixName);
+        newAttorneyUser.setFirstName(firstName);
+        newAttorneyUser.setMiddleName(middleName);
+        newAttorneyUser.setLastName(lastName);
+        newAttorneyUser.setNIC(nic);
+        newAttorneyUser.setAttorneyId(attorneyId);
+        newAttorneyUser.setStreetAddress(streetAddress);
+        newAttorneyUser.setCity(city);
+        newAttorneyUser.setDistrict(district);
+        newAttorneyUser.setZipPostalCode(zipPostalCode);
+        newAttorneyUser.setAttorneyIdImage(attorneyIdImage);
+        newAttorneyUser.setEmailAddress(emailAddress);
+        newAttorneyUser.setConfirmPassword(confirmPassword);
         
         // Calling function to register new member and returning the registration status (TRUE or FALSE)
-        Boolean registrationStatus = newUser.newAttorneyRegistration();
+        Boolean registrationStatus = newAttorneyUser.newAttorneyRegistration();
         
         if(registrationStatus == true){
             // Redirecting to LOGIN webpage

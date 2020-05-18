@@ -103,25 +103,25 @@ public class CustomerRegistrationServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirmPassword");
 
         // Creating new object of MemberRegistrationModel class
-        MemberRegistrationModel newUser = new MemberRegistrationModel();
+        MemberRegistrationModel newCustomerUser = new MemberRegistrationModel();
         
         // Passing the user entered values to the model 
-        newUser.setPrefixName(prefixName);
-        newUser.setFirstName(firstName);
-        newUser.setMiddleName(middleName);
-        newUser.setLastName(lastName);
-        newUser.setNIC(nic);
-        newUser.setDateOfBirth(dateOfBirth);
-        newUser.setStreetAddress(streetAddress);
-        newUser.setCity(city);
-        newUser.setDistrict(district);
-        newUser.setZipPostalCode(zipPostalCode);
-        newUser.setNICPassportImage(nicPassportImage);
-        newUser.setEmailAddress(emailAddress);
-        newUser.setConfirmPassword(confirmPassword);
+        newCustomerUser.setPrefixName(prefixName);
+        newCustomerUser.setFirstName(firstName);
+        newCustomerUser.setMiddleName(middleName);
+        newCustomerUser.setLastName(lastName);
+        newCustomerUser.setNIC(nic);
+        newCustomerUser.setDateOfBirth(dateOfBirth);
+        newCustomerUser.setStreetAddress(streetAddress);
+        newCustomerUser.setCity(city);
+        newCustomerUser.setDistrict(district);
+        newCustomerUser.setZipPostalCode(zipPostalCode);
+        newCustomerUser.setNICPassportImage(nicPassportImage);
+        newCustomerUser.setEmailAddress(emailAddress);
+        newCustomerUser.setConfirmPassword(confirmPassword);
         
         // Calling function to register new member and returning the registration status (TRUE or FALSE)
-        Boolean registrationStatus = newUser.newCustomerRegistration();
+        Boolean registrationStatus = newCustomerUser.newCustomerRegistration();
         
         if(registrationStatus == true){
             // Redirecting to LOGIN webpage

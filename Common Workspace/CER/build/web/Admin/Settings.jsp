@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Settings</title>
+    <title>ADMIN - CER</title>
     <link href="../assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css" rel="stylesheet">
     <link href="../assets/css/dashboard.css" rel="stylesheet">
     <link rel="icon" href="../assets/images/favicon.png" type="image/png">
@@ -22,7 +22,7 @@
 
 <body>
     <nav class="navbar navbar-dark fixed-top bg-light flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Admin CER</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">ADMIN CER</a>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
                 <a class="nav-link" style="color: black" href="../Home.jsp" >Sign out</a>
@@ -46,7 +46,7 @@
                                 Dashboard <span class="sr-only">(current)</span> </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="Users.jsp"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                            <a class="nav-link " href="ManageOfficeUsers.jsp"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                     height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
                                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -54,7 +54,7 @@
                                     <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                 </svg>
-                                Manage Users </a>
+                                Manage Office Users </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="Settings.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="24"
