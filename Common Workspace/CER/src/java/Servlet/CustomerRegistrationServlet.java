@@ -14,6 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Model.MemberRegistrationModel;
+import com.sun.faces.action.RequestMapping;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.nio.file.Paths;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
 
@@ -21,6 +25,7 @@ import javax.servlet.http.Part;
  *
  * @author Lucas.L.H.H
  */
+
 @MultipartConfig
 @WebServlet(name = "CustomerRegistrationServlet", urlPatterns = {"/CustomerRegistrationServlet"})
 public class CustomerRegistrationServlet extends HttpServlet {
@@ -74,11 +79,14 @@ public class CustomerRegistrationServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // processRequest(request, response);
         
+        // processRequest(request, response);
+       
         // Retrieving user enter values from frontend
         String prefixName = request.getParameter("prefixName");
         String firstName = request.getParameter("firstName");        
@@ -139,9 +147,7 @@ public class CustomerRegistrationServlet extends HttpServlet {
         out.println("<h1 align='center:'>emailAddress: </h1>" + emailAddress); 
         out.println("<h1 align='center:'>confirmPassword: </h1>" + confirmPassword); 
         out.println("<h1 align='center:'>nicPassportImage: </h1>" + nicPassportImage);           
-        */
-
-     
+*       */
         
 
     }
