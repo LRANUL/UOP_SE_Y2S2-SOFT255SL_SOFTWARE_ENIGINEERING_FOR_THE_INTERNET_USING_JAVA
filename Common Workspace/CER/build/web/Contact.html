@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>CER - Home</title>
+        <!-- Bootstrap core CSS -->
+        <link href="assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css" rel="stylesheet">
+        <!-- Importing Fontawesome from Localhost -->
+        <link rel="stylesheet" type="text/css" href="assets/externalLibraries/fontawesome-v5.13.0/css/all.css">
+        <!-- Custom styles for this template -->
+        <link href="assets/css/justified-nav.css" rel="stylesheet"><style>
+            .nav-item.dropdown:hover .dropdown-menu {display: block;}
+        </style>
+        <link rel="icon" href="assets/images/favicon.png" type="image/png">
+    </head>
+    <body>
+        <div class="container">
+            <div class="masthead">
+                <h3 class="text-muted">Court Electronic Record system (CERs)</h3>
+                <nav class="navbar navbar-expand-md navbar-light bg-light rounded mb-3">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav text-md-center nav-justified w-100">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="Home.jsp">Home </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Case.jsp">Find a Case</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Document.jsp">Request Case Documents</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Services.jsp">Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="About.jsp">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Contact.html">Contact <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                    <a class="dropdown-item" href="Home.jsp">English</a>
+                                    <a class="dropdown-item" href="Sinhala.html">සිංහල</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- LOGIN BUTTON -->
+                    <button class="btn" id="loginButton" type="button" onclick="location.href = 'Login.jsp'">
+                        <p id="loginButtonText">LOGIN</p>
+                    </button>
+                    <!-- REGISTER BUTTON -->
+                    <button class="btn" id="registerButton" type="button"
+                            data-toggle="modal" data-target="#registerModal">
+                        <p id="registerButtonText">REGISTER</p>
+                    </button>
+                </nav>
+            </div>
+            <!-- Map Start --> 
+
+            <div class="section-padding"></div>
+            <div class="container">
+                <div style="width: 100%"><iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q= Main st,%20 Colombo, %20Sri Lanka+(Call%20My%20Lawyer)&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div><br>
+                <h5>Phone: 0110000000</h5>
+                <h5>Email: Email@</h5>
+
+            </div>
+            <br>
+
+            <!-- Map End --> 
+
+        </div>
+        <!-- Site footer -->
+        <footer class="footer">
+            <p class="text-center">&copy; CER</p>
+        </footer>
+        <!-- Retrieving RegisterModal Webpage -->
+        <%@include file="RegisterModal.html" %>
+    </div>   
+    <!-- /container -->
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/externalLibraries/bootstrap-v4.4.1/js/jquery.min.js"></script>
+    <script src="assets/externalLibraries/bootstrap-v4.4.1/js/popper.min.js"></script>
+    <script src="assets/externalLibraries/bootstrap-v4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
