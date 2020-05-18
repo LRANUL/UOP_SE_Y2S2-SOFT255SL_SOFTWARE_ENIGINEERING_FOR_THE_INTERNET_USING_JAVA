@@ -8,6 +8,10 @@
         <servlet-name>SendMail</servlet-name>
         <servlet-class>Servlet.Office.SendMail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Services</servlet-name>
+        <servlet-class>Model.Services</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>OfficeSearch</servlet-name>
         <url-pattern>/OfficeSearch</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>SendMail</servlet-name>
         <url-pattern>/Office/SendMail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Services</servlet-name>
+        <url-pattern>/Services</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -42,17 +42,17 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav text-md-center nav-justified w-100">
-                            <li class="nav-item active">
+                            <li class="nav-item ">
                                 <a class="nav-link" href="Home.jsp">Home </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="Case.jsp">Find a Case</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a class="nav-link" href="Document.jsp">Request Case Documents<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Services.jsp">Services</a>
+                                <a class="nav-link" href="Services.jsp">Forum</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="About.jsp">About</a>
