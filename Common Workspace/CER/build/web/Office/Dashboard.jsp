@@ -160,8 +160,8 @@
 
                         </div>
                     </div>
-                    <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="2304" height="972"
-                            style="display: block; height: 486px; width: 1152px;"></canvas>
+                    <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="819" height="309"
+                            style="display: block; height: 198px; width: 596px;"></canvas>
                     <h2>Recent Records</h2>
                     <div class="table-responsive">
                         <table class="table table-striped table-sm">
@@ -203,7 +203,7 @@
                 data: {
                     labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
                     datasets: [{
-                            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+                            data: [15 , 25, 75, 50, 80, 105, 130],
                             lineTension: 0,
                             backgroundColor: 'transparent',
                             borderColor: '#007bff',
