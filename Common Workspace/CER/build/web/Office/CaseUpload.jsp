@@ -20,10 +20,10 @@
     <link rel="icon" href="../assets/images/favicon.png" type="image/png">
 </head>
 
-<body>
+<body style="background-color: #f0f0f0;">
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">CERs- Officer</a>
-        <ul class="navbar-nav px-3">
+        <ul class="navbar-nav px-3" style="background-color: #000000;">
             <li class="nav-item text-nowrap">
                 <a class="nav-link" href="../Home.jsp">Sign out</a>
             </li>
@@ -129,6 +129,48 @@
                     </div>
                 </div>
             </main>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT SECTION -->
+    <div style="height: 600px;
+                width: 80.65%;
+                position: absolute;
+                right: 1.3%;
+                background-color: #f0f0f0;">
+        <!-- ADD CASE SECTION -->
+        <div style="width: 48.5%;
+                    height: 400px;
+                    background-color: #ffffff;
+                    position: relative;
+                    left: 1%;
+                    float: left;
+                    border-radius: 10px;">
+            <p style="font-size: 22px;
+                    letter-spacing: 1px;
+                    font-weight: 500;
+                    margin-top: 15px;
+                    position: relative;
+                    left: 25px;">
+                ADD NEW CASE
+            </p>
+        </div>
+        <!-- ADD DOCUMENT SECTION -->
+        <div style="width: 48.5%;
+                    height: 400px;
+                    background-color: #ffffff;
+                    position: absolute;
+                    right: 1%;
+                    float: left;
+                    border-radius: 10px;">
+            <p style="font-size: 22px;
+                    letter-spacing: 1px;
+                    font-weight: 500;
+                    margin-top: 15px;
+                    position: relative;
+                    left: 25px;">
+                ADD DOCUMENT TO CASE
+            </p>
         </div>
     </div>
  
