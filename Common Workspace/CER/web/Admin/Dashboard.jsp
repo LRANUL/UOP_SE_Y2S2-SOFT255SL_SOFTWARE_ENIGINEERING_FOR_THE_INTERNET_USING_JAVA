@@ -164,9 +164,9 @@
             var myChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: [<c:forEach items="${requestScope.dbstats}" var="dbstats" begin="2">'<c:out value="${dbstats.getKey()}"></c:out>',</c:forEach>],
+                    labels: [<c:forEach items="${requestScope.dbstats}" var="dbstats" begin="1">'<c:out value="${dbstats.getKey()}"></c:out>',</c:forEach>],
                             datasets: [{
-                                    data: [<c:forEach items="${requestScope.dbstats}" var="dbstats" begin="2"><c:out value="${dbstats.getValue()}"></c:out>,</c:forEach>],
+                                    data: [<c:forEach items="${requestScope.dbstats}" var="dbstats" begin="1"><c:out value="${dbstats.getValue()}"></c:out>,</c:forEach>],
                                     backgroundColor: ["#80ffbf", "#33ff99", "#00ff80", "#00cc66", "#4dc3ff", "#1ab2ff", "#0088cc", "#8585ad", "#666699", "#47476b", "#ff8080", "ff5050"],
                                 }]
                 },

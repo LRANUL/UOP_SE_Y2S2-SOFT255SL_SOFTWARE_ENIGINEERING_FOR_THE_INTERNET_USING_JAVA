@@ -4,7 +4,24 @@
     Author     : ranul
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.mongodb.client.FindIterable"%>
+<%@page import="com.mongodb.client.MongoCollection"%>
+<%@page import="com.mongodb.client.MongoClients"%>
+<%@page import="com.mongodb.client.MongoDatabase"%>
+<%@page import="com.mongodb.client.MongoClient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%
+    MongoClient mongoClient = MongoClients.create("mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
+    MongoDatabase database = mongoClient.getDatabase("CERdb");
+
+    MongoCollection<org.bson.Document> collection = database.getCollection("forum");
+    FindIterable document = collection.find();
+    ArrayList<org.bson.Document> docs = new ArrayList<org.bson.Document>();
+    document.into(docs);
+    request.setAttribute("comments", docs);
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,16 +43,16 @@
     </head>
     <body>
         <div class="container">
-        <div class="masthead">
-            <h3 class="text-muted">Court Electronic Record system (CERs)</h3>
-            <nav class="navbar navbar-expand-md navbar-light bg-light rounded mb-3">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="masthead">
+                <h3 class="text-muted">Court Electronic Record system (CERs)</h3>
+                <nav class="navbar navbar-expand-md navbar-light bg-light rounded mb-3">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav text-md-center nav-justified w-100">
-                            <li class="nav-item active">
+                            <li class="nav-item ">
                                 <a class="nav-link" href="Home.jsp">Home </a>
                             </li>
                             <li class="nav-item">
@@ -44,8 +61,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="Document.jsp">Request Case Documents</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="Services.jsp">Services <span class="sr-only">(current)</span></a>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="Services.jsp">Forum<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="About.jsp">About</a>
@@ -62,55 +79,58 @@
                             </li>
                         </ul>
                     </div>
-                <!-- LOGIN BUTTON -->
-                <button class="btn" id="loginButton" type="button" onclick="location.href='Login.jsp'">
-                    <p id="loginButtonText">LOGIN</p>
-                </button>
-                <!-- REGISTER BUTTON -->
-                <button class="btn" id="registerButton" type="button"
-                data-toggle="modal" data-target="#registerModal">
-                    <p id="registerButtonText">REGISTER</p>
-                </button>
-            </nav>
-        </div>
-            <!-- Jumbotron -->
-            <div class="jumbotron">
-                <h1>Digitalised Court Records</h1>
-                <p class="lead">All records from 1950 and Documents from 2000 have be digitalised for your convenience</p>
-                <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
+                    <!-- LOGIN BUTTON -->
+                    <button class="btn" id="loginButton" type="button" onclick="location.href = 'Login.jsp'">
+                        <p id="loginButtonText">LOGIN</p>
+                    </button>
+                    <!-- REGISTER BUTTON -->
+                    <button class="btn" id="registerButton" type="button"
+                            data-toggle="modal" data-target="#registerModal">
+                        <p id="registerButtonText">REGISTER</p>
+                    </button>
+                </nav>
             </div>
-            <!-- Example row of columns -->
+            <h2>CERs Forum</h2>
+            <p class="lead">Having questions, discuss and provide your comment to improve our services</p>
             <div class="row">
-                <div class="col-lg-4">
-                    <h2>Court Records</h2>
-                    <p>Records are updated daily, you can check your court case progress or find past court cases to request lost case documents.</p>
-                    <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-                </div>
-                <div class="col-lg-4">
-                    <h2>Case Documents</h2>
-                    <p>Documents are important, sometimes they get lost or you lose access to them. With CER system you can request a copy of your documents.</p>
-                    <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-                </div>
-                <div class="col-lg-4">
-                    <h2>Delivery</h2>
-                    <p>We deliver instant updates of court record status, for documents depending on availabliilty it will take 3 working days to prepare it.</p>
-                    <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+                <div class="input-group">
+                    <form name="forumForm" method="post" action="Services" id='commentForm'>
+                        <input type="text" name="Email" class="form-control bg-white" placeholder="Email Address" style="width:150px">
+                        <textarea rows="2" cols="50" class="form-control bg-white" name="Comment" form="commentForm" placeholder="Enter your comment here !"></textarea>
+                        <button type="submit" class="btn-sm btn-outline-success">Comment</button>
+                    </form>
                 </div>
             </div>
-            <!-- Site footer -->
-            <footer class="footer">
-                <p class="text-center">&copy; CER</p>
-            </footer>
-            <!-- Retrieving RegisterModal Webpage -->
-            <%@include file="RegisterModal.html" %>
-        </div>         
+            <hr>
+            <div class="container h-100">
+                <div class="row h-100 justify-content-center align-items-center" >
+                    <c:forEach items="${requestScope.comments}" var="comment">
+                        <div class="card card-block w-25 bg-white clear-left" style="margin-right: 100px;margin-top: 20px" >
+                            <div>
+                                <img src='assets/images/profile.png' style='width:40px;'><c:out value="${comment.Email}"></c:out><br>
+                                <c:out value="${comment.Comment}"></c:out><br>
+                                <b style="font-size:8px;font-family: Arial">Comment added on <c:out value="${comment.DateTime}"></c:out></b>
+                                </div>
+                            </div><br>
+                    </c:forEach>
+                </div>
+            </div>
 
-        <!-- /container -->
-         <!-- Bootstrap core JavaScript
-    ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="assets/externalLibraries/bootstrap-v4.4.1/js/jquery.min.js"></script>
-        <script src="assets/externalLibraries/bootstrap-v4.4.1/js/popper.min.js"></script>
-        <script src="assets/externalLibraries/bootstrap-v4.4.1/js/bootstrap.min.js"></script>
-    </body>
+        </div>
+        <!-- Site footer -->
+        <footer class="footer">
+            <p class="text-center">&copy; CER</p>
+        </footer>
+        <!-- Retrieving RegisterModal Webpage -->
+        <%@include file="RegisterModal.html" %>
+    </div>         
+
+    <!-- /container -->
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/externalLibraries/bootstrap-v4.4.1/js/jquery.min.js"></script>
+    <script src="assets/externalLibraries/bootstrap-v4.4.1/js/popper.min.js"></script>
+    <script src="assets/externalLibraries/bootstrap-v4.4.1/js/bootstrap.min.js"></script>
+</body>
 </html>
