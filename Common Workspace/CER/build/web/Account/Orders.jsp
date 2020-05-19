@@ -18,8 +18,8 @@
 String Email = (String) session.getAttribute("Email");
     String Name = (String) session.getAttribute("Name");
     /*Sample Data till Auth System is Connected*/
-    Name = "Barnes";
-    Email = "barnes@msn.co.uk";
+    Name = "Smith";
+    Email = "smithanderson@sample.com";
     MongoClient mongoClient = MongoClients.create("mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
     MongoDatabase database = mongoClient.getDatabase("CERdb");
     MongoCollection<Document> collection = database.getCollection("orders");

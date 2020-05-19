@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ranul
  */
+@WebServlet(name = "requestDocument", urlPatterns = {"Account/requestDocument"})
 public class requestDocument extends HttpServlet {
 
     /**
@@ -92,7 +94,7 @@ public class requestDocument extends HttpServlet {
                 .append("Date", new Date());
         collection.insertOne(neworder);
         RequestDispatcher rd = getServletContext().getRequestDispatcher(
-                "/Services.jsp");
+                "/Account/Orders.jsp");
         rd.forward(request, response);
     }
 
