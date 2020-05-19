@@ -5,8 +5,13 @@
  */
 package Model;
 
-import static Model.MemberRegistrationModel.SALT;
-import static Model.MemberRegistrationModel.generateHashValue;
+/* 
+    Imports used for password salting and hashing, 
+    creating new objects is not necessary for these as this variable and method is static.
+*/
+import static Encryption.PasswordHashing.SALT;
+import static Encryption.PasswordHashing.generateHashValue;
+
 import MongoDatabase.MongoDBConnection;
 import com.mongodb.ErrorCategory;
 import com.mongodb.MongoClient;
@@ -42,10 +47,7 @@ public class OfficeUserRegistrationModel {
     private String cerId = null;
     private String cerEmailAddress = null;
     private String reenterPassword = null;
-    
-    // Assigning SALT value for salting user entered password value
-    public static final String SALT = "SOFT255SL - CERWebApp";
-    
+
     // GETTERS
     public String getPrefixName() {
         return prefixName;
@@ -169,7 +171,8 @@ public class OfficeUserRegistrationModel {
                     .append("registrationDatetime", new Date())
                     .append("sessionActivity",
                             new Document("loginDateTime", "")
-                                    .append("logoutDateTime", ""));
+                                    .append("logoutDateTime", ""))
+                    .append("accountStatus", "Active");
             
             // Inserting the created document into the MongoDB collection
             try {
@@ -189,26 +192,6 @@ public class OfficeUserRegistrationModel {
             return false;
         }
         
-    }
-    
-    /* PROCESS OF GENERATING SHA1 HASH VALUE OF PASSWORD */
-    public static String generateHashValue(String passwordValue) {
-        StringBuilder hashValue = new StringBuilder();
-
-        try {
-            MessageDigest sha = MessageDigest.getInstance("SHA-1");
-            byte[] hashedValueBytes = sha.digest(passwordValue.getBytes());
-            char[] digits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                'a', 'b', 'c', 'd', 'e', 'f'};
-            for (int x = 0; x < hashedValueBytes.length; ++x) {
-                byte b = hashedValueBytes[x];
-                hashValue.append(digits[(b & 0xf0) >> 4]);
-                hashValue.append(digits[b & 0x0f]);
-            }
-        } catch (NoSuchAlgorithmException ex) {
-            System.out.println("ERROR: " + ex);
-        }
-        return hashValue.toString();
     }
     
 }

@@ -100,16 +100,26 @@ public class OfficeUserRegistrationServlet extends HttpServlet {
         newOfficeUser.setReenterPassword(reenterPassword);
         
         // Calling function to register new office user and returning the registration status (TRUE or FALSE)
-       // Boolean registrationStatus = newOfficeUser.newOfficeUserRegistration();
+        Boolean registrationStatus = newOfficeUser.newOfficeUserRegistration();
         
-     //   if(registrationStatus == true){
+        PrintWriter out = response.getWriter();
+        
+        if(registrationStatus == true){
             // Redirecting to LOGIN webpage
-        //    response.sendRedirect("Login.jsp");
-       // }
-     //   else if(registrationStatus == false){
+         //   response.sendRedirect("Login.jsp");
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('New Office Registration was Successful');");
+            out.println("location='Admin/ManageOfficeUsers.jsp';");
+            out.println("</script>");
+         }
+        else if(registrationStatus == false){
             // Redirecting to ERROR page
-       //     response.sendRedirect("Register/MemberRegisterError.html");  
-      ///  }
+           // response.sendRedirect("Register/MemberRegisterError.html");
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('New Office Registration was Unsuccessful');");
+            out.println("location='Admin/ManageOfficeUsers.jsp';");
+            out.println("</script>");
+        }
       
       
     }

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!doctype html>
 <html lang="en">
 
@@ -159,16 +160,17 @@
                                                         font-size: 22px;"></i>
             </button>
 
-            <!-- REGISTERED OFFICE USER SEARCH FORM -->
-            <form name="searchRegisteredOfficerForm" method="POST" action="../OfficeUserRegistrationServlet">
-                <input type="text" placeholder="Enter Office User ID" style="width: 74%;
+            <!-- SEARCH REGISTERED OFFICE USER FORM -->
+            <form name="searchRegisteredOfficerForm" method="POST" action="../Admin/SearchRegisteredOfficeUserServlet">
+                <input type="email" placeholder="Enter Office User's CER Email Address" style="width: 74%;
                                                                             height: 45px;
                                                                             position: relative;
                                                                             left: 4%;
                                                                             border-radius: 5px;
                                                                             border: #ccc solid 1px;
                                                                             padding-left: 18px;
-                                                                            font-size: 18px;">
+                                                                            font-size: 18px;"
+                data-toggle="tooltip" data-placement="bottom" title="MANDATORY, Enter CER Email Address" required name="officerCEREmailAddress" />
                 <button style="width: 16%;
                                 height: 45px;
                                 position: absolute;
@@ -184,6 +186,29 @@
                         position: relative;
                         left: 50%;
                         transform: translateX(-50%);"></div>
+                        
+            <!-- SEARCH REGISTERED OFFICE USER - SEARCH RESULT -->
+            <!--<c:forEach items="${requestScope.orders}" var="order">
+                 <c:out value="${order}"></c:out>
+            </c:forEach>-->
+
+            <p style="letter-spacing: 1px;
+                    font-size: 18px;
+                    margin-left: 40px;
+                    margin-top: 20px;">SEARCH RESULTS -</p>
+
+            <div style="width: 90%;
+                        height: 60%;
+                        border-radius: 5px;
+                        position: relative;
+                        left: 50%;
+                        top: -5px;
+                        transform: translateX(-50%);
+                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+            </div>
+
+                   
         </div>
         <!-- REGISTER NEW OFFICE USERS SECTION -->
         <div style="width: 48.5%;
@@ -429,7 +454,7 @@
             }
 
             // Showing the user the registration process will continue and verifying the entered values
-            var confirmContinueRegisterNewUser = confirm("New officer user will be registered, are all the entered details correct?");
+            var confirmContinueRegisterNewUser = confirm("New officer user will be registered. Check if all the entered details correct. Do you want to continue?");
             if(confirmContinueRegisterNewUser == true){
                 return true;
             }

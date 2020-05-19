@@ -11,10 +11,23 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
 
   private static java.util.List<String> _jspx_dependants;
 
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_items;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_out_value_nobody;
+
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
   public java.util.List<String> getDependants() {
     return _jspx_dependants;
+  }
+
+  public void _jspInit() {
+    _jspx_tagPool_c_forEach_var_items = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_out_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+  }
+
+  public void _jspDestroy() {
+    _jspx_tagPool_c_forEach_var_items.release();
+    _jspx_tagPool_c_out_value_nobody.release();
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -44,6 +57,7 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
       out.write("<!doctype html>\r\n");
       out.write("<html lang=\"en\">\r\n");
       out.write("\r\n");
@@ -57,6 +71,8 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("    <link href=\"../assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css\" rel=\"stylesheet\">\r\n");
       out.write("    <link href=\"../assets/css/dashboard.css\" rel=\"stylesheet\">\r\n");
       out.write("    <link rel=\"icon\" href=\"../assets/images/favicon.png\" type=\"image/png\">\r\n");
+      out.write("    <!-- Importing Fontawesome from Localhost -->\r\n");
+      out.write("    <link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/externalLibraries/fontawesome-v5.13.0/css/all.css\">\r\n");
       out.write("</head>\r\n");
       out.write("\r\n");
       out.write("<body style=\"background-color:rgb(243, 243, 243);\">\r\n");
@@ -178,16 +194,35 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                    left: 25px;\">\r\n");
       out.write("                SEARCH REGISTERED OFFICE USER\r\n");
       out.write("            </p>\r\n");
-      out.write("            <!-- REGISTERED OFFICE USER SEARCH FORM -->\r\n");
-      out.write("            <form name=\"searchRegisteredOfficerForm\" method=\"POST\" action=\"../OfficeUserRegistrationServlet\">\r\n");
-      out.write("                <input type=\"text\" placeholder=\"Enter Office User ID\" style=\"width: 74%;\r\n");
+      out.write("\r\n");
+      out.write("            <!-- HELP - MORE INFORMATION POPOVER -->\r\n");
+      out.write("            <button class=\"btn btn-light\" style=\"border-radius: 25px;\r\n");
+      out.write("                                                        height: 40px;\r\n");
+      out.write("                                                        width: 40px;\r\n");
+      out.write("                                                        position: absolute;\r\n");
+      out.write("                                                        right: 2%;\r\n");
+      out.write("                                                        top: 10px;\"\r\n");
+      out.write("            data-toggle=\"popover\" data-trigger=\"hover\" data-placement=\"top\" title=\"HELP\" \r\n");
+      out.write("            data-content=\"How to search registered office user?<br>\r\n");
+      out.write("                        Enter Office User's CER Email Address and click on 'SEARCH' button\"\r\n");
+      out.write("            data-html=\"true\">\r\n");
+      out.write("                <i class=\"fas fa-question-circle\" style=\"position: relative;\r\n");
+      out.write("                                                        left: 50%;\r\n");
+      out.write("                                                        transform: translateX(-50%);\r\n");
+      out.write("                                                        font-size: 22px;\"></i>\r\n");
+      out.write("            </button>\r\n");
+      out.write("\r\n");
+      out.write("            <!-- SEARCH REGISTERED OFFICE USER FORM -->\r\n");
+      out.write("            <form name=\"searchRegisteredOfficerForm\" method=\"POST\" action=\"../Admin/SearchRegisteredOfficeUserServlet\">\r\n");
+      out.write("                <input type=\"email\" placeholder=\"Enter Office User's CER Email Address\" style=\"width: 74%;\r\n");
       out.write("                                                                            height: 45px;\r\n");
       out.write("                                                                            position: relative;\r\n");
       out.write("                                                                            left: 4%;\r\n");
       out.write("                                                                            border-radius: 5px;\r\n");
       out.write("                                                                            border: #ccc solid 1px;\r\n");
       out.write("                                                                            padding-left: 18px;\r\n");
-      out.write("                                                                            font-size: 18px;\">\r\n");
+      out.write("                                                                            font-size: 18px;\"\r\n");
+      out.write("                data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"MANDATORY, Enter CER Email Address\" required name=\"officerCEREmailAddress\" />\r\n");
       out.write("                <button style=\"width: 16%;\r\n");
       out.write("                                height: 45px;\r\n");
       out.write("                                position: absolute;\r\n");
@@ -203,6 +238,13 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                        position: relative;\r\n");
       out.write("                        left: 50%;\r\n");
       out.write("                        transform: translateX(-50%);\"></div>\r\n");
+      out.write("                        \r\n");
+      out.write("            <!-- SEARCH REGISTERED OFFICE USER - SEARCH RESULT -->\r\n");
+      out.write("            ");
+      if (_jspx_meth_c_forEach_0(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("                   \r\n");
       out.write("        </div>\r\n");
       out.write("        <!-- REGISTER NEW OFFICE USERS SECTION -->\r\n");
       out.write("        <div style=\"width: 48.5%;\r\n");
@@ -220,6 +262,23 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                    left: 25px;\">\r\n");
       out.write("                REGISTER NEW OFFICE USER\r\n");
       out.write("            </p>\r\n");
+      out.write("\r\n");
+      out.write("            <!-- HELP - MORE INFORMATION POPOVER -->\r\n");
+      out.write("            <button class=\"btn btn-light\" style=\"border-radius: 25px;\r\n");
+      out.write("                                                        height: 40px;\r\n");
+      out.write("                                                        width: 40px;\r\n");
+      out.write("                                                        position: absolute;\r\n");
+      out.write("                                                        right: 2%;\r\n");
+      out.write("                                                        top: 10px;\"\r\n");
+      out.write("            data-toggle=\"popover\" data-trigger=\"hover\" data-placement=\"top\" title=\"HELP\" \r\n");
+      out.write("            data-content=\"How to register?<br>\r\n");
+      out.write("                        Enter accurate details to all the fields below and click on 'REGISTER' button.\"\r\n");
+      out.write("            data-html=\"true\">\r\n");
+      out.write("                <i class=\"fas fa-question-circle\" style=\"position: relative;\r\n");
+      out.write("                                                        left: 50%;\r\n");
+      out.write("                                                        transform: translateX(-50%);\r\n");
+      out.write("                                                        font-size: 22px;\"></i>\r\n");
+      out.write("            </button>\r\n");
       out.write("\r\n");
       out.write("            <!-- REGISTER NEW OFFICE USER FORM -->\r\n");
       out.write("            <form name=\"officerRegistrationForm\" method=\"POST\" action=\"../OfficeUserRegistrationServlet\" onSubmit=\"return validateUserData()\" >\r\n");
@@ -247,14 +306,6 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                                    <option value=\"Miss.\">Miss.</option>\r\n");
       out.write("                                    <option value=\"Ms.\">Ms.</option>\r\n");
       out.write("                                </select>\r\n");
-      out.write("                                <div style=\"color: rgb(255, 0, 0);\r\n");
-      out.write("                                         font-size: 24px;\r\n");
-      out.write("                                         font-weight: 600;\r\n");
-      out.write("                                         position: absolute;\r\n");
-      out.write("                                         right: 8%;\r\n");
-      out.write("                                         top: 15px;\">\r\n");
-      out.write("                                    *\r\n");
-      out.write("                                </div>\r\n");
       out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
       out.write("                        <div class=\"row\">\r\n");
@@ -354,7 +405,7 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                                <input type=\"password\" placeholder=\"Enter Password\" name=\"password\" style=\"width: 80%;\r\n");
       out.write("                                                                                                        height: 45px;\r\n");
       out.write("                                                                                                        margin-top: 10px;\" class=\"form-control\" \r\n");
-      out.write("                                data-toggle=\"popover\" data-trigger=\"hover\" title=\"MANDATORY, Password Guidelines:\" data-html=\"true\"\r\n");
+      out.write("                                data-toggle=\"popover\" data-trigger=\"hover\" data-placement=\"top\" title=\"MANDATORY, Password Guidelines:\" data-html=\"true\"\r\n");
       out.write("                                data-content=\"Minimum 10 characters<br />\r\n");
       out.write("                                Maximum 25 characters<br />\r\n");
       out.write("                                At least ONE uppercase letter<br />\r\n");
@@ -367,7 +418,7 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                                <input type=\"password\" placeholder=\"Re-Enter Password\" name=\"reenterPassword\" style=\"width: 80%;\r\n");
       out.write("                                                                                                        height: 45px;\r\n");
       out.write("                                                                                                        margin-top: 10px;\" class=\"form-control\"\r\n");
-      out.write("                                ata-toggle=\"popover\" data-trigger=\"hover\" title=\"MANDATORY, Password Guidelines:\" data-html=\"true\"\r\n");
+      out.write("                                data-toggle=\"popover\" data-trigger=\"hover\" data-placement=\"top\" title=\"MANDATORY, Password Guidelines:\" data-html=\"true\"\r\n");
       out.write("                                data-content=\"Minimum 10 characters<br />\r\n");
       out.write("                                Maximum 25 characters<br />\r\n");
       out.write("                                At least ONE uppercase letter<br />\r\n");
@@ -439,7 +490,7 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("            }\r\n");
       out.write("\r\n");
       out.write("            // Showing the user the registration process will continue and verifying the entered values\r\n");
-      out.write("            var confirmContinueRegisterNewUser = confirm(\"New officer user will be registered, are all the entered details correct?\");\r\n");
+      out.write("            var confirmContinueRegisterNewUser = confirm(\"New officer user will be registered. Check if all the entered details correct. Do you want to continue?\");\r\n");
       out.write("            if(confirmContinueRegisterNewUser == true){\r\n");
       out.write("                return true;\r\n");
       out.write("            }\r\n");
@@ -466,5 +517,63 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
     } finally {
       _jspxFactory.releasePageContext(_jspx_page_context);
     }
+  }
+
+  private boolean _jspx_meth_c_forEach_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:forEach
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_forEach_0.setParent(null);
+    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.orders}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_forEach_0.setVar("order");
+    int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
+    try {
+      int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
+      if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("\r\n");
+          out.write("                 ");
+          if (_jspx_meth_c_out_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+            return true;
+          out.write("\r\n");
+          out.write("            ");
+          int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_forEach_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_c_forEach_0[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_c_forEach_0.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_c_forEach_0.doFinally();
+      _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_0);
+    }
+    return false;
+  }
+
+  private boolean _jspx_meth_c_out_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:out
+    org.apache.taglibs.standard.tag.rt.core.OutTag _jspx_th_c_out_0 = (org.apache.taglibs.standard.tag.rt.core.OutTag) _jspx_tagPool_c_out_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.OutTag.class);
+    _jspx_th_c_out_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_out_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
+    _jspx_th_c_out_0.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${order}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_out_0 = _jspx_th_c_out_0.doStartTag();
+    if (_jspx_th_c_out_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);
+      return true;
+    }
+    _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);
+    return false;
   }
 }
