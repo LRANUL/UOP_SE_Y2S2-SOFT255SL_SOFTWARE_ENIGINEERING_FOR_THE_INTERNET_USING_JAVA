@@ -132,7 +132,7 @@
         </div>
     </div>
 
-    <!-- MAIN CONTENT SECTION -->
+     <!-- MAIN CONTENT SECTION -->
     <div style="height: 600px;
                 width: 80.65%;
                 position: absolute;
@@ -140,7 +140,7 @@
                 background-color: #f0f0f0;">
         <!-- ADD CASE SECTION -->
         <div style="width: 48.5%;
-                    height: 400px;
+                    height: 800px;
                     background-color: #ffffff;
                     position: relative;
                     left: 1%;
@@ -151,13 +151,36 @@
                     font-weight: 500;
                     margin-top: 15px;
                     position: relative;
-                    left: 25px;">
-                ADD NEW CASE
-            </p>
+                    left: 25px;
+                    text-align: center;">
+                ADD DOCUMENT TO CASE</p>
+            <form style="padding-left: 100px; padding-top: 20px;" name="NCaseform" method="post" action="../Office/AddCaseDocument">
+                <p>Case Number</p>
+                <input type="text" name="caseNO">
+                <p style="padding-top: 20px">Court Location</p>
+                <input type="text" name="CLocation">
+                <p style="padding-top: 20px"> Document Number</p>
+                <input type="number" name="DNumber">
+                <p style="padding-top: 20px">Party</p>
+                <input type="text" name="party">
+                <p style="padding-top: 20px">CO Party</p>
+                <input type="text" name="CParty">
+                <p style="padding-top: 20px">Description</p>
+                 <textarea rows = "5" cols = "50" name = "descrip">
+                 </textarea>
+                <p style="padding-top: 20px">Hearing</p>
+                <input type="date" name="hearing">
+                <br>
+                <br>
+                <div class="text-center">
+                    <button  class="btn btn-primary w-100" type="submit" name="Dsubmit">Submit</button> 
+                </div>
+            </form>           
+            
         </div>
         <!-- ADD DOCUMENT SECTION -->
         <div style="width: 48.5%;
-                    height: 400px;
+                    height: 500px;
                     background-color: #ffffff;
                     position: absolute;
                     right: 1%;
@@ -168,9 +191,24 @@
                     font-weight: 500;
                     margin-top: 15px;
                     position: relative;
-                    left: 25px;">
-                ADD DOCUMENT TO CASE
-            </p>
+                    left: 25px;
+                    text-align: center;">
+                ADD NEW CASE</p>
+             <form style="padding-left: 100px; padding-top: 20px;" method="POST" action="../Office/AddCase" name="ADocumentform" >
+                <p>Case Number</p>
+                <input type="text" name="DcaseNo" >
+                <p style="padding-top: 20px">Court Location</p>
+                 <input type="text" name="DCLocation" >
+                <p style="padding-top: 20px">Party</p>
+                <input type="text" name="Dparty">
+                <p style="padding-top: 20px">Date</p>
+                <input type="date" name="Ddate">
+                <br>
+                <br>
+                <div class="text-center">
+                    <button  class="btn btn-primary w-100" type="submit" name="Csubmit">Submit</button> 
+                </div>
+            </form>    
         </div>
     </div>
  
