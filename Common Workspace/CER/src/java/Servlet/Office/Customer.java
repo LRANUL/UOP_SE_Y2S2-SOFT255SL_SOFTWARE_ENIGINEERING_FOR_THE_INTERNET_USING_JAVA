@@ -92,7 +92,7 @@ public class Customer extends HttpServlet {
         if (CustomerNIC != null && CustomerEmail != null && CustomerName != null) {
             if (!CustomerName.isEmpty()) {
                 BasicDBObject query = new BasicDBObject();
-                query.put("name.firstName", new BasicDBObject("$regex", ".*"+CustomerName+".*").append("$options", "i"));
+                query.put("name.firstName", new BasicDBObject("$regex", ".*" + CustomerName + ".*").append("$options", "i"));
                 FindIterable document = collection.find(query);
                 ArrayList<Document> docs = new ArrayList<Document>();
                 document.into(docs);
@@ -103,7 +103,7 @@ public class Customer extends HttpServlet {
             }
             if (!CustomerEmail.isEmpty()) {
                 BasicDBObject query = new BasicDBObject();
-                query.put("emailAddress", new BasicDBObject("$regex", ".*"+CustomerEmail+".*").append("$options", "i"));
+                query.put("emailAddress", new BasicDBObject("$regex", ".*" + CustomerEmail + ".*").append("$options", "i"));
                 FindIterable document = collection.find(query);
                 ArrayList<Document> docs = new ArrayList<Document>();
                 document.into(docs);
@@ -125,15 +125,34 @@ public class Customer extends HttpServlet {
             }
 
         }
-        if (Reply != null) {
+        if (!Reply.isEmpty()) {
             if (("Disable".equals(Reply))) {
-
+                System.out.println("Disable");
+                System.out.println(Email);
+                BasicDBObject query = new BasicDBObject().append("emailAddress", Email);
+                BasicDBObject newDocument = new BasicDBObject();
+                newDocument.append("$set", new BasicDBObject().append("accountStatus", "Disabled"));
+                collection.updateOne(query, newDocument);
+                RequestDispatcher rd = getServletContext().getRequestDispatcher(
+                        "/Office/Customer.jsp");
+                rd.forward(request, response);
             }
             if (("Enable".equals(Reply))) {
-
+                BasicDBObject query = new BasicDBObject().append("emailAddress", Email);
+                BasicDBObject newDocument = new BasicDBObject();
+                newDocument.append("$set", new BasicDBObject().append("accountStatus", "Active"));
+                collection.updateOne(query, newDocument);
+                RequestDispatcher rd = getServletContext().getRequestDispatcher(
+                        "/Office/Customer.jsp");
+                rd.forward(request, response);
             }
             if (("Delete".equals(Reply))) {
-
+                BasicDBObject query = new BasicDBObject().append("emailAddress", Email);
+                BasicDBObject newDocument = new BasicDBObject();
+                collection.deleteOne(query);
+                RequestDispatcher rd = getServletContext().getRequestDispatcher(
+                        "/Office/Customer.jsp");
+                rd.forward(request, response);
             }
 
         }

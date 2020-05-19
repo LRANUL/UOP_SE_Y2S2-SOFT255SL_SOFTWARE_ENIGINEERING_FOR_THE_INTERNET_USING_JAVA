@@ -7,7 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String Email = (String) session.getAttribute("Email");
-    String Name = (String) session.getAttribute("Name");
 
     /*Sample Data till Auth System is Connected
     if(Email==null){

@@ -9,9 +9,7 @@
 <%
 
     String Email = (String) session.getAttribute("Email");
-    String Name = (String) session.getAttribute("Name");
     /*Sample Data till Auth System is Connected*/
-    Name = "Kevin";
     Email = "Admin@cer.com";
 
 %>
@@ -101,7 +99,6 @@
                     </div>
                     <div>
                         <h4>Your Details</h4>
-                        <h6>Name: <% out.print(Name); %> </h6>
                         <h6>Email: <% out.print(Email);%></h6>
                         <hr>
                         <h6>Update Password</h6>
