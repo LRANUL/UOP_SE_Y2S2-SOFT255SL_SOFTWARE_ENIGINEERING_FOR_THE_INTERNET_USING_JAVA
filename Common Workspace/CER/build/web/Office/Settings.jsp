@@ -10,7 +10,7 @@
 
     String Email = (String) session.getAttribute("Email");
     /*Sample Data till Auth System is Connected*/
-    Email = "John@cer.com";
+    Email = "john@cer.com";
 
 %>
 

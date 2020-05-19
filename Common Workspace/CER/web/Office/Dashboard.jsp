@@ -28,7 +28,7 @@
     response.sendRedirect("../Home.jsp");
     }
     */
-    Email = "John@cer.com";
+    Email = "john@cer.com";
 
 %>
 <!DOCTYPE html>

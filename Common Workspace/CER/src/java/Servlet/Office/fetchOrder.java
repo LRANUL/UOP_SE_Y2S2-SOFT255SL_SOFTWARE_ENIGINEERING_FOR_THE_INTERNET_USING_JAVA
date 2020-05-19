@@ -5,6 +5,7 @@
  */
 package Servlet.Office;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -84,8 +85,10 @@ public class fetchOrder extends HttpServlet {
         MongoDatabase database = mongoClient.getDatabase("CERdb");
 
         MongoCollection<Document> collection = database.getCollection("orders");
-        FindIterable document = collection.find();
-        ArrayList<org.bson.Document> orders = new ArrayList<org.bson.Document>();
+        BasicDBObject query = new BasicDBObject();
+        query.append("Status",new BasicDBObject("$ne", "Done"));
+        FindIterable document = collection.find(query);
+        ArrayList<Document> orders = new ArrayList<Document>();
         document.into(orders);
         request.setAttribute("orders", orders);
         RequestDispatcher rd = getServletContext().getRequestDispatcher(
