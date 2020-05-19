@@ -165,7 +165,7 @@
                 <p style="letter-spacing: 1px;
                           font-size: 18px;
                           color:rgb(214, 0, 0);
-                          margin-top: 5px;
+                          margin-top: 10px;
                           position: absolute;
                           left: 30%;">NO RECORD FOUND</p>
             <%}%>
@@ -177,7 +177,7 @@
                 <p style="letter-spacing: 1px;
                             font-size: 18px;
                             color:rgb(214, 0, 0);
-                            margin-top: 5px;
+                            margin-top: 10px;
                             position: absolute;
                             left: 18%;">ENTERED PASSWORD INCORRECT</p>
             <%}%>

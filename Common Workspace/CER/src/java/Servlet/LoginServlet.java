@@ -90,13 +90,14 @@ public class LoginServlet extends HttpServlet {
         // Calling the verifyLoginCredentials method and returning the verification status
         String verificationStatus = loginProcess.verifyLoginCredentials();
 
+        // Resetting login credential error messages to initial state, null
         request.setAttribute("loginPasswordIncorrect", null); 
         request.setAttribute("loginNoRecordFound", null); 
         
         // Checking the type of verification status returned
         if(verificationStatus == "Document Found - Correct Password - Customer - Attorney"){
             // Login credentials are valid and customer user type or attorney user type
-
+            
             // Redirecting to the account dashboard
             response.sendRedirect("Account/Account.jsp");
         }

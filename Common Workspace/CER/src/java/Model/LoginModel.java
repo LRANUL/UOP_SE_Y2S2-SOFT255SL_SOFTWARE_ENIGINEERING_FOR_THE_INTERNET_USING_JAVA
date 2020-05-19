@@ -90,6 +90,10 @@ public class LoginModel {
                 // Converting the retrieved value to JSON format and converting the JSON value to a JSON object
                 JSONObject documentJSONObject = new JSONObject(userDocument.toJson());
                 
+                JSONObject nameObject = documentJSONObject.getJSONObject("name");
+                String userName = nameObject.getString("prefix") + " " + nameObject.getString("firstName") + " " +
+                        nameObject.getString("middleName") + " " + nameObject.getString("lastName");
+                
                 String hashedPasswordValueDB = documentJSONObject.getString("passwordHash");
                 String userType = documentJSONObject.getString("userType");
                 
@@ -97,14 +101,33 @@ public class LoginModel {
                 // hash password from the user entered password
                 if(hashedPasswordValue.equals(hashedPasswordValueDB)){
                     // Password is same
-                    System.out.println("fffff: "+userType);
+                    
+                    // Checking the user type to assign the verification type
                     if("customer".equals(userType) || "attorney".equals(userType)){
+                        // User Type = Customer Users or Attorney Users
+                        
+                        // Assigning session values
+                        //session.setAttribute("userName");
+                        //session.setAttribute("emailAddress");
+                        
                         return "Document Found - Correct Password - Customer - Attorney";
                     }
                     else if("officer".equals(userType)){
+                        // User Type = Officer Users
+                        
+                        // Assigning session values
+                        //session.setAttribute("userName");
+                        //session.setAttribute("emailAddress");
+                        
                         return "Document Found - Correct Password - Officer";
                     }
                     else if("admin".equals(userType)){
+                        // User Type = Admin User
+                        
+                        // Assigning session values
+                        //session.setAttribute("userName");
+                        //session.setAttribute("emailAddress");
+                        
                         return "Document Found - Correct Password - Admin";
                     }
                 }
