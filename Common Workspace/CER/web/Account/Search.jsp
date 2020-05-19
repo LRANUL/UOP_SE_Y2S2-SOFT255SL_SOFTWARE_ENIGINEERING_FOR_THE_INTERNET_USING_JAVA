@@ -176,6 +176,7 @@
                                     <td><form action="../Account/requestDocument" method="post" name="form">
                                             <input type="number" name="DocNo" value="" style="width:50px"/>
                                             <input hidden type="text" name="Email" value="<% out.print(Email);%>"/>
+                                        <input hidden type="text" name="CaseNo" value="<c:out value="${case.CaseNo}"></c:out>"/>
                                             <button type="submit" name="submit">Send</button>
                                         </form></td>
                                 </tr>
