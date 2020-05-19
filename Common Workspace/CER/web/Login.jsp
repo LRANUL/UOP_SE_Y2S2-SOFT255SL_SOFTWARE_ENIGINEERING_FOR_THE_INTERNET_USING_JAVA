@@ -14,6 +14,27 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>CER - Home</title>
+         <script>
+         function validLogin(){
+         if (document.Lform.username.value == "" && document.Lform.username.value == "" && document.Lform.users.value == ""){
+         alert ( "Please enter all the fields" );
+         return false;
+         }
+         if (document.Lform.username.value == ""){
+         alert ( "Please enter your username" );
+         return false;
+         }
+         if (document.Lform.passw.value == ""){
+         alert ( "Please enter your password." );
+         return false;
+         }
+         if (document.Lform.users.value == ""){
+         alert ( "Please select a type of user" );
+         return false;
+         }
+         return true;
+         }
+         </script>
         <!-- Bootstrap core CSS -->
         <link href="assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css" rel="stylesheet">
         <!-- Importing Fontawesome from Localhost -->
@@ -21,6 +42,23 @@
         <!-- Custom styles for this template -->
         <link href="assets/css/justified-nav.css" rel="stylesheet"><style>
             .nav-item.dropdown:hover .dropdown-menu {display: block;}
+                .back{
+                background-image: url("assets/images/background.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+                 }
+                 .no-back{
+                background-color: white;
+                }
+                 .l_back{
+                background-image: url("assets/images/login.jpeg");
+                background-repeat: no-repeat;
+                }
+                select{
+                width: 180px;
+                padding-top: 10px;
+                }
         </style>
         <link rel="icon" href="assets/images/favicon.png" type="image/png">    </head>
     <body>
@@ -68,35 +106,47 @@
                     </button>
                 </nav>
             </div>
-            <!-- Jumbotron -->
-            <div class="jumbotron">
-                <p></p>
-                <div class="input-group"> 
-                    <div class="input-group-prepend"> 
-                        <div class="input-group-text">@</div>                         
-                    </div>                     
-
-                    <input type="email" class="form-control" placeholder="Email">
-                    <div class="input-group"> 
-                        <div class="input-group-prepend"> 
-                            <div class="input-group-text">@</div>                             
-                        </div>                         
-
-                        <input type="password" class="form-control" placeholder="Password"> 
-                    </div>                     
-                </div>
-                <button type="button" class="btn btn-primary">Login</button>
-            </div>
-            <!-- Example row of columns -->
-            <div class="row">
-            </div>
+            </div>  
+ 
+             <div class="row justify-content-center " style=" padding-top:  100px;">
+          <div class="col-3 no-back pt-5 pb-5">
+        <img src="assets/images/profile.png" style=" width: 100px; height: 100px;"  class="rounded mx-auto d-block">
+        <h3 style=" text-align: center; padding-top: 10px;"> Welcome</h3> 
+        <div style=" padding-left: 60px; padding-top: 20px;">
+         <br>
+        <form name="Lform" method="post" action="loginServlet" onsubmit="return validLogin();">
+            <p style=" font-size: 20px; padding-bottom: 0px;" >Username</p>
+            <input type="text" name="username">
+              <br>
+                 <p style=" font-size: 20px; padding-bottom: 0px; padding-top: 20px;" >Password</p>
+                 <input type="password" name="passw">
+                <br>
+                <p style=" font-size: 20px; padding-bottom: 0px; padding-top: 20px;" >Type</p>
+                <select name="users">
+                   <option value=""></option>
+                   <option value="Guest">Guest</option>
+                   <option value="Judge">Judge</option>
+                   <option value="Attorney">Attorney</option>
+                </select>
+                <br>
+                <br>
+                <input class="btn btn-outline-primary" name="submit" type="submit" value="Login" style=" font-size: 19px;">
+            </form>
+        </div>
+        <p style=" text-align: center; padding-top: 10px;"> Don't have an account<a href="#" > Join Now</a></p>
+    </div>
+    <div class="col-3 l_back">
+        <h2 class="d-flex justify-content-center" style="color: white; padding-top: 300px"><strong>Court Electronic Record System</strong></h2>
+        <h2 class="d-flex justify-content-center" style="color: white;"><strong> CERTs</strong></h2>
+    </div>
+    </div>
             <!-- Site footer -->
             <footer class="footer">
                 <p class="text-center">&copy; CER</p>
             </footer>
             <!-- Retrieving RegisterModal Webpage -->
             <%@include file="RegisterModal.html" %>
-        </div>         
+               
         <!-- /container -->
          <!-- Bootstrap core JavaScript
     ================================================== -->
