@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Encryption.PasswordHashing;
 import MongoDatabase.login;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,10 +36,13 @@ public class loginServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
               String uname= request.getParameter("username");
               String pass= request.getParameter("passw");
-              String users_T= request.getParameter("users");       
+              String users_T= request.getParameter("users"); 
+              
+               String hashpass = PasswordHashing.generateHashValue(pass);
+              
         if(!uname.equals("") && !pass.equals("") && !users_T.equals(""))
         {
-            boolean isUserFound = login.searchUserInDb(uname, pass, users_T);
+            boolean isUserFound = login.searchUserInDb(uname, hashpass, users_T);
             if(isUserFound==true) {               
             //creates a specefic session for the user so that all users can't access specific pages
             //HttpSession session= request.getSession();

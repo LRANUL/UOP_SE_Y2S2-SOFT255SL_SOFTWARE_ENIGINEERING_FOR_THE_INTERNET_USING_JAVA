@@ -7,6 +7,7 @@ package MongoDatabase;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -19,23 +20,14 @@ import org.bson.Document;
  * @author Hp-Pc
  */
 public class login {
-    private static MongoClient getConnection() {
-        int port_no = 27017;
-        String url = "localhost";
- 
-        MongoClient mongoClntObj = new MongoClient(url, port_no);
-        return mongoClntObj;
-    }
      public static boolean searchUserInDb(String  uname, String pass , String users_T) {
         boolean user_found = false;
-        // Get the mongodb connection
-        
-        MongoDatabase db = getConnection().getDatabase("CERdb");
-
+        com.mongodb.client.MongoClient mongoClient = MongoClients.create("mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
+        MongoDatabase database = mongoClient.getDatabase("CERdb");
         System.out.println("Database Connection Successful");
-        System.out.println("Database Name: " + db.getName());
+        System.out.println("Database Name:" + database.getName());
         // Get the mongodb collection.
-        MongoCollection col = db.getCollection("users");
+        MongoCollection col = database.getCollection("users");
         // Get the particular record from the mongodb collection 
         BasicDBObject whereQuery = new BasicDBObject();
         
@@ -44,6 +36,7 @@ public class login {
         obj.add(new BasicDBObject("password",pass));
         obj.add(new BasicDBObject("users",users_T));
         whereQuery.put("$and",obj);
+         System.out.println(whereQuery);
         
         try (MongoCursor<Document> coll = col.find(whereQuery).iterator()){
 
