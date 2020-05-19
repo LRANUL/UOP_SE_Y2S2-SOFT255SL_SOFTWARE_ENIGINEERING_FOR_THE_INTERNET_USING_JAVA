@@ -188,25 +188,198 @@
                         transform: translateX(-50%);"></div>
                         
             <!-- SEARCH REGISTERED OFFICE USER - SEARCH RESULT -->
-            <!--<c:forEach items="${requestScope.orders}" var="order">
-                 <c:out value="${order}"></c:out>
-            </c:forEach>-->
+            
 
-            <p style="letter-spacing: 1px;
+            <style>
+                .searchResultHeadings{
+                    letter-spacing: 1px;
+                    font-size: 20px;
+                    font-weight: 500;
+                    position: relative;
+                    left: 20%;
+                }
+                .searchResultValue{
+                    letter-spacing: 1px;
+                    font-size: 20px;
+                    font-weight: 400;
+                    position: relative;
+                    left: 0%;
+                }
+                .searchResultButtons{
+                    width: 75%;
+                    height: 45px;
+                    border-radius: 5px;
+                }
+                #searchResultDisableButton{
+                    position: absolute;
+                    right: 0px;
+                    border-color: rgb(247, 24, 24);
+                    background-color: rgb(247, 24, 24);
+                    color: #ffffff;
+                }
+                #searchResultDisableButton:hover{
+                    border-color: rgb(247, 24, 24);
+                    background-color: #ffffff;
+                    color: rgb(247, 24, 24);
+                }
+                #searchResultActivateButton{
+                    position: absolute;
+                    right: 0px;
+                    border-color: rgb(0, 177, 53);
+                    background-color: rgb(0, 177, 53);
+                    color: #ffffff;
+                }
+                #searchResultActivateButton:hover{
+                    border-color: rgb(0, 177, 53);
+                    background-color: #ffffff;
+                    color: rgb(0, 177, 53);
+                }
+                #searchResultEditButton{
+                    position: absolute;
+                    left: 5px;
+                    border-color: rgb(0, 171, 184);
+                    background-color: rgb(0, 171, 184);
+                    color: #ffffff;
+                }
+                #searchResultEditButton:hover{
+                    border-color: rgb(0, 171, 184);
+                    background-color: #ffffff;
+                    color: rgb(0, 171, 184);
+                }
+                .searchResultsButtonsText{
+                    letter-spacing: 1px;
                     font-size: 18px;
-                    margin-left: 40px;
-                    margin-top: 20px;">SEARCH RESULTS -</p>
-
-            <div style="width: 90%;
-                        height: 60%;
-                        border-radius: 5px;
-                        position: relative;
-                        left: 50%;
-                        top: -5px;
-                        transform: translateX(-50%);
-                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-
-            </div>
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            </style>
+            <% 
+                String cerId = null;
+                cerId = (String)request.getAttribute("cerId");
+                if(cerId != null){
+            %>
+                <p style="letter-spacing: 1px;
+                        font-size: 18px;
+                        margin-left: 40px;
+                        margin-top: 20px;">SEARCH RESULTS -</p>
+            
+                <div style="width: 90%;
+                            height: 60%;
+                            border-radius: 5px;
+                            position: relative;
+                            left: 50%;
+                            top: -5px;
+                            transform: translateX(-50%);
+                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="row" style="padding-top: 10px;">
+                        <div class="col-sm-12">
+                            <p style="font-size: 25px;
+                                    font-weight: 600;
+                                    position: relative;
+                                    left: 24%;
+                                    top: 10px;
+                                    letter-spacing: 0.5px;">Mr. Sample Sample Sample</p>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 30px;">
+                        <div class="col-sm-6">
+                            <p class="searchResultHeadings">ACCOUNT STATUS</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="searchResultValue">
+                                <%
+                                    String accountStatus = (String)request.getAttribute("accountStatus");
+                                    System.out.println("ff: "+accountStatus);
+                                    out.print(accountStatus);
+                                    if(accountStatus == "Active"){
+                                        out.print("ACTIVE");
+                                    }
+                                    else if(accountStatus == "Disabled"){
+                                        out.print("DISABLED");
+                                    }
+                                %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="searchResultHeadings">CER ID</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="searchResultValue">
+                                <%
+                                    out.print(cerId);
+                                %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="searchResultHeadings">CER Email Address</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="searchResultValue">
+                                <%
+                                    out.print((String)request.getAttribute("cerEmailAddress"));
+                                %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="searchResultHeadings">NIC</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="searchResultValue">
+                                <%
+                                    out.print((String)request.getAttribute("nic"));
+                                %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="searchResultHeadings">Registration Date Time</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="searchResultValue">
+                                <%
+                                    out.print((String)request.getAttribute("registrationDateTime"));
+                                %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col-sm-6">
+                            <button class="searchResultButtons btn" id="searchResultDisableButton">
+                                <i class="fas fa-user-lock" style="position: absolute;
+                                                            left: 25px;
+                                                            top: 13px;"></i>
+                                <p class="searchResultsButtonsText" style="left: 45px;">DISABLE ACCOUNT</p>
+                            </button>
+                            <button class="searchResultButtons btn" id="searchResultActivateButton">
+                                <i class="fas fa-unlock-alt" style="position: absolute;
+                                                            left: 20px;
+                                                            top: 13px;"></i>
+                                <p class="searchResultsButtonsText" style="left: 43px;">ACTIVATE ACCOUNT</p>
+                            </button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="searchResultButtons btn" id="searchResultEditButton">
+                                <i class="fas fa-user-edit" style="position: absolute;
+                                                                left: 38px;
+                                                                top: 13px;"></i>
+                                <p class="searchResultsButtonsText" style="left: 70px;">EDIT DETAILS</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            <%
+                }
+            %>
+                
+                  
 
                    
         </div>

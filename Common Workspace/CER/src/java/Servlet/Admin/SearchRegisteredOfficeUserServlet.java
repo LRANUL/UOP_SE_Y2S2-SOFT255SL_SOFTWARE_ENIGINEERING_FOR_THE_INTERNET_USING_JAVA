@@ -9,7 +9,9 @@ import Model.SearchRegisteredOfficeUserModel;
 import com.sun.codemodel.JArray;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import javax.json.JsonWriter;
 import javax.servlet.RequestDispatcher;
@@ -95,13 +97,37 @@ public class SearchRegisteredOfficeUserServlet extends HttpServlet {
         searchOfficeUser.setOfficerCEREmailAddress(officerCEREmailAddress);
         
         // Calling the SearchOfficeUser method and returning the JSON object
-        JSONObject arr = searchOfficeUser.SearchOfficeUser();
+        JSONObject userDocumentObject = searchOfficeUser.SearchOfficeUser();
         
-        request.setAttribute("orders", arr.getString("userType"));
+
+        request.setAttribute("accountStatus", userDocumentObject.getString("accountStatus"));
+        request.setAttribute("cerId", userDocumentObject.getString("cerID"));
+        request.setAttribute("cerEmailAddress", userDocumentObject.getString("cerEmailAddress"));
+        request.setAttribute("nic", userDocumentObject.getString("nic"));
 
         
-        RequestDispatcher rd = getServletContext().getRequestDispatcher(
-                "/Admin/ManageOfficeUsers.jsp");
+        try{
+            // Retrieving the registeredDateTime from model and spliting the string to get the UNIX format value
+            String registrationDateTimeModel = userDocumentObject.get("registrationDateTime").toString(); // Sample: {"$date":1589852947435}
+            String[] DateTimeStringSplitOne = registrationDateTimeModel.split(":");
+            String DateTimeStringSplitOnePartOne = DateTimeStringSplitOne[0]; // Sample: {"$date":
+            String DateTimeStringSplitOnePartTwo = DateTimeStringSplitOne[1]; // Sample: 1589852947435}
+            
+            String[] DateTimeStringSplitTwo = DateTimeStringSplitOnePartTwo.split("}"); // Sample: 1589852947435}
+            String registrationDateTimeUNIX = DateTimeStringSplitTwo[0]; // Sample: 1589852947435
+
+            SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MM-yyyy | HH:mm a");
+            Date dateTime = new java.util.Date(Long.parseLong(registrationDateTimeUNIX));
+            String registrationDateTime = DateFormat.format(dateTime);
+            
+            request.setAttribute("registrationDateTime", registrationDateTime);
+        }
+        catch(Exception ex){
+            System.out.println("Error: " + ex);
+        }
+        
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/Admin/ManageOfficeUsers.jsp");
+        
         rd.forward(request, response);
        
     }

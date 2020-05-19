@@ -11,23 +11,10 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
 
   private static java.util.List<String> _jspx_dependants;
 
-  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_items;
-  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_out_value_nobody;
-
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
   public java.util.List<String> getDependants() {
     return _jspx_dependants;
-  }
-
-  public void _jspInit() {
-    _jspx_tagPool_c_forEach_var_items = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-    _jspx_tagPool_c_out_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-  }
-
-  public void _jspDestroy() {
-    _jspx_tagPool_c_forEach_var_items.release();
-    _jspx_tagPool_c_out_value_nobody.release();
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -240,9 +227,212 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                        transform: translateX(-50%);\"></div>\r\n");
       out.write("                        \r\n");
       out.write("            <!-- SEARCH REGISTERED OFFICE USER - SEARCH RESULT -->\r\n");
+      out.write("            \r\n");
+      out.write("\r\n");
+      out.write("            <style>\r\n");
+      out.write("                .searchResultHeadings{\r\n");
+      out.write("                    letter-spacing: 1px;\r\n");
+      out.write("                    font-size: 20px;\r\n");
+      out.write("                    font-weight: 500;\r\n");
+      out.write("                    position: relative;\r\n");
+      out.write("                    left: 20%;\r\n");
+      out.write("                }\r\n");
+      out.write("                .searchResultValue{\r\n");
+      out.write("                    letter-spacing: 1px;\r\n");
+      out.write("                    font-size: 20px;\r\n");
+      out.write("                    font-weight: 400;\r\n");
+      out.write("                    position: relative;\r\n");
+      out.write("                    left: 0%;\r\n");
+      out.write("                }\r\n");
+      out.write("                .searchResultButtons{\r\n");
+      out.write("                    width: 75%;\r\n");
+      out.write("                    height: 45px;\r\n");
+      out.write("                    border-radius: 5px;\r\n");
+      out.write("                }\r\n");
+      out.write("                #searchResultDisableButton{\r\n");
+      out.write("                    position: absolute;\r\n");
+      out.write("                    right: 0px;\r\n");
+      out.write("                    border-color: rgb(247, 24, 24);\r\n");
+      out.write("                    background-color: rgb(247, 24, 24);\r\n");
+      out.write("                    color: #ffffff;\r\n");
+      out.write("                }\r\n");
+      out.write("                #searchResultDisableButton:hover{\r\n");
+      out.write("                    border-color: rgb(247, 24, 24);\r\n");
+      out.write("                    background-color: #ffffff;\r\n");
+      out.write("                    color: rgb(247, 24, 24);\r\n");
+      out.write("                }\r\n");
+      out.write("                #searchResultActivateButton{\r\n");
+      out.write("                    position: absolute;\r\n");
+      out.write("                    right: 0px;\r\n");
+      out.write("                    border-color: rgb(0, 177, 53);\r\n");
+      out.write("                    background-color: rgb(0, 177, 53);\r\n");
+      out.write("                    color: #ffffff;\r\n");
+      out.write("                }\r\n");
+      out.write("                #searchResultActivateButton:hover{\r\n");
+      out.write("                    border-color: rgb(0, 177, 53);\r\n");
+      out.write("                    background-color: #ffffff;\r\n");
+      out.write("                    color: rgb(0, 177, 53);\r\n");
+      out.write("                }\r\n");
+      out.write("                #searchResultEditButton{\r\n");
+      out.write("                    position: absolute;\r\n");
+      out.write("                    left: 5px;\r\n");
+      out.write("                    border-color: rgb(0, 171, 184);\r\n");
+      out.write("                    background-color: rgb(0, 171, 184);\r\n");
+      out.write("                    color: #ffffff;\r\n");
+      out.write("                }\r\n");
+      out.write("                #searchResultEditButton:hover{\r\n");
+      out.write("                    border-color: rgb(0, 171, 184);\r\n");
+      out.write("                    background-color: #ffffff;\r\n");
+      out.write("                    color: rgb(0, 171, 184);\r\n");
+      out.write("                }\r\n");
+      out.write("                .searchResultsButtonsText{\r\n");
+      out.write("                    letter-spacing: 1px;\r\n");
+      out.write("                    font-size: 18px;\r\n");
+      out.write("                    position: absolute;\r\n");
+      out.write("                    top: 50%;\r\n");
+      out.write("                    transform: translateY(-50%);\r\n");
+      out.write("                }\r\n");
+      out.write("            </style>\r\n");
       out.write("            ");
-      if (_jspx_meth_c_forEach_0(_jspx_page_context))
-        return;
+ 
+                String cerId = null;
+                cerId = (String)request.getAttribute("cerId");
+                if(cerId != null){
+            
+      out.write("\r\n");
+      out.write("                <p style=\"letter-spacing: 1px;\r\n");
+      out.write("                        font-size: 18px;\r\n");
+      out.write("                        margin-left: 40px;\r\n");
+      out.write("                        margin-top: 20px;\">SEARCH RESULTS -</p>\r\n");
+      out.write("            \r\n");
+      out.write("                <div style=\"width: 90%;\r\n");
+      out.write("                            height: 60%;\r\n");
+      out.write("                            border-radius: 5px;\r\n");
+      out.write("                            position: relative;\r\n");
+      out.write("                            left: 50%;\r\n");
+      out.write("                            top: -5px;\r\n");
+      out.write("                            transform: translateX(-50%);\r\n");
+      out.write("                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\">\r\n");
+      out.write("                    <div class=\"row\" style=\"padding-top: 10px;\">\r\n");
+      out.write("                        <div class=\"col-sm-12\">\r\n");
+      out.write("                            <p style=\"font-size: 25px;\r\n");
+      out.write("                                    font-weight: 600;\r\n");
+      out.write("                                    position: relative;\r\n");
+      out.write("                                    left: 24%;\r\n");
+      out.write("                                    top: 10px;\r\n");
+      out.write("                                    letter-spacing: 0.5px;\">Mr. Sample Sample Sample</p>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"row\" style=\"margin-top: 30px;\">\r\n");
+      out.write("                        <div class=\"col-sm-6\">\r\n");
+      out.write("                            <p class=\"searchResultHeadings\">ACCOUNT STATUS</p>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"col-sm-6\">\r\n");
+      out.write("                            <p class=\"searchResultValue\">\r\n");
+      out.write("                                ");
+
+                                    String accountStatus = (String)request.getAttribute("accountStatus");
+                                    System.out.println("ff: "+accountStatus);
+                                    out.print(accountStatus);
+                                    if(accountStatus == "Active"){
+                                        out.print("ACTIVE");
+                                    }
+                                    else if(accountStatus == "Disabled"){
+                                        out.print("DISABLED");
+                                    }
+                                
+      out.write("\r\n");
+      out.write("                            </p>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"row\">\r\n");
+      out.write("                        <div class=\"col-sm-6\">\r\n");
+      out.write("                            <p class=\"searchResultHeadings\">CER ID</p>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"col-sm-6\">\r\n");
+      out.write("                            <p class=\"searchResultValue\">\r\n");
+      out.write("                                ");
+
+                                    out.print(cerId);
+                                
+      out.write("\r\n");
+      out.write("                            </p>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"row\">\r\n");
+      out.write("                        <div class=\"col-sm-6\">\r\n");
+      out.write("                            <p class=\"searchResultHeadings\">CER Email Address</p>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"col-sm-6\">\r\n");
+      out.write("                            <p class=\"searchResultValue\">\r\n");
+      out.write("                                ");
+
+                                    out.print((String)request.getAttribute("cerEmailAddress"));
+                                
+      out.write("\r\n");
+      out.write("                            </p>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"row\">\r\n");
+      out.write("                        <div class=\"col-sm-6\">\r\n");
+      out.write("                            <p class=\"searchResultHeadings\">NIC</p>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"col-sm-6\">\r\n");
+      out.write("                            <p class=\"searchResultValue\">\r\n");
+      out.write("                                ");
+
+                                    out.print((String)request.getAttribute("nic"));
+                                
+      out.write("\r\n");
+      out.write("                            </p>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"row\">\r\n");
+      out.write("                        <div class=\"col-sm-6\">\r\n");
+      out.write("                            <p class=\"searchResultHeadings\">Registration Date Time</p>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"col-sm-6\">\r\n");
+      out.write("                            <p class=\"searchResultValue\">\r\n");
+      out.write("                                ");
+
+                                    out.print((String)request.getAttribute("registrationDateTime"));
+                                
+      out.write("\r\n");
+      out.write("                            </p>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"row\" style=\"margin-top: 20px;\">\r\n");
+      out.write("                        <div class=\"col-sm-6\">\r\n");
+      out.write("                            <button class=\"searchResultButtons btn\" id=\"searchResultDisableButton\">\r\n");
+      out.write("                                <i class=\"fas fa-user-lock\" style=\"position: absolute;\r\n");
+      out.write("                                                            left: 25px;\r\n");
+      out.write("                                                            top: 13px;\"></i>\r\n");
+      out.write("                                <p class=\"searchResultsButtonsText\" style=\"left: 45px;\">DISABLE ACCOUNT</p>\r\n");
+      out.write("                            </button>\r\n");
+      out.write("                            <button class=\"searchResultButtons btn\" id=\"searchResultActivateButton\">\r\n");
+      out.write("                                <i class=\"fas fa-unlock-alt\" style=\"position: absolute;\r\n");
+      out.write("                                                            left: 20px;\r\n");
+      out.write("                                                            top: 13px;\"></i>\r\n");
+      out.write("                                <p class=\"searchResultsButtonsText\" style=\"left: 43px;\">ACTIVATE ACCOUNT</p>\r\n");
+      out.write("                            </button>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"col-sm-6\">\r\n");
+      out.write("                            <button class=\"searchResultButtons btn\" id=\"searchResultEditButton\">\r\n");
+      out.write("                                <i class=\"fas fa-user-edit\" style=\"position: absolute;\r\n");
+      out.write("                                                                left: 38px;\r\n");
+      out.write("                                                                top: 13px;\"></i>\r\n");
+      out.write("                                <p class=\"searchResultsButtonsText\" style=\"left: 70px;\">EDIT DETAILS</p>\r\n");
+      out.write("                            </button>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                </div>\r\n");
+      out.write("            ");
+
+                }
+            
+      out.write("\r\n");
+      out.write("                \r\n");
+      out.write("                  \r\n");
       out.write("\r\n");
       out.write("                   \r\n");
       out.write("        </div>\r\n");
@@ -517,63 +707,5 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
     } finally {
       _jspxFactory.releasePageContext(_jspx_page_context);
     }
-  }
-
-  private boolean _jspx_meth_c_forEach_0(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:forEach
-    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
-    _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
-    _jspx_th_c_forEach_0.setParent(null);
-    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.orders}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
-    _jspx_th_c_forEach_0.setVar("order");
-    int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
-    try {
-      int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
-      if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-        do {
-          out.write("\r\n");
-          out.write("                 ");
-          if (_jspx_meth_c_out_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
-            return true;
-          out.write("\r\n");
-          out.write("            ");
-          int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
-          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-            break;
-        } while (true);
-      }
-      if (_jspx_th_c_forEach_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-        return true;
-      }
-    } catch (Throwable _jspx_exception) {
-      while (_jspx_push_body_count_c_forEach_0[0]-- > 0)
-        out = _jspx_page_context.popBody();
-      _jspx_th_c_forEach_0.doCatch(_jspx_exception);
-    } finally {
-      _jspx_th_c_forEach_0.doFinally();
-      _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_0);
-    }
-    return false;
-  }
-
-  private boolean _jspx_meth_c_out_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:out
-    org.apache.taglibs.standard.tag.rt.core.OutTag _jspx_th_c_out_0 = (org.apache.taglibs.standard.tag.rt.core.OutTag) _jspx_tagPool_c_out_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.OutTag.class);
-    _jspx_th_c_out_0.setPageContext(_jspx_page_context);
-    _jspx_th_c_out_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
-    _jspx_th_c_out_0.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${order}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
-    int _jspx_eval_c_out_0 = _jspx_th_c_out_0.doStartTag();
-    if (_jspx_th_c_out_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);
-      return true;
-    }
-    _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);
-    return false;
   }
 }
