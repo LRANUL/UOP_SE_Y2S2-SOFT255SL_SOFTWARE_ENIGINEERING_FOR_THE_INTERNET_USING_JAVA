@@ -88,6 +88,7 @@ public class CaseSearch extends HttpServlet {
         MongoCollection<org.bson.Document> collection = database.getCollection("cases");
 
         if (CaseNumber != null) {
+            System.out.println("Test");
             BasicDBObject query = new BasicDBObject();
             query.put("CaseNo", CaseNumber);
             FindIterable document = collection.find(query);
@@ -95,7 +96,7 @@ public class CaseSearch extends HttpServlet {
             document.into(docs);
             request.setAttribute("cases", docs);
             RequestDispatcher rd = getServletContext().getRequestDispatcher(
-                    "/Account/Account.jsp");
+                    "/Account/Case.jsp");
             rd.forward(request, response);
             for (org.bson.Document doc : docs) {
                 System.out.println(doc);
