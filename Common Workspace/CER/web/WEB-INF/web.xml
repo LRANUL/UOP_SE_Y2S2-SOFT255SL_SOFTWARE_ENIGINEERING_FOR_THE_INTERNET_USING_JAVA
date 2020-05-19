@@ -16,6 +16,10 @@
         <servlet-name>Account</servlet-name>
         <servlet-class>Servlet.Office.Account</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>requestDocument</servlet-name>
+        <servlet-class>Servlet.Account.requestDocument</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>OfficeSearch</servlet-name>
         <url-pattern>/OfficeSearch</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>Account</servlet-name>
         <url-pattern>/Office/Account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>requestDocument</servlet-name>
+        <url-pattern>/Account/requestDocument</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

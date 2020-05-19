@@ -4,7 +4,32 @@
     Author     : ranul
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.mongodb.client.FindIterable"%>
+<%@page import="com.mongodb.BasicDBObject"%>
+<%@page import="org.bson.Document"%>
+<%@page import="com.mongodb.client.MongoCollection"%>
+<%@page import="com.mongodb.client.MongoDatabase"%>
+<%@page import="com.mongodb.client.MongoClients"%>
+<%@page import="com.mongodb.client.MongoClient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%
+String Email = (String) session.getAttribute("Email");
+    String Name = (String) session.getAttribute("Name");
+    /*Sample Data till Auth System is Connected*/
+    Name = "Barnes";
+    Email = "barnes@msn.co.uk";
+    MongoClient mongoClient = MongoClients.create("mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
+    MongoDatabase database = mongoClient.getDatabase("CERdb");
+    MongoCollection<Document> collection = database.getCollection("orders");
+            BasicDBObject query = new BasicDBObject();
+            query.put("Customer", Email);
+            FindIterable document = collection.find(query);
+            ArrayList<Document> docs = new ArrayList<Document>();
+            document.into(docs);
+            request.setAttribute("orders", docs);
+%>
 <!doctype html>
 <html lang="en">
 
@@ -106,6 +131,24 @@
                     <div class="btn-toolbar mb-2 mb-md-0">
                     </div>
                 </div>
+                <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <th>Case No</th>
+                                    <th>No of Copies</th>
+                                    <th>Date</th>
+                                </tr>
+                                <c:forEach items="${requestScope.orders}" var="order">
+                                    <tr>
+                                        <td><c:out value="${order.CaseNo}"></c:out></td>
+                                        <td><c:out value="${order.NoOfCopies}"></c:out></td>
+                                        <td><c:out value="${order.Date}"></c:out></td>
+                                        </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
             </main>
         </div>
     </div>
