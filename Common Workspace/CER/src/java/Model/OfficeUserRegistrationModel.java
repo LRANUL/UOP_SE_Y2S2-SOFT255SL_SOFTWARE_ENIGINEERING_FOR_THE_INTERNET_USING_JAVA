@@ -160,7 +160,7 @@ public class OfficeUserRegistrationModel {
             newDocument.append("_id", newDocumentID)
                     .append("userType", "officer")
                     .append("cerID", cerId)
-                    .append("cerEmailAddress", cerEmailAddress)                    
+                    .append("emailAddress", cerEmailAddress)                    
                     .append("passwordHash", hashedPasswordValue)                    
                     .append("nic", nicNumber)
                     .append("name",

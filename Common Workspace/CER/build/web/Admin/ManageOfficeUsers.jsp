@@ -170,11 +170,13 @@
                                                                             border: #ccc solid 1px;
                                                                             padding-left: 18px;
                                                                             font-size: 18px;"
-                data-toggle="tooltip" data-placement="bottom" title="MANDATORY, Enter CER Email Address" required name="officerCEREmailAddress" />
+                data-toggle="tooltip" data-placement="bottom" title="MANDATORY, Enter CER Email Address" required 
+                name="officerCEREmailAddress" class="form-control" />
                 <button style="width: 16%;
                                 height: 45px;
                                 position: absolute;
-                                right: 4%;" class="btn" id="searchButton">
+                                right: 4%;
+                                top: 63px;" class="btn" id="searchButton">
                     <p style="letter-spacing: 1px;
                             margin-top: 1px;
                             font-size: 18px;">SEARCH</p>
@@ -188,8 +190,6 @@
                         transform: translateX(-50%);"></div>
                         
             <!-- SEARCH REGISTERED OFFICE USER - SEARCH RESULT -->
-            
-
             <style>
                 .searchResultHeadings{
                     letter-spacing: 1px;
@@ -255,9 +255,9 @@
                 }
             </style>
             <% 
-                String cerId = null;
-                cerId = (String)request.getAttribute("cerId");
-                if(cerId != null){
+                String recordFound = null;
+                recordFound = (String)request.getAttribute("recordFound");
+                if(recordFound != null){
             %>
                 <p style="letter-spacing: 1px;
                         font-size: 18px;
@@ -277,9 +277,14 @@
                             <p style="font-size: 25px;
                                     font-weight: 600;
                                     position: relative;
-                                    left: 24%;
+                                    left: 9.6%;
                                     top: 10px;
-                                    letter-spacing: 0.5px;">Mr. Sample Sample Sample</p>
+                                    letter-spacing: 0.5px;">
+                                <% out.print((String)request.getAttribute("prefix")); %>&nbsp;
+                                <% out.print((String)request.getAttribute("firstName")); %>&nbsp;
+                                <% out.print((String)request.getAttribute("middleName")); %>&nbsp;
+                                <% out.print((String)request.getAttribute("lastName")); %>
+                            </p>
                         </div>
                     </div>
                     <div class="row" style="margin-top: 30px;">
@@ -292,10 +297,10 @@
                                     String accountStatus = (String)request.getAttribute("accountStatus");
                                     System.out.println("ff: "+accountStatus);
                                     out.print(accountStatus);
-                                    if(accountStatus == "Active"){
+                                    if(accountStatus == "Active "){
                                         out.print("ACTIVE");
                                     }
-                                    else if(accountStatus == "Disabled"){
+                                    else if(accountStatus == "Disabled "){
                                         out.print("DISABLED");
                                     }
                                 %>
@@ -309,7 +314,7 @@
                         <div class="col-sm-6">
                             <p class="searchResultValue">
                                 <%
-                                    out.print(cerId);
+                                    out.print((String)request.getAttribute("cerId"));
                                 %>
                             </p>
                         </div>
@@ -377,8 +382,23 @@
                 </div>
             <%
                 }
-            %>
                 
+                String recordNotFound = null;
+                recordNotFound = (String)request.getAttribute("recordNotFound");
+                if(recordNotFound != null){
+            %>
+                <p style="letter-spacing: 1px;
+                        font-size: 18px;
+                        margin-left: 40px;
+                        margin-top: 20px;">SEARCH RESULTS -</p>
+                
+                <p style="letter-spacing: 1px;
+                           font-size: 18px;
+                           position: relative;
+                           left: 27%;
+                           top: 20px;">No Office User Record in Available</p>
+            <%}%>
+            
                   
 
                    

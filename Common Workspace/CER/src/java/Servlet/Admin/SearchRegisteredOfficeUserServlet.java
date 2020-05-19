@@ -98,38 +98,54 @@ public class SearchRegisteredOfficeUserServlet extends HttpServlet {
         
         // Calling the SearchOfficeUser method and returning the JSON object
         JSONObject userDocumentObject = searchOfficeUser.SearchOfficeUser();
-        
 
-        request.setAttribute("accountStatus", userDocumentObject.getString("accountStatus"));
-        request.setAttribute("cerId", userDocumentObject.getString("cerID"));
-        request.setAttribute("cerEmailAddress", userDocumentObject.getString("cerEmailAddress"));
-        request.setAttribute("nic", userDocumentObject.getString("nic"));
-
-        
-        try{
-            // Retrieving the registeredDateTime from model and spliting the string to get the UNIX format value
-            String registrationDateTimeModel = userDocumentObject.get("registrationDateTime").toString(); // Sample: {"$date":1589852947435}
-            String[] DateTimeStringSplitOne = registrationDateTimeModel.split(":");
-            String DateTimeStringSplitOnePartOne = DateTimeStringSplitOne[0]; // Sample: {"$date":
-            String DateTimeStringSplitOnePartTwo = DateTimeStringSplitOne[1]; // Sample: 1589852947435}
+        // Checking if a JSON oject was retuend from the model
+        if(userDocumentObject != null){
+            // A JSON object was returned
             
-            String[] DateTimeStringSplitTwo = DateTimeStringSplitOnePartTwo.split("}"); // Sample: 1589852947435}
-            String registrationDateTimeUNIX = DateTimeStringSplitTwo[0]; // Sample: 1589852947435
-
-            SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MM-yyyy | HH:mm a");
-            Date dateTime = new java.util.Date(Long.parseLong(registrationDateTimeUNIX));
-            String registrationDateTime = DateFormat.format(dateTime);
+            request.setAttribute("recordFound", "FOUND");   
             
-            request.setAttribute("registrationDateTime", registrationDateTime);
+            JSONObject nameObject = userDocumentObject.getJSONObject("name");
+            request.setAttribute("prefix", nameObject.getString("prefix"));
+            request.setAttribute("firstName", nameObject.getString("firstName"));
+            request.setAttribute("middleName", nameObject.getString("middleName"));
+            request.setAttribute("lastName", nameObject.getString("lastName"));
+            
+            request.setAttribute("accountStatus", userDocumentObject.getString("accountStatus"));
+            request.setAttribute("cerId", userDocumentObject.getString("cerID"));
+            request.setAttribute("cerEmailAddress", userDocumentObject.getString("cerEmailAddress"));
+            request.setAttribute("nic", userDocumentObject.getString("nic"));
+
+            try{
+                // Retrieving the registeredDateTime from model and spliting the string to get the UNIX format value
+                String registrationDateTimeModel = userDocumentObject.get("registrationDateTime").toString(); // Sample: {"$date":1589852947435}
+                String[] DateTimeStringSplitOne = registrationDateTimeModel.split(":");
+                String DateTimeStringSplitOnePartOne = DateTimeStringSplitOne[0]; // Sample: {"$date":
+                String DateTimeStringSplitOnePartTwo = DateTimeStringSplitOne[1]; // Sample: 1589852947435}
+
+                String[] DateTimeStringSplitTwo = DateTimeStringSplitOnePartTwo.split("}"); // Sample: 1589852947435}
+                String registrationDateTimeUNIX = DateTimeStringSplitTwo[0]; // Sample: 1589852947435
+
+                SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MM-yyyy | HH:mm a");
+                Date dateTime = new java.util.Date(Long.parseLong(registrationDateTimeUNIX));
+                String registrationDateTime = DateFormat.format(dateTime);
+
+                request.setAttribute("registrationDateTime", registrationDateTime);
+            }
+            catch(Exception ex){
+                System.out.println("Error: " + ex);
+            }
+
         }
-        catch(Exception ex){
-            System.out.println("Error: " + ex);
+        else if(userDocumentObject == null){
+            // No JSON object was returned
+            // Setting recordNotFound to NOT FOUND, to show no record found message in the frontend
+            request.setAttribute("recordNotFound", "NOT FOUND");   
         }
         
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/Admin/ManageOfficeUsers.jsp");
-        
         rd.forward(request, response);
-       
+                
     }
 
     /**

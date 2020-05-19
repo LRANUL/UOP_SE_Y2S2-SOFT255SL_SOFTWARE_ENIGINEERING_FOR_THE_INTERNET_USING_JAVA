@@ -209,11 +209,13 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                                                                            border: #ccc solid 1px;\r\n");
       out.write("                                                                            padding-left: 18px;\r\n");
       out.write("                                                                            font-size: 18px;\"\r\n");
-      out.write("                data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"MANDATORY, Enter CER Email Address\" required name=\"officerCEREmailAddress\" />\r\n");
+      out.write("                data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"MANDATORY, Enter CER Email Address\" required \r\n");
+      out.write("                name=\"officerCEREmailAddress\" class=\"form-control\" />\r\n");
       out.write("                <button style=\"width: 16%;\r\n");
       out.write("                                height: 45px;\r\n");
       out.write("                                position: absolute;\r\n");
-      out.write("                                right: 4%;\" class=\"btn\" id=\"searchButton\">\r\n");
+      out.write("                                right: 4%;\r\n");
+      out.write("                                top: 63px;\" class=\"btn\" id=\"searchButton\">\r\n");
       out.write("                    <p style=\"letter-spacing: 1px;\r\n");
       out.write("                            margin-top: 1px;\r\n");
       out.write("                            font-size: 18px;\">SEARCH</p>\r\n");
@@ -227,8 +229,6 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                        transform: translateX(-50%);\"></div>\r\n");
       out.write("                        \r\n");
       out.write("            <!-- SEARCH REGISTERED OFFICE USER - SEARCH RESULT -->\r\n");
-      out.write("            \r\n");
-      out.write("\r\n");
       out.write("            <style>\r\n");
       out.write("                .searchResultHeadings{\r\n");
       out.write("                    letter-spacing: 1px;\r\n");
@@ -295,9 +295,9 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("            </style>\r\n");
       out.write("            ");
  
-                String cerId = null;
-                cerId = (String)request.getAttribute("cerId");
-                if(cerId != null){
+                String recordFound = null;
+                recordFound = (String)request.getAttribute("recordFound");
+                if(recordFound != null){
             
       out.write("\r\n");
       out.write("                <p style=\"letter-spacing: 1px;\r\n");
@@ -318,9 +318,22 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                            <p style=\"font-size: 25px;\r\n");
       out.write("                                    font-weight: 600;\r\n");
       out.write("                                    position: relative;\r\n");
-      out.write("                                    left: 24%;\r\n");
+      out.write("                                    left: 9.6%;\r\n");
       out.write("                                    top: 10px;\r\n");
-      out.write("                                    letter-spacing: 0.5px;\">Mr. Sample Sample Sample</p>\r\n");
+      out.write("                                    letter-spacing: 0.5px;\">\r\n");
+      out.write("                                ");
+ out.print((String)request.getAttribute("prefix")); 
+      out.write("&nbsp;\r\n");
+      out.write("                                ");
+ out.print((String)request.getAttribute("firstName")); 
+      out.write("&nbsp;\r\n");
+      out.write("                                ");
+ out.print((String)request.getAttribute("middleName")); 
+      out.write("&nbsp;\r\n");
+      out.write("                                ");
+ out.print((String)request.getAttribute("lastName")); 
+      out.write("\r\n");
+      out.write("                            </p>\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
       out.write("                    <div class=\"row\" style=\"margin-top: 30px;\">\r\n");
@@ -334,10 +347,10 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
                                     String accountStatus = (String)request.getAttribute("accountStatus");
                                     System.out.println("ff: "+accountStatus);
                                     out.print(accountStatus);
-                                    if(accountStatus == "Active"){
+                                    if(accountStatus == "Active "){
                                         out.print("ACTIVE");
                                     }
-                                    else if(accountStatus == "Disabled"){
+                                    else if(accountStatus == "Disabled "){
                                         out.print("DISABLED");
                                     }
                                 
@@ -353,7 +366,7 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                            <p class=\"searchResultValue\">\r\n");
       out.write("                                ");
 
-                                    out.print(cerId);
+                                    out.print((String)request.getAttribute("cerId"));
                                 
       out.write("\r\n");
       out.write("                            </p>\r\n");
@@ -429,9 +442,26 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("            ");
 
                 }
+                
+                String recordNotFound = null;
+                recordNotFound = (String)request.getAttribute("recordNotFound");
+                if(recordNotFound != null){
             
       out.write("\r\n");
+      out.write("                <p style=\"letter-spacing: 1px;\r\n");
+      out.write("                        font-size: 18px;\r\n");
+      out.write("                        margin-left: 40px;\r\n");
+      out.write("                        margin-top: 20px;\">SEARCH RESULTS -</p>\r\n");
       out.write("                \r\n");
+      out.write("                <p style=\"letter-spacing: 1px;\r\n");
+      out.write("                           font-size: 18px;\r\n");
+      out.write("                           position: relative;\r\n");
+      out.write("                           left: 27%;\r\n");
+      out.write("                           top: 20px;\">No Office User Record in Available</p>\r\n");
+      out.write("            ");
+}
+      out.write("\r\n");
+      out.write("            \r\n");
       out.write("                  \r\n");
       out.write("\r\n");
       out.write("                   \r\n");
