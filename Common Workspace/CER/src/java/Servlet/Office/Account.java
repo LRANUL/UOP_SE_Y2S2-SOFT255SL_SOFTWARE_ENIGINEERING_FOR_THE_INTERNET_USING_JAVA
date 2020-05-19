@@ -5,8 +5,9 @@
  */
 package Servlet.Office;
 
-import static Model.MemberRegistrationModel.SALT;
-import static Model.MemberRegistrationModel.generateHashValue;
+import static Encryption.PasswordHashing.SALT;
+import static Encryption.PasswordHashing.generateHashValue;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.client.FindIterable;
