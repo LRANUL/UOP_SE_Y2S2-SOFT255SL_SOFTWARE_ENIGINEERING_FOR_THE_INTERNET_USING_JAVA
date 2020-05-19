@@ -124,8 +124,7 @@
                 <p style=" font-size: 20px; padding-bottom: 0px; padding-top: 20px;" >Type</p>
                 <select name="users">
                    <option value=""></option>
-                   <option value="Guest">Guest</option>
-                   <option value="Judge">Judge</option>
+                   <option value="Customer">Customer</option>
                    <option value="Attorney">Attorney</option>
                 </select>
                 <br>

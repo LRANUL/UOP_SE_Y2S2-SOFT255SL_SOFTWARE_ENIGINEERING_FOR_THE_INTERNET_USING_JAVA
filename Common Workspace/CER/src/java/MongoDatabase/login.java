@@ -29,7 +29,7 @@ public class login {
      public static boolean searchUserInDb(String  uname, String pass , String users_T) {
         boolean user_found = false;
         // Get the mongodb connection
-        MongoDatabase db = getConnection().getDatabase("Login");
+        MongoDatabase db = getConnection().getDatabase("CERdb");
         System.out.println("Database Connection Successful");
         System.out.println("Database Name: " + db.getName());
         // Get the mongodb collection.
