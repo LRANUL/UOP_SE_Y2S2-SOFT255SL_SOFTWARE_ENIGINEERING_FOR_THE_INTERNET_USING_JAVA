@@ -105,16 +105,14 @@ public class OfficeUserRegistrationServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         if(registrationStatus == true){
-            // Redirecting to LOGIN webpage
-         //   response.sendRedirect("Login.jsp");
+            // Showing an alert box with a registration successful message
             out.println("<script type=\"text/javascript\">");
             out.println("alert('New Office Registration was Successful');");
             out.println("location='Admin/ManageOfficeUsers.jsp';");
             out.println("</script>");
          }
         else if(registrationStatus == false){
-            // Redirecting to ERROR page
-           // response.sendRedirect("Register/MemberRegisterError.html");
+            // Showing an alert box with a registration unsuccessful message
             out.println("<script type=\"text/javascript\">");
             out.println("alert('New Office Registration was Unsuccessful');");
             out.println("location='Admin/ManageOfficeUsers.jsp';");

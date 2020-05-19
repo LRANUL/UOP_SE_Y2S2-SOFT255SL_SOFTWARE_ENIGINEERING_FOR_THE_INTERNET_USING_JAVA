@@ -58,18 +58,24 @@ public class SearchRegisteredOfficeUserModel {
             MongoCollection collection = database.getCollection("users");    
             
             // Retrieving the document with the cerEmailAddress the user entered
-            Document secondRetrival = (Document) collection.find(Filters.eq("cerEmailAddress", officerCEREmailAddress)).first();
+            Document officeUserDocument = (Document) collection.find(Filters.eq("cerEmailAddress", officerCEREmailAddress)).first();
             
-            // Converting the retrieved value to JSON format and converting the JSON value to a JSON object
-            JSONObject documentJSONObject = new JSONObject(secondRetrival.toJson());
-
-            // Returning the JSON object
-            return documentJSONObject;
+            // Checking if a document from the database was returned
+            if(officeUserDocument != null){
+                // A document was returned
+                // Converting the retrieved value to JSON format and converting the JSON value to a JSON object
+                JSONObject documentJSONObject = new JSONObject(officeUserDocument.toJson());
+                // Returning the JSON object
+                return documentJSONObject;
+            }
+            else if(officeUserDocument == null){
+                // No document was returned
+                return null;
+            }  
         }
         catch (Exception ex) {
-            System.out.println("ERROR: " + ex);
-            return nullJSONObject;
+            System.out.println("ERROR: " + ex);  
         }
-        
+        return null;
     }
 }

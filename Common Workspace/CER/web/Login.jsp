@@ -15,24 +15,20 @@
         <meta name="author" content="">
         <title>CER - Home</title>
          <script>
-         function validLogin(){
-         if (document.Lform.username.value == "" && document.Lform.username.value == "" && document.Lform.users.value == ""){
-         alert ( "Please enter all the fields" );
-         return false;
-         }
-         if (document.Lform.username.value == ""){
-         alert ( "Please enter your username" );
-         return false;
-         }
-         if (document.Lform.passw.value == ""){
-         alert ( "Please enter your password." );
-         return false;
-         }
-         if (document.Lform.users.value == ""){
-         alert ( "Please select a type of user" );
-         return false;
-         }
-         return true;
+            function validLogin(){
+            if (document.loginForm.emailAddress.value == "" && document.loginForm.username.value == ""){
+               alert ( "Please enter all the fields" );
+               return false;
+            }
+            if (document.loginForm.emailAddress.value == ""){
+               alert ( "Please enter your username" );
+               return false;
+            }
+            if (document.loginForm.password.value == ""){
+               alert ( "Please enter your password." );
+               return false;
+            }
+            return true;
          }
          </script>
         <!-- Bootstrap core CSS -->
@@ -108,36 +104,104 @@
             </div>
             </div>  
  
-             <div class="row justify-content-center " style=" padding-top:  100px;">
+            <div class="row justify-content-center" style="padding-top: 50px;">
           <div class="col-3 no-back pt-5 pb-5">
         <img src="assets/images/profile.png" style=" width: 100px; height: 100px;"  class="rounded mx-auto d-block">
         <h3 style=" text-align: center; padding-top: 10px;"> Welcome</h3> 
+        <style>
+            .loginFormInput{
+                margin-top: -15px;
+                height: 50px;
+                width: 300px;
+                border-radius: 5px;
+                font-size: 18px;
+                border: #ccc solid 1px;
+            }
+            #loginButton{
+                font-size: 22px;
+                width: 260px;
+                letter-spacing: 2px;
+                height: 50px;
+                position: relative;
+                font-weight: 500;
+                left: 20px;
+                top: 0px;
+                border-color: rgb(13, 153, 218);
+                color: #ffffff;
+                background-color: rgb(13, 153, 218);
+            }
+            #loginButton:hover{
+                border-color: rgb(13, 153, 218);
+                color: rgb(13, 153, 218);
+                background-color: #ffffff;
+            }
+        </style>
         <div style=" padding-left: 60px; padding-top: 20px;">
-         <br>
-        <form name="Lform" method="post" action="loginServlet" onsubmit="return validLogin();">
-            <p style=" font-size: 20px; padding-bottom: 0px;" >Username</p>
-            <input type="text" name="username" size="30">
-              <br>
-                 <p style=" font-size: 20px; padding-bottom: 0px; padding-top: 20px;" >Password</p>
-                 <input type="password" name="passw" size="30">
+            <br>
+            <form name="loginForm" method="POST" action="LoginServlet" onsubmit="return validLogin();">
+                <p style="font-size: 20px; 
+                        padding-bottom: 0px;">
+                    Email Address
+                </p>
+                <input type="email" name="emailAddress" size="30" class="form-control loginFormInput" style="margin-bottom: -20px;" required>
                 <br>
-                <p style=" font-size: 20px; padding-bottom: 0px; padding-top: 20px;" >Type</p>
-                <select name="users">
-                   <option value=""></option>
-                   <option value="Customer">Customer</option>
-                   <option value="Attorney">Attorney</option>
-                </select>
+                <p style="font-size: 20px; 
+                        padding-bottom: 0px; 
+                        padding-top: 20px;">
+                    Password
+                </p>
+                <input type="password" name="password" size="30" class="form-control loginFormInput" required>
                 <br>
-                <br>
-                <input class="btn btn-outline-primary" name="submit" type="submit" value="Login" style=" font-size: 19px;">
+                <button class="btn btn-primary" name="submit" type="submit" id="loginButton">
+                    <p>LOGIN</p>
+                </button>
             </form>
+            <!-- LOGIN CREDENTIAL ERROR MESSAGES -->
+            <%
+                String loginNoRecordFound = null;
+                loginNoRecordFound = (String)request.getAttribute("loginNoRecordFound");
+                if(loginNoRecordFound != null){
+            %>
+                <p style="letter-spacing: 1px;
+                          font-size: 18px;
+                          color:rgb(214, 0, 0);
+                          margin-top: 10px;
+                          position: absolute;
+                          left: 30%;">NO RECORD FOUND</p>
+            <%}%>
+            <%
+                String loginPasswordIncorrect = null;
+                loginPasswordIncorrect = (String)request.getAttribute("loginPasswordIncorrect");
+                if(loginPasswordIncorrect != null){
+            %>
+                <p style="letter-spacing: 1px;
+                            font-size: 18px;
+                            color:rgb(214, 0, 0);
+                            margin-top: 10px;
+                            position: absolute;
+                            left: 18%;">ENTERED PASSWORD INCORRECT</p>
+            <%}%>
         </div>
-        <p style=" text-align: center; padding-top: 10px;"> Don't have an account<a href="#" > Join Now</a></p>
+        <p style="text-align: center;
+                position: relative;
+                bottom: -64px;
+                left: 5px;
+                "> Don't have an account? <a href="#" data-toggle="modal" data-target="#registerModal">Join Now</a></p>
     </div>
     <div class="col-3 l_back">
-        <h2 class="d-flex justify-content-center" style="color: white; padding-top: 300px"><strong>Court Electronic Record System</strong></h2>
-        <h2 class="d-flex justify-content-center" style="color: white;"><strong> CERTs</strong></h2>
-    </div>
+        <h2 class="d-flex justify-content-center" style="color: rgb(247, 247, 247);
+                                                        margin-top: 180px;
+                                                        margin-left: 10px;
+                                                        letter-spacing: 4px;
+                                                        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">
+                                                        <strong> CERs -</strong></h2>
+        <h2 class="d-flex justify-content-center" style="color: rgb(247, 247, 247);
+                                                        margin-top: 10px;
+                                                        letter-spacing: 1px;
+                                                        margin-left: 20px;
+                                                        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">
+                                                        <strong>Court Electronic Record <span style="margin-left: 32%;">System</span></strong></h2>
+        </div>
     </div>
             <!-- Site footer -->
             <footer class="footer">
