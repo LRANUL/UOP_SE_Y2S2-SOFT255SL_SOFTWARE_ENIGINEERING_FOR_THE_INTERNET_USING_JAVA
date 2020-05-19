@@ -116,16 +116,15 @@
          <br>
         <form name="Lform" method="post" action="loginServlet" onsubmit="return validLogin();">
             <p style=" font-size: 20px; padding-bottom: 0px;" >Username</p>
-            <input type="text" name="username">
+            <input type="text" name="username" size="30">
               <br>
                  <p style=" font-size: 20px; padding-bottom: 0px; padding-top: 20px;" >Password</p>
-                 <input type="password" name="passw">
+                 <input type="password" name="passw" size="30">
                 <br>
                 <p style=" font-size: 20px; padding-bottom: 0px; padding-top: 20px;" >Type</p>
                 <select name="users">
                    <option value=""></option>
-                   <option value="Guest">Guest</option>
-                   <option value="Judge">Judge</option>
+                   <option value="Customer">Customer</option>
                    <option value="Attorney">Attorney</option>
                 </select>
                 <br>
