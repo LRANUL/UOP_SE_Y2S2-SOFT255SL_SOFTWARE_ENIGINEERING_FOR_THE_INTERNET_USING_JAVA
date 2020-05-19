@@ -81,14 +81,14 @@ public class SendMail extends HttpServlet {
 //        Reply = "Available";
         String email = "cers.developer@gmail.com";
         if ("Available".equals(Reply)) {
-            System.out.println("a");
+            System.out.println("Available");
             try {
                 MailUtil.SendEmailAvailable(email);
             } catch (Exception ex) {
                 System.out.println(ex);
             }
         } else if ("NotAvailable".equals(Reply)) {
-            System.out.println("Start");
+            System.out.println("NotAvailable");
             try {
                 MailUtil.SendEmailUnAvailable(email);
             } catch (Exception ex) {
