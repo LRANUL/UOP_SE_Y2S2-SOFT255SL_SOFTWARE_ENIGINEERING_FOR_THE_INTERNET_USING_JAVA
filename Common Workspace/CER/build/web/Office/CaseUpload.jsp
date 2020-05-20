@@ -15,6 +15,24 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Dashboard - Case</title>
+    <script>
+    function validDocument(){
+         if (document.NDocumentform.caseNo.value == "" || document.NDocumentform.CLocation.value == "" || document.NDocumentform.DNumber.value == "" || document.NDocumentform.party.value == "" || document.NDocumentform.CParty.value == "" ||  document.NDocumentform.descrip.value == "" || document.NDocumentform.hearing.value == ""){
+         alert ( "Please enter all the fields to add the document" );
+         return false;
+         }
+         return true;
+       }
+    </script>
+    <script>
+        function validCase(){
+         if (document.ACasetform.DcaseNo.value == "" || document.ACasetform.DCLocation.value == "" || document.ACasetform.Dparty.value == "" || document.ACasetform.Ddate.value == ""){
+         alert ( "Please enter all the fields to add the case" );
+         return false;
+         }
+         return true;
+       }
+    </script>
     <link href="../assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css" rel="stylesheet">
     <link href="../assets/css/dashboard.css" rel="stylesheet">
     <link rel="icon" href="../assets/images/favicon.png" type="image/png">
@@ -133,14 +151,14 @@
     </div>
 
      <!-- MAIN CONTENT SECTION -->
-    <div style="height: 600px;
+      <div style="height: 600px;
                 width: 80.65%;
                 position: absolute;
                 right: 1.3%;
                 background-color: #f0f0f0;">
         <!-- ADD NEW DOCUMENT TO A CASE SECTION -->
         <div style="width: 48.5%;
-                    height: 800px;
+                    height: 850px;
                     background-color: #ffffff;
                     position: relative;
                     left: 1%;
@@ -154,9 +172,9 @@
                     left: 25px;
                     text-align: center;">
                 ADD DOCUMENT TO CASE</p>
-            <form style="padding-left: 100px; padding-top: 20px;" name="NCaseform" method="post" action="../Office/AddCaseDocument">
+            <form style="padding-left: 50px; padding-right: 50px; padding-top: 20px;" name="NDocumentform" method="post" action="../Office/AddCaseDocument" onsubmit="return validDocument();">
                 <p>Case Number</p>
-                <input type="text" name="caseNO">
+                <input type="text" name="caseNo">
                 <p style="padding-top: 20px">Court Location</p>
                 <input type="text" name="CLocation">
                 <p style="padding-top: 20px"> Document Number</p>
@@ -175,8 +193,7 @@
                 <div class="text-center">
                     <button  class="btn btn-primary w-100" type="submit" name="Dsubmit">Submit</button> 
                 </div>
-            </form>           
-            
+            </form>  
         </div>
         <!-- ADD NEW CASE SECTION -->
         <div style="width: 48.5%;
@@ -194,7 +211,7 @@
                     left: 25px;
                     text-align: center;">
                 ADD NEW CASE</p>
-             <form style="padding-left: 100px; padding-top: 20px;" method="POST" action="../Office/AddCase" name="ADocumentform" >
+             <form style="padding-left: 50px; padding-right: 50px; padding-top: 20px;" method="POST" action="../Office/AddCase" name="ACasetform" onsubmit="return validCase();">
                 <p>Case Number</p>
                 <input type="text" name="DcaseNo" >
                 <p style="padding-top: 20px">Court Location</p>
@@ -211,6 +228,7 @@
             </form>    
         </div>
     </div>
+ 
  
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/popper.js"></script>

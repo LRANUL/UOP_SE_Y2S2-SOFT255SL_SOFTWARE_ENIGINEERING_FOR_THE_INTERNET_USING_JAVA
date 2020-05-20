@@ -78,7 +78,7 @@ public class AddCaseDocument extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         
             
-        String caseNO = request.getParameter("caseNO");
+        String caseNO = request.getParameter("caseNo");
         String Clocation =  request.getParameter("CLocation");
         String DNumber =  request.getParameter("DNumber");
         String party =  request.getParameter("party");
