@@ -44,7 +44,6 @@ public class SearchRegisteredOfficeUserModel {
     } 
     
     public JSONObject SearchOfficeUser(){
-        JSONObject nullJSONObject = new JSONObject();
         /* PROCESS OF RETRIEVING VALUES FROM MONGODB */
         try{
             // Establishing MongoDB URI Connection
@@ -58,7 +57,7 @@ public class SearchRegisteredOfficeUserModel {
             MongoCollection collection = database.getCollection("users");    
             
             // Retrieving the document with the cerEmailAddress the user entered
-            Document officeUserDocument = (Document) collection.find(Filters.eq("cerEmailAddress", officerCEREmailAddress)).first();
+            Document officeUserDocument = (Document) collection.find(Filters.eq("emailAddress", officerCEREmailAddress)).first();
             
             // Checking if a document from the database was returned
             if(officeUserDocument != null){

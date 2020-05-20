@@ -326,7 +326,7 @@
                         <div class="col-sm-6">
                             <p class="searchResultValue">
                                 <%
-                                    out.print((String)request.getAttribute("cerEmailAddress"));
+                                    out.print((String)request.getAttribute("emailAddress"));
                                 %>
                             </p>
                         </div>
