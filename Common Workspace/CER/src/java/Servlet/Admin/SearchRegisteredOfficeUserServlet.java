@@ -87,9 +87,19 @@ public class SearchRegisteredOfficeUserServlet extends HttpServlet {
             throws ServletException, IOException {
         // processRequest(request, response);
         
-        // Retrieving user entered value from the fronend
-        String officerCEREmailAddress = request.getParameter("officerCEREmailAddress");
+        String officerCEREmailAddress = "";
         
+        // Retrieving user entered value from the fronend
+        if(request.getParameter("officerCEREmailAddress") != null){
+            officerCEREmailAddress = request.getParameter("officerCEREmailAddress");
+        }
+        else if(request.getAttribute("officerCEREmailAddress") != null){
+            officerCEREmailAddress = (String) request.getAttribute("officerCEREmailAddress");
+        }
+        
+        request.setAttribute("enteredEmailAddress", officerCEREmailAddress);
+        
+        System.out.println("fff: "+officerCEREmailAddress);
         // Creating new object of SearchRegisteredOfficeUserModel class
         SearchRegisteredOfficeUserModel searchOfficeUser = new SearchRegisteredOfficeUserModel();
         
@@ -105,35 +115,53 @@ public class SearchRegisteredOfficeUserServlet extends HttpServlet {
             
             request.setAttribute("recordFound", "FOUND");   
             
-            JSONObject nameObject = userDocumentObject.getJSONObject("name");
-            request.setAttribute("prefix", nameObject.getString("prefix"));
-            request.setAttribute("firstName", nameObject.getString("firstName"));
-            request.setAttribute("middleName", nameObject.getString("middleName"));
-            request.setAttribute("lastName", nameObject.getString("lastName"));
-            
-            request.setAttribute("accountStatus", userDocumentObject.getString("accountStatus"));
-            request.setAttribute("cerId", userDocumentObject.getString("cerID"));
-            request.setAttribute("emailAddress", userDocumentObject.getString("emailAddress"));
-            request.setAttribute("nic", userDocumentObject.getString("nic"));
+            String userType = userDocumentObject.getString("userType");
+         
+            // Checking if the user type is officer
+            if("officer".equals(userType)){
+                // User Type is officer
+                
+                JSONObject nameObject = userDocumentObject.getJSONObject("name");
+                request.setAttribute("prefix", nameObject.getString("prefix"));
+                request.setAttribute("firstName", nameObject.getString("firstName"));
+                request.setAttribute("middleName", nameObject.getString("middleName"));
+                request.setAttribute("lastName", nameObject.getString("lastName"));
 
-            try{
-                // Retrieving the registeredDateTime from model and spliting the string to get the UNIX format value
-                String registrationDateTimeModel = userDocumentObject.get("registrationDateTime").toString(); // Sample: {"$date":1589852947435}
-                String[] DateTimeStringSplitOne = registrationDateTimeModel.split(":");
-                String DateTimeStringSplitOnePartOne = DateTimeStringSplitOne[0]; // Sample: {"$date":
-                String DateTimeStringSplitOnePartTwo = DateTimeStringSplitOne[1]; // Sample: 1589852947435}
+                String accountStatusDB = userDocumentObject.getString("accountStatus");
+                if("Active".equals(accountStatusDB)){
+                    request.setAttribute("accountStatusActive", "ACTIVE");
+                }
+                else if("Disabled".equals(accountStatusDB)){
+                    request.setAttribute("accountStatusDisabled", "DISABLED");
+                }
+                request.setAttribute("cerId", userDocumentObject.getString("cerID"));
+                request.setAttribute("emailAddress", userDocumentObject.getString("emailAddress"));
+                request.setAttribute("nic", userDocumentObject.getString("nic"));
 
-                String[] DateTimeStringSplitTwo = DateTimeStringSplitOnePartTwo.split("}"); // Sample: 1589852947435}
-                String registrationDateTimeUNIX = DateTimeStringSplitTwo[0]; // Sample: 1589852947435
+                try{
+                    // Retrieving the registeredDateTime from model and spliting the string to get the UNIX format value
+                    String registrationDateTimeModel = userDocumentObject.get("registrationDateTime").toString(); // Sample: {"$date":1589852947435}
+                    String[] DateTimeStringSplitOne = registrationDateTimeModel.split(":");
+                    String DateTimeStringSplitOnePartOne = DateTimeStringSplitOne[0]; // Sample: {"$date":
+                    String DateTimeStringSplitOnePartTwo = DateTimeStringSplitOne[1]; // Sample: 1589852947435}
 
-                SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MM-yyyy | HH:mm a");
-                Date dateTime = new java.util.Date(Long.parseLong(registrationDateTimeUNIX));
-                String registrationDateTime = DateFormat.format(dateTime);
+                    String[] DateTimeStringSplitTwo = DateTimeStringSplitOnePartTwo.split("}"); // Sample: 1589852947435}
+                    String registrationDateTimeUNIX = DateTimeStringSplitTwo[0]; // Sample: 1589852947435
 
-                request.setAttribute("registrationDateTime", registrationDateTime);
+                    SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MM-yyyy | HH:mm a");
+                    Date dateTime = new java.util.Date(Long.parseLong(registrationDateTimeUNIX));
+                    String registrationDateTime = DateFormat.format(dateTime);
+
+                    request.setAttribute("registrationDateTime", registrationDateTime);
+                }
+                catch(Exception ex){
+                    System.out.println("Error: " + ex);
+                }
             }
-            catch(Exception ex){
-                System.out.println("Error: " + ex);
+            else{
+                // User Type is not officer
+                // Setting recordNotFound to NOT FOUND, to show no record found message in the frontend
+                request.setAttribute("recordNotFound", "NOT FOUND"); 
             }
 
         }

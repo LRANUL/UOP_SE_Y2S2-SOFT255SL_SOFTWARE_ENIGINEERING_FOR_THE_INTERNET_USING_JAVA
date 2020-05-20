@@ -123,9 +123,15 @@ public class CustomerRegistrationServlet extends HttpServlet {
         // Calling function to register new member and returning the registration status (TRUE or FALSE)
         Boolean registrationStatus = newCustomerUser.newCustomerRegistration();
         
+        PrintWriter out = response.getWriter();
+        
         if(registrationStatus == true){
+            out.println("<script type=\"text/javascript\">");
+            // Showing an alert box with a registration details sent to officer for review message
+            out.println("alert('Registration Details Sent to Officer for Review');");
             // Redirecting to LOGIN webpage
-            response.sendRedirect("Login.jsp");
+            out.println("location='Login.jsp';");
+            out.println("</script>");
         }
         else if(registrationStatus == false){
             // Redirecting to ERROR page

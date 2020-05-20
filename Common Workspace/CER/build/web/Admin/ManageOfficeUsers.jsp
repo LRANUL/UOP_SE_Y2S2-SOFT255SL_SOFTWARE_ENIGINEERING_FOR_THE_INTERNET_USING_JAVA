@@ -88,7 +88,7 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Manage Users</h1>
+                    <h1 class="h2">Manage Office Users</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                     </div>
                 </div>
@@ -171,7 +171,13 @@
                                                                             padding-left: 18px;
                                                                             font-size: 18px;"
                 data-toggle="tooltip" data-placement="bottom" title="MANDATORY, Enter CER Email Address" required 
-                name="officerCEREmailAddress" class="form-control" />
+                name="officerCEREmailAddress" class="form-control"
+                value="<% 
+                    if(request.getAttribute("enteredEmailAddress") != null){
+                        out.print(request.getAttribute("enteredEmailAddress"));
+                    }
+                %>"
+                />
                 <button style="width: 16%;
                                 height: 45px;
                                 position: absolute;
@@ -212,7 +218,7 @@
                 }
                 #searchResultDisableButton{
                     position: absolute;
-                    right: 0px;
+                    left: 90px;
                     border-color: rgb(247, 24, 24);
                     background-color: rgb(247, 24, 24);
                     color: #ffffff;
@@ -224,7 +230,7 @@
                 }
                 #searchResultActivateButton{
                     position: absolute;
-                    right: 0px;
+                    left: 90px;
                     border-color: rgb(0, 177, 53);
                     background-color: rgb(0, 177, 53);
                     color: #ffffff;
@@ -234,24 +240,13 @@
                     background-color: #ffffff;
                     color: rgb(0, 177, 53);
                 }
-                #searchResultEditButton{
-                    position: absolute;
-                    left: 5px;
-                    border-color: rgb(0, 171, 184);
-                    background-color: rgb(0, 171, 184);
-                    color: #ffffff;
-                }
-                #searchResultEditButton:hover{
-                    border-color: rgb(0, 171, 184);
-                    background-color: #ffffff;
-                    color: rgb(0, 171, 184);
-                }
                 .searchResultsButtonsText{
                     letter-spacing: 1px;
                     font-size: 18px;
                     position: absolute;
                     top: 50%;
-                    transform: translateY(-50%);
+                    left: 50%;
+                    transform: translate(-50%,-50%);
                 }
             </style>
             <% 
@@ -264,122 +259,161 @@
                         margin-left: 40px;
                         margin-top: 20px;">SEARCH RESULTS -</p>
             
-                <div style="width: 90%;
-                            height: 60%;
-                            border-radius: 5px;
-                            position: relative;
-                            left: 50%;
-                            top: -5px;
-                            transform: translateX(-50%);
-                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                    <div class="row" style="padding-top: 10px;">
-                        <div class="col-sm-12">
-                            <p style="font-size: 25px;
-                                    font-weight: 600;
-                                    position: relative;
-                                    left: 9.6%;
-                                    top: 10px;
-                                    letter-spacing: 0.5px;">
-                                <% out.print((String)request.getAttribute("prefix")); %>&nbsp;
-                                <% out.print((String)request.getAttribute("firstName")); %>&nbsp;
-                                <% out.print((String)request.getAttribute("middleName")); %>&nbsp;
-                                <% out.print((String)request.getAttribute("lastName")); %>
-                            </p>
+                <form method="POST" action="../Admin/UpdateOfficeUserAccountStatusServlet">
+                    <div style="width: 90%;
+                                height: 60%;
+                                border-radius: 5px;
+                                position: relative;
+                                left: 50%;
+                                top: -5px;
+                                transform: translateX(-50%);
+                                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <div class="row" style="padding-top: 10px;">
+                            <div class="col-sm-12">
+                                <p style="font-size: 25px;
+                                        font-weight: 600;
+                                        position: relative;
+                                        left: 9.6%;
+                                        top: 10px;
+                                        letter-spacing: 0.5px;">
+                                    <% out.print((String)request.getAttribute("prefix")); %> 
+                                    <% out.print((String)request.getAttribute("firstName")); %> 
+                                    <% out.print((String)request.getAttribute("middleName")); %> 
+                                    <% out.print((String)request.getAttribute("lastName")); %>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row" style="margin-top: 30px;">
-                        <div class="col-sm-6">
-                            <p class="searchResultHeadings">ACCOUNT STATUS</p>
+                        <div class="row" style="margin-top: 30px;">
+                            <div class="col-sm-6">
+                                <p class="searchResultHeadings">ACCOUNT STATUS</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="searchResultValue">
+                                    <%
+                                        String accountStatusActive = null;
+                                        accountStatusActive = (String)request.getAttribute("accountStatusActive");
+                                        String accountStatusDisabled = null;
+                                        accountStatusDisabled = (String)request.getAttribute("accountStatusDisabled");
+                                        if(accountStatusActive != null){
+                                            out.print(accountStatusActive);
+                                        }
+                                        else if(accountStatusDisabled != null){
+                                            out.print(accountStatusDisabled);
+                                        }  
+                                    %>
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <p class="searchResultValue">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="searchResultHeadings">CER ID</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="searchResultValue">
+                                    <%
+                                        out.print((String)request.getAttribute("cerId"));
+                                    %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="searchResultHeadings">CER Email Address</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="searchResultValue" name="emailAddress" value="">
+                                    <%
+                                        String emailAddress = (String)request.getAttribute("emailAddress");
+                                        out.print(emailAddress);
+                                    %>
+                                    <!-- Hidden input used to pass email address to the UpdateOfficeUserAccountStatusServlet servlet -->
+                                    <input type="hidden" name="passedEmailAddress" 
+                                    value ="<%= emailAddress %>" />
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="searchResultHeadings">NIC</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="searchResultValue">
+                                    <%
+                                        out.print((String)request.getAttribute("nic"));
+                                    %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="searchResultHeadings">Registration Date Time</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="searchResultValue">
+                                    <%
+                                        out.print((String)request.getAttribute("registrationDateTime"));
+                                    %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-sm-12">
                                 <%
-                                    String accountStatus = (String)request.getAttribute("accountStatus");
-                                    System.out.println("ff: "+accountStatus);
-                                    out.print(accountStatus);
-                                    if(accountStatus == "Active "){
-                                        out.print("ACTIVE");
-                                    }
-                                    else if(accountStatus == "Disabled "){
-                                        out.print("DISABLED");
-                                    }
+                                    if(accountStatusActive != null){
                                 %>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="searchResultHeadings">CER ID</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="searchResultValue">
-                                <%
-                                    out.print((String)request.getAttribute("cerId"));
-                                %>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="searchResultHeadings">CER Email Address</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="searchResultValue">
-                                <%
-                                    out.print((String)request.getAttribute("emailAddress"));
-                                %>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="searchResultHeadings">NIC</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="searchResultValue">
-                                <%
-                                    out.print((String)request.getAttribute("nic"));
-                                %>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="searchResultHeadings">Registration Date Time</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="searchResultValue">
-                                <%
-                                    out.print((String)request.getAttribute("registrationDateTime"));
-                                %>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top: 20px;">
-                        <div class="col-sm-6">
-                            <button class="searchResultButtons btn" id="searchResultDisableButton">
-                                <i class="fas fa-user-lock" style="position: absolute;
-                                                            left: 25px;
-                                                            top: 13px;"></i>
-                                <p class="searchResultsButtonsText" style="left: 45px;">DISABLE ACCOUNT</p>
-                            </button>
-                            <button class="searchResultButtons btn" id="searchResultActivateButton">
-                                <i class="fas fa-unlock-alt" style="position: absolute;
-                                                            left: 20px;
-                                                            top: 13px;"></i>
-                                <p class="searchResultsButtonsText" style="left: 43px;">ACTIVATE ACCOUNT</p>
-                            </button>
-                        </div>
-                        <div class="col-sm-6">
-                            <button class="searchResultButtons btn" id="searchResultEditButton">
-                                <i class="fas fa-user-edit" style="position: absolute;
-                                                                left: 38px;
+                                <button class="searchResultButtons btn" id="searchResultDisableButton" value="DisableButton"
+                                name="searchResultDisableButton" type="submit">
+                                    <i class="fas fa-user-lock" style="position: absolute;
+                                                                left: 132px;
                                                                 top: 13px;"></i>
-                                <p class="searchResultsButtonsText" style="left: 70px;">EDIT DETAILS</p>
-                            </button>
+                                    <p class="searchResultsButtonsText" style="margin-left: 22px;">DISABLE ACCOUNT</p>
+                                </button>
+                                <%}
+                                    else if(accountStatusDisabled != null){
+                                %>
+                                <button class="searchResultButtons btn" id="searchResultActivateButton" value="ActivateButton" 
+                                name="searchResultActivateButton" type="submit">
+                                    <i class="fas fa-unlock-alt" style="position: absolute;
+                                                                left: 130px;
+                                                                top: 13px;"></i>
+                                    <p class="searchResultsButtonsText" style="margin-left: 20px;">ACTIVATE ACCOUNT</p>
+                                </button>
+                                <%}%>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
+                <form method="POST" action="../Admin/ResetSearchOfficeUserServlet">
+                    <!-- FORM RESET BUTTON STYLES -->
+                    <style>
+                        #resetButton{
+                            border: rgb(7, 86, 122);
+                            background-color: rgb(3, 119, 173);
+                            color: #ffffff;
+                        }
+
+                        #resetButton:hover{
+                            border: rgb(7, 75, 107);
+                            background-color: rgb(2, 95, 138);
+                        }
+                    </style>
+
+                    <!-- FORM RESET BUTTON -->
+                    <button style="height: 45px;
+                            width: 110px;
+                            position: absolute;
+                            bottom: 10px;
+                            left: 10px;" class="btn" id="resetButton" type="submit" onClick="return confirm('On screen items will be removed, do you want to continue?');">
+                        <i class="fas fa-undo-alt" style="position: absolute;
+                           left: 15px;
+                           margin-top: 8px;"></i>
+                        <p style="letter-spacing: 1px;
+                           font-size: 18px;
+                           margin-left: 25px;
+                           margin-top: 2px;">RESET</p>
+                    </button>
+                </form>
+                
             <%
                 }
                 
@@ -397,6 +431,36 @@
                            position: relative;
                            left: 27%;
                            top: 20px;">No Office User Record in Available</p>
+                <form method="POST" action="../Admin/ResetSearchOfficeUserServlet">
+                    <!-- FORM RESET BUTTON STYLES -->
+                    <style>
+                        #resetButton{
+                            border: rgb(7, 86, 122);
+                            background-color: rgb(3, 119, 173);
+                            color: #ffffff;
+                        }
+
+                        #resetButton:hover{
+                            border: rgb(7, 75, 107);
+                            background-color: rgb(2, 95, 138);
+                        }
+                    </style>
+
+                    <!-- FORM RESET BUTTON -->
+                    <button style="height: 45px;
+                            width: 110px;
+                            position: absolute;
+                            bottom: 10px;
+                            left: 10px;" class="btn" id="resetButton" type="submit" onClick="return confirm('On screen items will be removed, do you want to continue?');">
+                        <i class="fas fa-undo-alt" style="position: absolute;
+                           left: 15px;
+                           margin-top: 8px;"></i>
+                        <p style="letter-spacing: 1px;
+                           font-size: 18px;
+                           margin-left: 25px;
+                           margin-top: 2px;">RESET</p>
+                    </button>
+                </form>
             <%}%>
             
                   

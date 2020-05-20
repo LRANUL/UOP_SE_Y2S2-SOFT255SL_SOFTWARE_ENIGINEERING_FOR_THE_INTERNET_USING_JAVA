@@ -127,7 +127,7 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("            <main role=\"main\" class=\"col-md-9 ml-sm-auto col-lg-10 px-4\">\r\n");
       out.write("                <div\r\n");
       out.write("                    class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">\r\n");
-      out.write("                    <h1 class=\"h2\">Manage Users</h1>\r\n");
+      out.write("                    <h1 class=\"h2\">Manage Office Users</h1>\r\n");
       out.write("                    <div class=\"btn-toolbar mb-2 mb-md-0\">\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
@@ -210,7 +210,15 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                                                                            padding-left: 18px;\r\n");
       out.write("                                                                            font-size: 18px;\"\r\n");
       out.write("                data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"MANDATORY, Enter CER Email Address\" required \r\n");
-      out.write("                name=\"officerCEREmailAddress\" class=\"form-control\" />\r\n");
+      out.write("                name=\"officerCEREmailAddress\" class=\"form-control\"\r\n");
+      out.write("                value=\"");
+ 
+                    if(request.getAttribute("enteredEmailAddress") != null){
+                        out.print(request.getAttribute("enteredEmailAddress"));
+                    }
+                
+      out.write("\"\r\n");
+      out.write("                />\r\n");
       out.write("                <button style=\"width: 16%;\r\n");
       out.write("                                height: 45px;\r\n");
       out.write("                                position: absolute;\r\n");
@@ -251,7 +259,7 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                }\r\n");
       out.write("                #searchResultDisableButton{\r\n");
       out.write("                    position: absolute;\r\n");
-      out.write("                    right: 0px;\r\n");
+      out.write("                    left: 90px;\r\n");
       out.write("                    border-color: rgb(247, 24, 24);\r\n");
       out.write("                    background-color: rgb(247, 24, 24);\r\n");
       out.write("                    color: #ffffff;\r\n");
@@ -263,7 +271,7 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                }\r\n");
       out.write("                #searchResultActivateButton{\r\n");
       out.write("                    position: absolute;\r\n");
-      out.write("                    right: 0px;\r\n");
+      out.write("                    left: 90px;\r\n");
       out.write("                    border-color: rgb(0, 177, 53);\r\n");
       out.write("                    background-color: rgb(0, 177, 53);\r\n");
       out.write("                    color: #ffffff;\r\n");
@@ -273,24 +281,13 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                    background-color: #ffffff;\r\n");
       out.write("                    color: rgb(0, 177, 53);\r\n");
       out.write("                }\r\n");
-      out.write("                #searchResultEditButton{\r\n");
-      out.write("                    position: absolute;\r\n");
-      out.write("                    left: 5px;\r\n");
-      out.write("                    border-color: rgb(0, 171, 184);\r\n");
-      out.write("                    background-color: rgb(0, 171, 184);\r\n");
-      out.write("                    color: #ffffff;\r\n");
-      out.write("                }\r\n");
-      out.write("                #searchResultEditButton:hover{\r\n");
-      out.write("                    border-color: rgb(0, 171, 184);\r\n");
-      out.write("                    background-color: #ffffff;\r\n");
-      out.write("                    color: rgb(0, 171, 184);\r\n");
-      out.write("                }\r\n");
       out.write("                .searchResultsButtonsText{\r\n");
       out.write("                    letter-spacing: 1px;\r\n");
       out.write("                    font-size: 18px;\r\n");
       out.write("                    position: absolute;\r\n");
       out.write("                    top: 50%;\r\n");
-      out.write("                    transform: translateY(-50%);\r\n");
+      out.write("                    left: 50%;\r\n");
+      out.write("                    transform: translate(-50%,-50%);\r\n");
       out.write("                }\r\n");
       out.write("            </style>\r\n");
       out.write("            ");
@@ -305,140 +302,187 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                        margin-left: 40px;\r\n");
       out.write("                        margin-top: 20px;\">SEARCH RESULTS -</p>\r\n");
       out.write("            \r\n");
-      out.write("                <div style=\"width: 90%;\r\n");
-      out.write("                            height: 60%;\r\n");
-      out.write("                            border-radius: 5px;\r\n");
-      out.write("                            position: relative;\r\n");
-      out.write("                            left: 50%;\r\n");
-      out.write("                            top: -5px;\r\n");
-      out.write("                            transform: translateX(-50%);\r\n");
-      out.write("                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\">\r\n");
-      out.write("                    <div class=\"row\" style=\"padding-top: 10px;\">\r\n");
-      out.write("                        <div class=\"col-sm-12\">\r\n");
-      out.write("                            <p style=\"font-size: 25px;\r\n");
-      out.write("                                    font-weight: 600;\r\n");
-      out.write("                                    position: relative;\r\n");
-      out.write("                                    left: 9.6%;\r\n");
-      out.write("                                    top: 10px;\r\n");
-      out.write("                                    letter-spacing: 0.5px;\">\r\n");
-      out.write("                                ");
+      out.write("                <form method=\"POST\" action=\"../Admin/UpdateOfficeUserAccountStatusServlet\">\r\n");
+      out.write("                    <div style=\"width: 90%;\r\n");
+      out.write("                                height: 60%;\r\n");
+      out.write("                                border-radius: 5px;\r\n");
+      out.write("                                position: relative;\r\n");
+      out.write("                                left: 50%;\r\n");
+      out.write("                                top: -5px;\r\n");
+      out.write("                                transform: translateX(-50%);\r\n");
+      out.write("                                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\">\r\n");
+      out.write("                        <div class=\"row\" style=\"padding-top: 10px;\">\r\n");
+      out.write("                            <div class=\"col-sm-12\">\r\n");
+      out.write("                                <p style=\"font-size: 25px;\r\n");
+      out.write("                                        font-weight: 600;\r\n");
+      out.write("                                        position: relative;\r\n");
+      out.write("                                        left: 9.6%;\r\n");
+      out.write("                                        top: 10px;\r\n");
+      out.write("                                        letter-spacing: 0.5px;\">\r\n");
+      out.write("                                    ");
  out.print((String)request.getAttribute("prefix")); 
-      out.write("&nbsp;\r\n");
-      out.write("                                ");
+      out.write(" \r\n");
+      out.write("                                    ");
  out.print((String)request.getAttribute("firstName")); 
-      out.write("&nbsp;\r\n");
-      out.write("                                ");
+      out.write(" \r\n");
+      out.write("                                    ");
  out.print((String)request.getAttribute("middleName")); 
-      out.write("&nbsp;\r\n");
-      out.write("                                ");
+      out.write(" \r\n");
+      out.write("                                    ");
  out.print((String)request.getAttribute("lastName")); 
       out.write("\r\n");
-      out.write("                            </p>\r\n");
+      out.write("                                </p>\r\n");
+      out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"row\" style=\"margin-top: 30px;\">\r\n");
-      out.write("                        <div class=\"col-sm-6\">\r\n");
-      out.write("                            <p class=\"searchResultHeadings\">ACCOUNT STATUS</p>\r\n");
+      out.write("                        <div class=\"row\" style=\"margin-top: 30px;\">\r\n");
+      out.write("                            <div class=\"col-sm-6\">\r\n");
+      out.write("                                <p class=\"searchResultHeadings\">ACCOUNT STATUS</p>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                            <div class=\"col-sm-6\">\r\n");
+      out.write("                                <p class=\"searchResultValue\">\r\n");
+      out.write("                                    ");
+
+                                        String accountStatusActive = null;
+                                        accountStatusActive = (String)request.getAttribute("accountStatusActive");
+                                        String accountStatusDisabled = null;
+                                        accountStatusDisabled = (String)request.getAttribute("accountStatusDisabled");
+                                        if(accountStatusActive != null){
+                                            out.print(accountStatusActive);
+                                        }
+                                        else if(accountStatusDisabled != null){
+                                            out.print(accountStatusDisabled);
+                                        }  
+                                    
+      out.write("\r\n");
+      out.write("                                </p>\r\n");
+      out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
-      out.write("                        <div class=\"col-sm-6\">\r\n");
-      out.write("                            <p class=\"searchResultValue\">\r\n");
+      out.write("                        <div class=\"row\">\r\n");
+      out.write("                            <div class=\"col-sm-6\">\r\n");
+      out.write("                                <p class=\"searchResultHeadings\">CER ID</p>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                            <div class=\"col-sm-6\">\r\n");
+      out.write("                                <p class=\"searchResultValue\">\r\n");
+      out.write("                                    ");
+
+                                        out.print((String)request.getAttribute("cerId"));
+                                    
+      out.write("\r\n");
+      out.write("                                </p>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"row\">\r\n");
+      out.write("                            <div class=\"col-sm-6\">\r\n");
+      out.write("                                <p class=\"searchResultHeadings\">CER Email Address</p>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                            <div class=\"col-sm-6\">\r\n");
+      out.write("                                <p class=\"searchResultValue\" name=\"emailAddress\" value=\"\">\r\n");
+      out.write("                                    ");
+
+                                        String emailAddress = (String)request.getAttribute("emailAddress");
+                                        out.print(emailAddress);
+                                    
+      out.write("\r\n");
+      out.write("                                    <!-- Hidden input used to pass email address to the UpdateOfficeUserAccountStatusServlet servlet -->\r\n");
+      out.write("                                    <input type=\"hidden\" name=\"passedEmailAddress\" \r\n");
+      out.write("                                    value =\"");
+      out.print( emailAddress );
+      out.write("\" />\r\n");
+      out.write("                                </p>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"row\">\r\n");
+      out.write("                            <div class=\"col-sm-6\">\r\n");
+      out.write("                                <p class=\"searchResultHeadings\">NIC</p>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                            <div class=\"col-sm-6\">\r\n");
+      out.write("                                <p class=\"searchResultValue\">\r\n");
+      out.write("                                    ");
+
+                                        out.print((String)request.getAttribute("nic"));
+                                    
+      out.write("\r\n");
+      out.write("                                </p>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"row\">\r\n");
+      out.write("                            <div class=\"col-sm-6\">\r\n");
+      out.write("                                <p class=\"searchResultHeadings\">Registration Date Time</p>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                            <div class=\"col-sm-6\">\r\n");
+      out.write("                                <p class=\"searchResultValue\">\r\n");
+      out.write("                                    ");
+
+                                        out.print((String)request.getAttribute("registrationDateTime"));
+                                    
+      out.write("\r\n");
+      out.write("                                </p>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"row\" style=\"margin-top: 20px;\">\r\n");
+      out.write("                            <div class=\"col-sm-12\">\r\n");
       out.write("                                ");
 
-                                    String accountStatus = (String)request.getAttribute("accountStatus");
-                                    System.out.println("ff: "+accountStatus);
-                                    out.print(accountStatus);
-                                    if(accountStatus == "Active "){
-                                        out.print("ACTIVE");
-                                    }
-                                    else if(accountStatus == "Disabled "){
-                                        out.print("DISABLED");
-                                    }
+                                    if(accountStatusActive != null){
                                 
       out.write("\r\n");
-      out.write("                            </p>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"row\">\r\n");
-      out.write("                        <div class=\"col-sm-6\">\r\n");
-      out.write("                            <p class=\"searchResultHeadings\">CER ID</p>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                        <div class=\"col-sm-6\">\r\n");
-      out.write("                            <p class=\"searchResultValue\">\r\n");
-      out.write("                                ");
-
-                                    out.print((String)request.getAttribute("cerId"));
-                                
-      out.write("\r\n");
-      out.write("                            </p>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"row\">\r\n");
-      out.write("                        <div class=\"col-sm-6\">\r\n");
-      out.write("                            <p class=\"searchResultHeadings\">CER Email Address</p>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                        <div class=\"col-sm-6\">\r\n");
-      out.write("                            <p class=\"searchResultValue\">\r\n");
-      out.write("                                ");
-
-                                    out.print((String)request.getAttribute("emailAddress"));
-                                
-      out.write("\r\n");
-      out.write("                            </p>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"row\">\r\n");
-      out.write("                        <div class=\"col-sm-6\">\r\n");
-      out.write("                            <p class=\"searchResultHeadings\">NIC</p>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                        <div class=\"col-sm-6\">\r\n");
-      out.write("                            <p class=\"searchResultValue\">\r\n");
-      out.write("                                ");
-
-                                    out.print((String)request.getAttribute("nic"));
-                                
-      out.write("\r\n");
-      out.write("                            </p>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"row\">\r\n");
-      out.write("                        <div class=\"col-sm-6\">\r\n");
-      out.write("                            <p class=\"searchResultHeadings\">Registration Date Time</p>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                        <div class=\"col-sm-6\">\r\n");
-      out.write("                            <p class=\"searchResultValue\">\r\n");
-      out.write("                                ");
-
-                                    out.print((String)request.getAttribute("registrationDateTime"));
-                                
-      out.write("\r\n");
-      out.write("                            </p>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"row\" style=\"margin-top: 20px;\">\r\n");
-      out.write("                        <div class=\"col-sm-6\">\r\n");
-      out.write("                            <button class=\"searchResultButtons btn\" id=\"searchResultDisableButton\">\r\n");
-      out.write("                                <i class=\"fas fa-user-lock\" style=\"position: absolute;\r\n");
-      out.write("                                                            left: 25px;\r\n");
-      out.write("                                                            top: 13px;\"></i>\r\n");
-      out.write("                                <p class=\"searchResultsButtonsText\" style=\"left: 45px;\">DISABLE ACCOUNT</p>\r\n");
-      out.write("                            </button>\r\n");
-      out.write("                            <button class=\"searchResultButtons btn\" id=\"searchResultActivateButton\">\r\n");
-      out.write("                                <i class=\"fas fa-unlock-alt\" style=\"position: absolute;\r\n");
-      out.write("                                                            left: 20px;\r\n");
-      out.write("                                                            top: 13px;\"></i>\r\n");
-      out.write("                                <p class=\"searchResultsButtonsText\" style=\"left: 43px;\">ACTIVATE ACCOUNT</p>\r\n");
-      out.write("                            </button>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                        <div class=\"col-sm-6\">\r\n");
-      out.write("                            <button class=\"searchResultButtons btn\" id=\"searchResultEditButton\">\r\n");
-      out.write("                                <i class=\"fas fa-user-edit\" style=\"position: absolute;\r\n");
-      out.write("                                                                left: 38px;\r\n");
+      out.write("                                <button class=\"searchResultButtons btn\" id=\"searchResultDisableButton\" value=\"DisableButton\"\r\n");
+      out.write("                                name=\"searchResultDisableButton\" type=\"submit\">\r\n");
+      out.write("                                    <i class=\"fas fa-user-lock\" style=\"position: absolute;\r\n");
+      out.write("                                                                left: 132px;\r\n");
       out.write("                                                                top: 13px;\"></i>\r\n");
-      out.write("                                <p class=\"searchResultsButtonsText\" style=\"left: 70px;\">EDIT DETAILS</p>\r\n");
-      out.write("                            </button>\r\n");
+      out.write("                                    <p class=\"searchResultsButtonsText\" style=\"margin-left: 22px;\">DISABLE ACCOUNT</p>\r\n");
+      out.write("                                </button>\r\n");
+      out.write("                                ");
+}
+                                    else if(accountStatusDisabled != null){
+                                
+      out.write("\r\n");
+      out.write("                                <button class=\"searchResultButtons btn\" id=\"searchResultActivateButton\" value=\"ActivateButton\" \r\n");
+      out.write("                                name=\"searchResultActivateButton\" type=\"submit\">\r\n");
+      out.write("                                    <i class=\"fas fa-unlock-alt\" style=\"position: absolute;\r\n");
+      out.write("                                                                left: 130px;\r\n");
+      out.write("                                                                top: 13px;\"></i>\r\n");
+      out.write("                                    <p class=\"searchResultsButtonsText\" style=\"margin-left: 20px;\">ACTIVATE ACCOUNT</p>\r\n");
+      out.write("                                </button>\r\n");
+      out.write("                                ");
+}
+      out.write("\r\n");
+      out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
-      out.write("                </div>\r\n");
+      out.write("                </form>\r\n");
+      out.write("                <form method=\"POST\" action=\"../Admin/ResetSearchOfficeUserServlet\">\r\n");
+      out.write("                    <!-- FORM RESET BUTTON STYLES -->\r\n");
+      out.write("                    <style>\r\n");
+      out.write("                        #resetButton{\r\n");
+      out.write("                            border: rgb(7, 86, 122);\r\n");
+      out.write("                            background-color: rgb(3, 119, 173);\r\n");
+      out.write("                            color: #ffffff;\r\n");
+      out.write("                        }\r\n");
+      out.write("\r\n");
+      out.write("                        #resetButton:hover{\r\n");
+      out.write("                            border: rgb(7, 75, 107);\r\n");
+      out.write("                            background-color: rgb(2, 95, 138);\r\n");
+      out.write("                        }\r\n");
+      out.write("                    </style>\r\n");
+      out.write("\r\n");
+      out.write("                    <!-- FORM RESET BUTTON -->\r\n");
+      out.write("                    <button style=\"height: 45px;\r\n");
+      out.write("                            width: 110px;\r\n");
+      out.write("                            position: absolute;\r\n");
+      out.write("                            bottom: 10px;\r\n");
+      out.write("                            left: 10px;\" class=\"btn\" id=\"resetButton\" type=\"submit\" onClick=\"return confirm('On screen items will be removed, do you want to continue?');\">\r\n");
+      out.write("                        <i class=\"fas fa-undo-alt\" style=\"position: absolute;\r\n");
+      out.write("                           left: 15px;\r\n");
+      out.write("                           margin-top: 8px;\"></i>\r\n");
+      out.write("                        <p style=\"letter-spacing: 1px;\r\n");
+      out.write("                           font-size: 18px;\r\n");
+      out.write("                           margin-left: 25px;\r\n");
+      out.write("                           margin-top: 2px;\">RESET</p>\r\n");
+      out.write("                    </button>\r\n");
+      out.write("                </form>\r\n");
+      out.write("                \r\n");
       out.write("            ");
 
                 }
@@ -458,6 +502,36 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                           position: relative;\r\n");
       out.write("                           left: 27%;\r\n");
       out.write("                           top: 20px;\">No Office User Record in Available</p>\r\n");
+      out.write("                <form method=\"POST\" action=\"../Admin/ResetSearchOfficeUserServlet\">\r\n");
+      out.write("                    <!-- FORM RESET BUTTON STYLES -->\r\n");
+      out.write("                    <style>\r\n");
+      out.write("                        #resetButton{\r\n");
+      out.write("                            border: rgb(7, 86, 122);\r\n");
+      out.write("                            background-color: rgb(3, 119, 173);\r\n");
+      out.write("                            color: #ffffff;\r\n");
+      out.write("                        }\r\n");
+      out.write("\r\n");
+      out.write("                        #resetButton:hover{\r\n");
+      out.write("                            border: rgb(7, 75, 107);\r\n");
+      out.write("                            background-color: rgb(2, 95, 138);\r\n");
+      out.write("                        }\r\n");
+      out.write("                    </style>\r\n");
+      out.write("\r\n");
+      out.write("                    <!-- FORM RESET BUTTON -->\r\n");
+      out.write("                    <button style=\"height: 45px;\r\n");
+      out.write("                            width: 110px;\r\n");
+      out.write("                            position: absolute;\r\n");
+      out.write("                            bottom: 10px;\r\n");
+      out.write("                            left: 10px;\" class=\"btn\" id=\"resetButton\" type=\"submit\" onClick=\"return confirm('On screen items will be removed, do you want to continue?');\">\r\n");
+      out.write("                        <i class=\"fas fa-undo-alt\" style=\"position: absolute;\r\n");
+      out.write("                           left: 15px;\r\n");
+      out.write("                           margin-top: 8px;\"></i>\r\n");
+      out.write("                        <p style=\"letter-spacing: 1px;\r\n");
+      out.write("                           font-size: 18px;\r\n");
+      out.write("                           margin-left: 25px;\r\n");
+      out.write("                           margin-top: 2px;\">RESET</p>\r\n");
+      out.write("                    </button>\r\n");
+      out.write("                </form>\r\n");
       out.write("            ");
 }
       out.write("\r\n");

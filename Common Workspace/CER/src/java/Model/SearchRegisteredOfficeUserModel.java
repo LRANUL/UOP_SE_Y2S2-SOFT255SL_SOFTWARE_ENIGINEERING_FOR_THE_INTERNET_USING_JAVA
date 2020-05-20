@@ -77,4 +77,96 @@ public class SearchRegisteredOfficeUserModel {
         }
         return null;
     }
+    
+    
+    
+    public Boolean updateOfficerAccountStatusActivate(){
+        /* PROCESS OF UPDATING OFFICER ACCOUNT STATUS TO ACTIVE IN MONGODB */
+        try{
+            // Establishing MongoDB URI Connection
+            MongoClientURI uri = new MongoClientURI(mongoDB.MongoDBConnectionURL());
+            MongoClient mongoClient = new MongoClient(uri);
+
+            // Connecting to the MongoDB database
+            MongoDatabase database = mongoClient.getDatabase("CERdb");
+
+            // Connecting to the MongoDB collection
+            MongoCollection collection = database.getCollection("users");    
+            
+            // Updating accountStatus field in office user's document to 'Active'
+            collection.updateOne(new Document("emailAddress", officerCEREmailAddress), new Document("$set", new Document("accountStatus", "Active")));
+            
+            // Retrieving the updated document
+            Document updatedDocument = (Document) collection.find(Filters.eq("emailAddress", officerCEREmailAddress)).first();
+            
+            if(updatedDocument != null){
+            
+                // Converting the retrieved value to JSON format and converting the JSON value to a JSON object
+                JSONObject documentJSONObject = new JSONObject(updatedDocument.toJson());
+                
+                String accountStatusDB = documentJSONObject.getString("accountStatus");
+                
+                if(accountStatusDB == "Active"){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+                
+            }
+            else if(updatedDocument == null){
+                return false;
+            }
+        }
+        catch (Exception ex) {
+            System.out.println("ERROR: " + ex);  
+        }
+        
+        return false;
+    }
+    
+    public Boolean updateOfficerAccountStatusDisable(){
+        /* PROCESS OF UPDATING OFFICER ACCOUNT STATUS TO ACTIVE IN MONGODB */
+        try{
+            // Establishing MongoDB URI Connection
+            MongoClientURI uri = new MongoClientURI(mongoDB.MongoDBConnectionURL());
+            MongoClient mongoClient = new MongoClient(uri);
+
+            // Connecting to the MongoDB database
+            MongoDatabase database = mongoClient.getDatabase("CERdb");
+
+            // Connecting to the MongoDB collection
+            MongoCollection collection = database.getCollection("users");    
+            
+            // Updating accountStatus field in office user's document to 'Active'
+            collection.updateOne(new Document("emailAddress", officerCEREmailAddress), new Document("$set", new Document("accountStatus", "Disabled")));
+            
+            // Retrieving the updated document
+            Document updatedDocument = (Document) collection.find(Filters.eq("emailAddress", officerCEREmailAddress)).first();
+            
+            if(updatedDocument != null){
+            
+                // Converting the retrieved value to JSON format and converting the JSON value to a JSON object
+                JSONObject documentJSONObject = new JSONObject(updatedDocument.toJson());
+                
+                String accountStatusDB = documentJSONObject.getString("accountStatus");
+                
+                if(accountStatusDB == "Disabled"){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+                
+            }
+            else if(updatedDocument == null){
+                return false;
+            }
+        }
+        catch (Exception ex) {
+            System.out.println("ERROR: " + ex);  
+        }
+        
+        return false;
+    }
 }

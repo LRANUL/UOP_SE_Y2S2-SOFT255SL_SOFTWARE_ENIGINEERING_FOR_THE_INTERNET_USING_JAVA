@@ -175,11 +175,41 @@
                 if(loginPasswordIncorrect != null){
             %>
                 <p style="letter-spacing: 1px;
-                            font-size: 18px;
+                            font-size: 22px;
+                            font-weight: 700;
                             color:rgb(214, 0, 0);
                             margin-top: 10px;
                             position: absolute;
                             left: 18%;">ENTERED PASSWORD INCORRECT</p>
+            <%}%>
+            <%
+                String accountStatusDisabled = null;
+                accountStatusDisabled = (String)request.getAttribute("accountStatusDisabled");
+                if(accountStatusDisabled != null){
+            %>
+                <p style="letter-spacing: 1px;
+                            font-size: 22px;
+                            font-weight: 700;
+                            color:rgb(214, 0, 0);
+                            margin-top: 10px;
+                            position: absolute;
+                            left: 22%;">ACCOUNT IS DISABLED</p>
+            <%}%>
+            <%
+                String accountStatusPending = null;
+                accountStatusPending = (String)request.getAttribute("accountStatusPending");
+                if(accountStatusPending != null){
+            %>
+                <p style="letter-spacing: 1px;
+                            font-size: 22px;
+                            font-weight: 700;
+                            color:rgb(214, 0, 0);
+                            margin-top: 0px;
+                            position: absolute;
+                            left: 18%;">ACCOUNT REGISTRATION <br>
+                    <span style="position: absolute;
+                                   left: 21%;">UNDER REVIEW</span>
+                </p>
             <%}%>
         </div>
         <p style="text-align: center;

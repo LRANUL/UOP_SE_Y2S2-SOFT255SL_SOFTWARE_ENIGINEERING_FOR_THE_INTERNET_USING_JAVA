@@ -76,8 +76,10 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // processRequest(request, response);
+        
         // Getting Session
         HttpSession session = request.getSession();
+        
         // Retrieving the user entered values from the frontend
         String emailAddress = request.getParameter("emailAddress");
         String password = request.getParameter("password");
@@ -97,46 +99,101 @@ public class LoginServlet extends HttpServlet {
         request.setAttribute("loginNoRecordFound", null);
 
         // Checking the type of verification status returned
-        if (verificationStatus == "Document Found - Correct Password - Customer - Attorney") {
-            // Login credentials are valid and customer user type or attorney user type
+        if (verificationStatus == "Document Found - Correct Password - Customer - Attorney - Active") {
+            // Login credentials are valid, customer user type or attorney user type and account status is active
+            
             // Assigning session values
             session.setAttribute("Email", emailAddress);
             // Redirecting to the account dashboard
             response.sendRedirect("Account/Account.jsp");
-        } else if (verificationStatus == "Document Found - Correct Password - Officer") {
-            // Login credentials are valid and officer user type
+        } 
+        else if (verificationStatus == "Document Found - Correct Password - Customer - Attorney - Disabled") {
+            // Login credentials are valid, customer user type or attorney user type and account status is disabled
+            
+            // Showing account status is disabled message
+            request.setAttribute("accountStatusDisabled", "TRUE");
+            
+            // Redirecting to the login webpage
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.jsp");
+            rd.forward(request, response);
+        } 
+        else if (verificationStatus == "Document Found - Correct Password - Customer - Attorney - Pending") {
+            // Login credentials are valid, customer user type or attorney user type and account status is pending
+            
+            // Showing account status is pending message
+            request.setAttribute("accountStatusPending", "TRUE");
+            
+            // Redirecting to the login webpage
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.jsp");
+            rd.forward(request, response);
+        } 
+        else if (verificationStatus == "Document Found - Correct Password - Officer - Active") {
+            // Login credentials are valid, officer user type and account status is active
 
             // Sample: sample@cer.com
             String[] emailAddressSplit = emailAddress.split("@");
             String emailAddressSplitPart1 = emailAddressSplit[0]; // Sample: sample            
             String emailAddressSplitPart2 = emailAddressSplit[1]; // Sample: cer.com
-
-            if (emailAddressSplitPart2 == "cer.com") {
+ 
+            if("cer.com".equals(emailAddressSplitPart2)) {
                 // Assigning session values
                 session.setAttribute("Email", emailAddress);
                 // Redirecting to the officer dashboard
                 response.sendRedirect("Office/Dashboard.jsp");
             }
-        } else if (verificationStatus == "Document Found - Correct Password - Admin") {
+            else{
+                System.out.println("USER ENTER EMAIL DOES NOT CONTAIN - @cer.com AS THE DOMAIN");
+                // Showing an alert box with a incorrect email address domain message
+                PrintWriter out = response.getWriter();
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Entered Email Address Domain is Incorrect');");
+                out.println("location='Login.jsp';");
+                out.println("</script>");
+            }
+        } 
+        else if (verificationStatus == "Document Found - Correct Password - Officer - Disabled") {
+            // Login credentials are valid, officer user type and account status is disabled
+
+            // Showing account status is disabled message
+            request.setAttribute("accountStatusDisabled", "TRUE");
+            
+            // Redirecting to the login webpage
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.jsp");
+            rd.forward(request, response);
+        }
+        else if (verificationStatus == "Document Found - Correct Password - Officer - Pending") {
+            // Login credentials are valid, officer user type and account status is pending
+
+            // Showing account status is pending message
+            request.setAttribute("accountStatusPending", "TRUE");
+            
+            // Redirecting to the login webpage
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.jsp");
+            rd.forward(request, response);
+        }
+        else if (verificationStatus == "Document Found - Correct Password - Admin") {
             // Login credentials are valid and admin user type
+            
             // Assigning session values
             session.setAttribute("Email", emailAddress);
             // Redirecting to the admin dashboard
             response.sendRedirect("Admin/Dashboard.jsp");
-        } else if (verificationStatus == "Document Found - Wrong Password") {
+        } 
+        else if (verificationStatus == "Document Found - Wrong Password") {
             // User document is available but user entered passed in invalid
 
             request.setAttribute("loginPasswordIncorrect", "TRUE");
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.jsp");
             rd.forward(request, response);
-        } else if (verificationStatus == "Document Not Found") {
+        } 
+        else if (verificationStatus == "Document Not Found") {
             // User document is not available
-
+            
             request.setAttribute("loginNoRecordFound", "TRUE");
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.jsp");
             rd.forward(request, response);
         }
-
+        
     }
 
     /**

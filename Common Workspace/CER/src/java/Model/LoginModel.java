@@ -44,7 +44,7 @@ public class LoginModel {
     private String emailAddress;
     private String password;
     
-    // Getter
+    // Getters
     public String getEmailAddress(){
         return emailAddress;
     }
@@ -91,36 +91,53 @@ public class LoginModel {
                 // A document was returned
                 // Converting the retrieved value to JSON format and converting the JSON value to a JSON object
                 JSONObject documentJSONObject = new JSONObject(userDocument.toJson());
-                
-                JSONObject nameObject = documentJSONObject.getJSONObject("name");
-                String userName = nameObject.getString("prefix") + " " + nameObject.getString("firstName") + " " +
-                        nameObject.getString("middleName") + " " + nameObject.getString("lastName");
-                
+              
                 String hashedPasswordValueDB = documentJSONObject.getString("passwordHash");
                 String userType = documentJSONObject.getString("userType");
+                String accountStatus = documentJSONObject.getString("accountStatus");
                 
                 // Checking of the hash password value in the database is the same as the generated 
                 // hash password from the user entered password
                 if(hashedPasswordValue.equals(hashedPasswordValueDB)){
                     // Password is same
-                    
+                 
                     // Checking the user type to assign the verification type
                     if("customer".equals(userType) || "attorney".equals(userType)){
                         // User Type = Customer Users or Attorney Users
                         
-                        
-                        return "Document Found - Correct Password - Customer - Attorney";
+                        // Checking if the account status is active or disabled
+                        if("Active".equals(accountStatus)){
+                            // Account Status is Active
+                            return "Document Found - Correct Password - Customer - Attorney - Active";
+                        }
+                        else if("Disabled".equals(accountStatus)){
+                            // Account Status is Disabled
+                            return "Document Found - Correct Password - Customer - Attorney - Disabled";
+                        }
+                        else if("Pending".equals(accountStatus)){
+                            // Account Status is Pending
+                            return "Document Found - Correct Password - Customer - Attorney - Pending";
+                        }
                     }
                     else if("officer".equals(userType)){
                         // User Type = Officer Users
-                        
-                        
-                        return "Document Found - Correct Password - Officer";
+
+                        // Checking if the account status is active or disabled
+                        if("Active".equals(accountStatus)){
+                            // Account Status is Active
+                            return "Document Found - Correct Password - Officer - Active";
+                        }
+                        else if("Disabled".equals(accountStatus)){
+                            // Account Status is Disabled
+                            return "Document Found - Correct Password - Officer - Disabled";
+                        }
+                        else if("Pending".equals(accountStatus)){
+                            // Account Status is Pending
+                            return "Document Found - Correct Password - Officer - Pending";
+                        }
                     }
                     else if("admin".equals(userType)){
                         // User Type = Admin User
-                        
-                        
                         return "Document Found - Correct Password - Admin";
                     }
                 }
