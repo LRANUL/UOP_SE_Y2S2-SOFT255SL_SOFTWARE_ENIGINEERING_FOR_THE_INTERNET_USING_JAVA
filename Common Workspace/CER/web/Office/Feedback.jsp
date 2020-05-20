@@ -3,7 +3,23 @@
     Created on : May 17, 2020, 12:52:03 PM
     Author     : ranul
 --%>
+<%@page import="com.mongodb.client.MongoClients"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.mongodb.client.FindIterable"%>
+<%@page import="com.mongodb.client.MongoClient"%>
+<%@page import="com.mongodb.client.MongoDatabase"%>
+<%@page import="com.mongodb.client.MongoCollection"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%
+    MongoClient mongoClient = MongoClients.create("mongodb://admin:p5Dy6BoofEB9JAeB@cers-shard-00-00-qwvj6.mongodb.net:27017,cers-shard-00-01-qwvj6.mongodb.net:27017,cers-shard-00-02-qwvj6.mongodb.net:27017/test?ssl=true&replicaSet=CERs-shard-0&authSource=admin&retryWrites=true&w=majority");
+    MongoDatabase db = mongoClient.getDatabase("CERdb");
 
+    MongoCollection<org.bson.Document> collection = db.getCollection("messages");
+    FindIterable doc = collection.find();
+    ArrayList<org.bson.Document> docs = new ArrayList<org.bson.Document>();
+    doc.into(docs);
+    request.setAttribute("messages", docs);
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
@@ -128,6 +144,34 @@
                     <div class="btn-toolbar mb-2 mb-md-0">
                     </div>
                 </div>
+                <div class="container">
+        <div class="row" style="margin-top: 31px;">
+            <div class="col" style="background-color: #000000;"><label class="col-form-label" style="font-size: 57px;color: rgb(255,255,255);"><strong>Office Chat</strong></label></div>
+        </div>
+        <div class="row homecol1 no-gutter" style="min-height: 85%;max-height: 85%;height: 401px;">
+            <div class="col" id="msgs">
+               <c:forEach items="${requestScope.messages}" var="message">
+                   <label style="width: 100%;height: 50px;"  class="border rounded-0 border-success">
+                        <div>
+                            <c:out value="${message.sentBy}"></c:out><p>--<c:out value="${message.Message}"></c:out>
+                                <b style="font-size:8px;font-family: Arial"> <c:out value="${message.Subject}"></c:out></b></p>
+                                
+                                
+                        </div>
+                    </label>
+                </c:forEach>
+             </div>
+        </div>
+        <div class="row">
+            <form name="sendChatForm" method="post" action="chat" id='chatForm'>
+            <div class="col"><textarea name="chat" form="chatForm" style="width: 1060px;"></textarea></div>
+            
+        </div>
+        <div class="row">
+            <div class="col"><button class="btn btn-primary float-right" type="submit">Send</button></div>
+        </div>
+      </form>
+    </div>
             </main>
         </div>
     </div>
