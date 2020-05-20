@@ -30,7 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Dashboard - Message</title>
+    <title>Account - Message</title>
     <link href="../assets/externalLibraries/bootstrap-v4.4.1/css/bootstrap.css" rel="stylesheet">
     <link href="../assets/css/dashboard.css" rel="stylesheet">
     <link rel="icon" href="../assets/images/favicon.png" type="image/png">
