@@ -98,7 +98,7 @@ public class SendMail extends HttpServlet {
         if ("Available".equals(Reply)) {
             System.out.println("Available");
             try {
-//                MailUtil.SendEmailAvailable(email);
+                MailUtil.SendEmailAvailable(email);
                 BasicDBObject query = new BasicDBObject().append("_id",new ObjectId(id));
                 BasicDBObject newDocument = new BasicDBObject();
                 newDocument.append("$set", new BasicDBObject().append("Status", "Done"));
@@ -113,7 +113,7 @@ public class SendMail extends HttpServlet {
                 BasicDBObject newDocument = new BasicDBObject();
                 newDocument.append("$set", new BasicDBObject().append("Status", "Rejected"));
                 collection.updateOne(query, newDocument);
-//                MailUtil.SendEmailUnAvailable(email);
+                MailUtil.SendEmailUnAvailable(email);
             } catch (Exception ex) {
                 System.out.println(ex);
             }

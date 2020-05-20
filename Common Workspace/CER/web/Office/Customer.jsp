@@ -163,7 +163,7 @@
                                                         <option value="Delete">Delete</option>
                                                     </select>
                                                     <input hidden type="text" name="Email" value="<c:out value="${user.emailAddress}"></c:out>"/>
-                                                    <button type="submit" name="submit">Send</button>
+                                                    <button type="submit" name="submit">Update</button>
                                                 </form>
                                             </td>
                                         </tr>

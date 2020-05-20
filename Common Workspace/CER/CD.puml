@@ -1,0 +1,429 @@
+@startuml
+annotation java.lang.Override
+annotation javax.servlet.annotation.MultipartConfig
+annotation javax.servlet.annotation.WebServlet
+class Encryption.PasswordHashing
+class Model.LoginModel
+class Model.MailUtil
+class Model.MemberRegistrationModel
+class Model.OfficeUserRegistrationModel
+class Model.SearchRegisteredOfficeUserModel
+class Model.Services
+class MongoDatabase.MongoDBConnection
+class MongoDatabase.login
+class Servlet.Account.CaseSearch
+class Servlet.Account.Document
+class Servlet.Account.requestDocument
+class Servlet.Admin.OfficeUserRegistrationServlet
+class Servlet.Admin.SearchRegisteredOfficeUserServlet
+class Servlet.AttorneyRegistrationServlet
+class Servlet.CaseSearch
+class Servlet.CustomerRegistrationServlet
+class Servlet.DocumentSearch
+class Servlet.LoginServlet
+class Servlet.Office.Account
+class Servlet.Office.Customer
+class Servlet.Office.OfficeSearch
+class Servlet.Office.SendMail
+class Servlet.Office.fetchOrder
+class Servlet.RegistrationTypeServlet
+class com.mongodb.BasicDBList
+class com.mongodb.BasicDBObject
+class com.mongodb.DBCollection
+class com.mongodb.DBObject
+class com.mongodb.ErrorCategory
+class com.mongodb.MongoClient
+class com.mongodb.MongoClientURI
+class com.mongodb.MongoWriteException
+class com.mongodb.client.FindIterable
+class com.mongodb.client.MongoClient
+class com.mongodb.client.MongoClients
+class com.mongodb.client.MongoCollection
+class com.mongodb.client.MongoCursor
+class com.mongodb.client.MongoDatabase
+class com.mongodb.client.model.Filters
+class com.sun.codemodel.JArray
+class com.sun.faces.action.RequestMapping
+class java.io.ByteArrayOutputStream
+class java.io.IOException
+class java.io.InputStream
+class java.io.PrintWriter
+class java.nio.file.Paths
+class java.security.MessageDigest
+class java.security.NoSuchAlgorithmException
+class java.text.SimpleDateFormat
+class java.util.ArrayList
+class java.util.Date
+class java.util.Iterator
+class java.util.List
+class java.util.Map
+class java.util.Properties
+class javax.json.JsonWriter
+class javax.mail.Authenticator
+class javax.mail.Message
+class javax.mail.MessagingException
+class javax.mail.PasswordAuthentication
+class javax.mail.Session
+class javax.mail.Transport
+class javax.mail.internet.InternetAddress
+class javax.mail.internet.MimeMessage
+class javax.servlet.RequestDispatcher
+class javax.servlet.ServletException
+class javax.servlet.http.HttpServlet
+class javax.servlet.http.HttpServletRequest
+class javax.servlet.http.HttpServletResponse
+class javax.servlet.http.HttpSession
+class javax.servlet.http.Part
+class javax.swing.UIManager
+class jdk.nashorn.internal.parser.JSONParser
+class org.bson.Document
+class org.bson.conversions.Bson
+class org.bson.types.ObjectId
+class org.json.JSONArray
+class org.json.JSONException
+class org.json.JSONObject
+Encryption.PasswordHashing ..> java.security.MessageDigest
+Encryption.PasswordHashing ..> java.security.NoSuchAlgorithmException
+Model.LoginModel ..> Encryption.PasswordHashing
+Model.LoginModel ..> MongoDatabase.MongoDBConnection
+Model.LoginModel ..> com.mongodb.BasicDBList
+Model.LoginModel ..> com.mongodb.BasicDBObject
+Model.LoginModel ..> com.mongodb.DBObject
+Model.LoginModel ..> com.mongodb.ErrorCategory
+Model.LoginModel ..> com.mongodb.MongoClient
+Model.LoginModel ..> com.mongodb.MongoClientURI
+Model.LoginModel ..> com.mongodb.MongoWriteException
+Model.LoginModel ..> com.mongodb.client.MongoCollection
+Model.LoginModel ..> com.mongodb.client.MongoDatabase
+Model.LoginModel ..> com.mongodb.client.model.Filters
+Model.LoginModel ..> java.util.Date
+Model.LoginModel ..> javax.servlet.http.HttpSession
+Model.LoginModel ..> org.bson.Document
+Model.LoginModel ..> org.bson.conversions.Bson
+Model.LoginModel ..> org.json.JSONException
+Model.LoginModel ..> org.json.JSONObject
+Model.MailUtil ..> java.lang.Override
+Model.MailUtil ..> java.util.Properties
+Model.MailUtil ..> javax.mail.Authenticator
+Model.MailUtil ..> javax.mail.Message
+Model.MailUtil ..> javax.mail.MessagingException
+Model.MailUtil ..> javax.mail.PasswordAuthentication
+Model.MailUtil ..> javax.mail.Session
+Model.MailUtil ..> javax.mail.Transport
+Model.MailUtil ..> javax.mail.internet.InternetAddress
+Model.MailUtil ..> javax.mail.internet.MimeMessage
+Model.MemberRegistrationModel ..> Encryption.PasswordHashing
+Model.MemberRegistrationModel ..> MongoDatabase.MongoDBConnection
+Model.MemberRegistrationModel ..> com.mongodb.ErrorCategory
+Model.MemberRegistrationModel ..> com.mongodb.MongoClient
+Model.MemberRegistrationModel ..> com.mongodb.MongoClientURI
+Model.MemberRegistrationModel ..> com.mongodb.MongoWriteException
+Model.MemberRegistrationModel ..> com.mongodb.client.MongoCollection
+Model.MemberRegistrationModel ..> com.mongodb.client.MongoDatabase
+Model.MemberRegistrationModel ..> java.security.MessageDigest
+Model.MemberRegistrationModel ..> java.security.NoSuchAlgorithmException
+Model.MemberRegistrationModel ..> java.util.Date
+Model.MemberRegistrationModel ..> javax.servlet.http.Part
+Model.MemberRegistrationModel ..> org.bson.Document
+Model.OfficeUserRegistrationModel ..> Encryption.PasswordHashing
+Model.OfficeUserRegistrationModel ..> MongoDatabase.MongoDBConnection
+Model.OfficeUserRegistrationModel ..> com.mongodb.ErrorCategory
+Model.OfficeUserRegistrationModel ..> com.mongodb.MongoClient
+Model.OfficeUserRegistrationModel ..> com.mongodb.MongoClientURI
+Model.OfficeUserRegistrationModel ..> com.mongodb.MongoWriteException
+Model.OfficeUserRegistrationModel ..> com.mongodb.client.MongoCollection
+Model.OfficeUserRegistrationModel ..> com.mongodb.client.MongoDatabase
+Model.OfficeUserRegistrationModel ..> java.security.MessageDigest
+Model.OfficeUserRegistrationModel ..> java.security.NoSuchAlgorithmException
+Model.OfficeUserRegistrationModel ..> java.util.Date
+Model.OfficeUserRegistrationModel ..> org.bson.Document
+Model.SearchRegisteredOfficeUserModel ..> MongoDatabase.MongoDBConnection
+Model.SearchRegisteredOfficeUserModel ..> com.mongodb.MongoClient
+Model.SearchRegisteredOfficeUserModel ..> com.mongodb.MongoClientURI
+Model.SearchRegisteredOfficeUserModel ..> com.mongodb.client.MongoCollection
+Model.SearchRegisteredOfficeUserModel ..> com.mongodb.client.MongoDatabase
+Model.SearchRegisteredOfficeUserModel ..> com.mongodb.client.model.Filters
+Model.SearchRegisteredOfficeUserModel ..> java.io.IOException
+Model.SearchRegisteredOfficeUserModel ..> java.util.ArrayList
+Model.SearchRegisteredOfficeUserModel ..> java.util.List
+Model.SearchRegisteredOfficeUserModel ..> org.bson.Document
+Model.SearchRegisteredOfficeUserModel ..> org.json.JSONArray
+Model.SearchRegisteredOfficeUserModel ..> org.json.JSONObject
+Model.Services ..> java.lang.Override
+Model.Services ..> com.mongodb.BasicDBObject
+Model.Services ..> com.mongodb.client.FindIterable
+Model.Services ..> com.mongodb.client.MongoClient
+Model.Services ..> com.mongodb.client.MongoClients
+Model.Services ..> com.mongodb.client.MongoCollection
+Model.Services ..> com.mongodb.client.MongoDatabase
+Model.Services ..> java.io.IOException
+Model.Services ..> java.io.PrintWriter
+Model.Services ..> java.util.ArrayList
+Model.Services ..> java.util.Date
+Model.Services ..> javax.servlet.RequestDispatcher
+Model.Services ..> javax.servlet.ServletException
+Model.Services --|> javax.servlet.http.HttpServlet
+Model.Services ..> javax.servlet.http.HttpServletRequest
+Model.Services ..> javax.servlet.http.HttpServletResponse
+Model.Services ..> org.bson.Document
+MongoDatabase.MongoDBConnection ..> com.mongodb.BasicDBObject
+MongoDatabase.MongoDBConnection ..> com.mongodb.client.FindIterable
+MongoDatabase.MongoDBConnection ..> com.mongodb.client.MongoClient
+MongoDatabase.MongoDBConnection ..> com.mongodb.client.MongoClients
+MongoDatabase.MongoDBConnection ..> com.mongodb.client.MongoCollection
+MongoDatabase.MongoDBConnection ..> com.mongodb.client.MongoCursor
+MongoDatabase.MongoDBConnection ..> com.mongodb.client.MongoDatabase
+MongoDatabase.MongoDBConnection ..> java.util.ArrayList
+MongoDatabase.MongoDBConnection ..> java.util.Map
+MongoDatabase.MongoDBConnection ..> org.bson.Document
+MongoDatabase.login ..> com.mongodb.BasicDBObject
+MongoDatabase.login ..> com.mongodb.MongoClient
+MongoDatabase.login ..> com.mongodb.client.MongoClients
+MongoDatabase.login ..> com.mongodb.client.MongoCollection
+MongoDatabase.login ..> com.mongodb.client.MongoCursor
+MongoDatabase.login ..> com.mongodb.client.MongoDatabase
+MongoDatabase.login ..> java.util.ArrayList
+MongoDatabase.login ..> java.util.List
+MongoDatabase.login ..> org.bson.Document
+Servlet.Account.CaseSearch ..> java.lang.Override
+Servlet.Account.CaseSearch ..> javax.servlet.annotation.WebServlet
+Servlet.Account.CaseSearch ..> com.mongodb.BasicDBObject
+Servlet.Account.CaseSearch ..> com.mongodb.client.FindIterable
+Servlet.Account.CaseSearch ..> com.mongodb.client.MongoClient
+Servlet.Account.CaseSearch ..> com.mongodb.client.MongoClients
+Servlet.Account.CaseSearch ..> com.mongodb.client.MongoCollection
+Servlet.Account.CaseSearch ..> com.mongodb.client.MongoDatabase
+Servlet.Account.CaseSearch ..> java.io.IOException
+Servlet.Account.CaseSearch ..> java.io.PrintWriter
+Servlet.Account.CaseSearch ..> java.util.ArrayList
+Servlet.Account.CaseSearch ..> javax.servlet.RequestDispatcher
+Servlet.Account.CaseSearch ..> javax.servlet.ServletException
+Servlet.Account.CaseSearch --|> javax.servlet.http.HttpServlet
+Servlet.Account.CaseSearch ..> javax.servlet.http.HttpServletRequest
+Servlet.Account.CaseSearch ..> javax.servlet.http.HttpServletResponse
+Servlet.Account.Document ..> java.lang.Override
+Servlet.Account.Document ..> javax.servlet.annotation.WebServlet
+Servlet.Account.Document ..> com.mongodb.BasicDBObject
+Servlet.Account.Document ..> com.mongodb.client.FindIterable
+Servlet.Account.Document ..> com.mongodb.client.MongoClient
+Servlet.Account.Document ..> com.mongodb.client.MongoClients
+Servlet.Account.Document ..> com.mongodb.client.MongoCollection
+Servlet.Account.Document ..> com.mongodb.client.MongoDatabase
+Servlet.Account.Document ..> java.io.IOException
+Servlet.Account.Document ..> java.io.PrintWriter
+Servlet.Account.Document ..> java.util.ArrayList
+Servlet.Account.Document ..> javax.servlet.RequestDispatcher
+Servlet.Account.Document ..> javax.servlet.ServletException
+Servlet.Account.Document --|> javax.servlet.http.HttpServlet
+Servlet.Account.Document ..> javax.servlet.http.HttpServletRequest
+Servlet.Account.Document ..> javax.servlet.http.HttpServletResponse
+Servlet.Account.requestDocument ..> java.lang.Override
+Servlet.Account.requestDocument ..> javax.servlet.annotation.WebServlet
+Servlet.Account.requestDocument ..> com.mongodb.client.MongoClient
+Servlet.Account.requestDocument ..> com.mongodb.client.MongoClients
+Servlet.Account.requestDocument ..> com.mongodb.client.MongoCollection
+Servlet.Account.requestDocument ..> com.mongodb.client.MongoDatabase
+Servlet.Account.requestDocument ..> java.io.IOException
+Servlet.Account.requestDocument ..> java.io.PrintWriter
+Servlet.Account.requestDocument ..> java.util.Date
+Servlet.Account.requestDocument ..> javax.servlet.RequestDispatcher
+Servlet.Account.requestDocument ..> javax.servlet.ServletException
+Servlet.Account.requestDocument --|> javax.servlet.http.HttpServlet
+Servlet.Account.requestDocument ..> javax.servlet.http.HttpServletRequest
+Servlet.Account.requestDocument ..> javax.servlet.http.HttpServletResponse
+Servlet.Admin.OfficeUserRegistrationServlet ..> java.lang.Override
+Servlet.Admin.OfficeUserRegistrationServlet ..> javax.servlet.annotation.WebServlet
+Servlet.Admin.OfficeUserRegistrationServlet ..> Model.MemberRegistrationModel
+Servlet.Admin.OfficeUserRegistrationServlet ..> Model.OfficeUserRegistrationModel
+Servlet.Admin.OfficeUserRegistrationServlet ..> java.io.IOException
+Servlet.Admin.OfficeUserRegistrationServlet ..> java.io.PrintWriter
+Servlet.Admin.OfficeUserRegistrationServlet ..> javax.servlet.ServletException
+Servlet.Admin.OfficeUserRegistrationServlet --|> javax.servlet.http.HttpServlet
+Servlet.Admin.OfficeUserRegistrationServlet ..> javax.servlet.http.HttpServletRequest
+Servlet.Admin.OfficeUserRegistrationServlet ..> javax.servlet.http.HttpServletResponse
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> java.lang.Override
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> javax.servlet.annotation.WebServlet
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> Model.SearchRegisteredOfficeUserModel
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> com.sun.codemodel.JArray
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> java.io.IOException
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> java.io.PrintWriter
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> java.text.SimpleDateFormat
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> java.util.ArrayList
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> java.util.Date
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> java.util.Iterator
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> javax.json.JsonWriter
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> javax.servlet.RequestDispatcher
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> javax.servlet.ServletException
+Servlet.Admin.SearchRegisteredOfficeUserServlet --|> javax.servlet.http.HttpServlet
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> javax.servlet.http.HttpServletRequest
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> javax.servlet.http.HttpServletResponse
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> javax.swing.UIManager
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> jdk.nashorn.internal.parser.JSONParser
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> org.json.JSONArray
+Servlet.Admin.SearchRegisteredOfficeUserServlet ..> org.json.JSONObject
+Servlet.AttorneyRegistrationServlet ..> java.lang.Override
+Servlet.AttorneyRegistrationServlet ..> javax.servlet.annotation.MultipartConfig
+Servlet.AttorneyRegistrationServlet ..> javax.servlet.annotation.WebServlet
+Servlet.AttorneyRegistrationServlet ..> Model.MemberRegistrationModel
+Servlet.AttorneyRegistrationServlet ..> java.io.IOException
+Servlet.AttorneyRegistrationServlet ..> java.io.PrintWriter
+Servlet.AttorneyRegistrationServlet ..> javax.servlet.ServletException
+Servlet.AttorneyRegistrationServlet --|> javax.servlet.http.HttpServlet
+Servlet.AttorneyRegistrationServlet ..> javax.servlet.http.HttpServletRequest
+Servlet.AttorneyRegistrationServlet ..> javax.servlet.http.HttpServletResponse
+Servlet.AttorneyRegistrationServlet ..> javax.servlet.http.Part
+Servlet.CaseSearch ..> java.lang.Override
+Servlet.CaseSearch ..> javax.servlet.annotation.WebServlet
+Servlet.CaseSearch ..> com.mongodb.BasicDBObject
+Servlet.CaseSearch ..> com.mongodb.client.FindIterable
+Servlet.CaseSearch ..> com.mongodb.client.MongoClient
+Servlet.CaseSearch ..> com.mongodb.client.MongoClients
+Servlet.CaseSearch ..> com.mongodb.client.MongoCollection
+Servlet.CaseSearch ..> com.mongodb.client.MongoDatabase
+Servlet.CaseSearch ..> java.io.IOException
+Servlet.CaseSearch ..> java.io.PrintWriter
+Servlet.CaseSearch ..> java.util.ArrayList
+Servlet.CaseSearch ..> javax.servlet.RequestDispatcher
+Servlet.CaseSearch ..> javax.servlet.ServletException
+Servlet.CaseSearch --|> javax.servlet.http.HttpServlet
+Servlet.CaseSearch ..> javax.servlet.http.HttpServletRequest
+Servlet.CaseSearch ..> javax.servlet.http.HttpServletResponse
+Servlet.CaseSearch ..> org.bson.Document
+Servlet.CustomerRegistrationServlet ..> java.lang.Override
+Servlet.CustomerRegistrationServlet ..> javax.servlet.annotation.MultipartConfig
+Servlet.CustomerRegistrationServlet ..> javax.servlet.annotation.WebServlet
+Servlet.CustomerRegistrationServlet ..> Model.MemberRegistrationModel
+Servlet.CustomerRegistrationServlet ..> com.sun.faces.action.RequestMapping
+Servlet.CustomerRegistrationServlet ..> java.io.ByteArrayOutputStream
+Servlet.CustomerRegistrationServlet ..> java.io.IOException
+Servlet.CustomerRegistrationServlet ..> java.io.InputStream
+Servlet.CustomerRegistrationServlet ..> java.io.PrintWriter
+Servlet.CustomerRegistrationServlet ..> java.nio.file.Paths
+Servlet.CustomerRegistrationServlet ..> javax.servlet.ServletException
+Servlet.CustomerRegistrationServlet --|> javax.servlet.http.HttpServlet
+Servlet.CustomerRegistrationServlet ..> javax.servlet.http.HttpServletRequest
+Servlet.CustomerRegistrationServlet ..> javax.servlet.http.HttpServletResponse
+Servlet.CustomerRegistrationServlet ..> javax.servlet.http.Part
+Servlet.DocumentSearch ..> java.lang.Override
+Servlet.DocumentSearch ..> javax.servlet.annotation.WebServlet
+Servlet.DocumentSearch ..> com.mongodb.BasicDBObject
+Servlet.DocumentSearch ..> com.mongodb.client.FindIterable
+Servlet.DocumentSearch ..> com.mongodb.client.MongoClient
+Servlet.DocumentSearch ..> com.mongodb.client.MongoClients
+Servlet.DocumentSearch ..> com.mongodb.client.MongoCollection
+Servlet.DocumentSearch ..> com.mongodb.client.MongoDatabase
+Servlet.DocumentSearch ..> java.io.IOException
+Servlet.DocumentSearch ..> java.io.PrintWriter
+Servlet.DocumentSearch ..> java.util.ArrayList
+Servlet.DocumentSearch ..> javax.servlet.RequestDispatcher
+Servlet.DocumentSearch ..> javax.servlet.ServletException
+Servlet.DocumentSearch --|> javax.servlet.http.HttpServlet
+Servlet.DocumentSearch ..> javax.servlet.http.HttpServletRequest
+Servlet.DocumentSearch ..> javax.servlet.http.HttpServletResponse
+Servlet.DocumentSearch ..> org.bson.Document
+Servlet.LoginServlet ..> java.lang.Override
+Servlet.LoginServlet ..> javax.servlet.annotation.WebServlet
+Servlet.LoginServlet ..> Model.LoginModel
+Servlet.LoginServlet ..> java.io.IOException
+Servlet.LoginServlet ..> java.io.PrintWriter
+Servlet.LoginServlet ..> javax.servlet.RequestDispatcher
+Servlet.LoginServlet ..> javax.servlet.ServletException
+Servlet.LoginServlet --|> javax.servlet.http.HttpServlet
+Servlet.LoginServlet ..> javax.servlet.http.HttpServletRequest
+Servlet.LoginServlet ..> javax.servlet.http.HttpServletResponse
+Servlet.LoginServlet ..> javax.servlet.http.HttpSession
+Servlet.Office.Account ..> java.lang.Override
+Servlet.Office.Account ..> Encryption.PasswordHashing
+Servlet.Office.Account ..> com.mongodb.BasicDBObject
+Servlet.Office.Account ..> com.mongodb.DBCollection
+Servlet.Office.Account ..> com.mongodb.client.FindIterable
+Servlet.Office.Account ..> com.mongodb.client.MongoClient
+Servlet.Office.Account ..> com.mongodb.client.MongoClients
+Servlet.Office.Account ..> com.mongodb.client.MongoCollection
+Servlet.Office.Account ..> com.mongodb.client.MongoDatabase
+Servlet.Office.Account ..> java.io.IOException
+Servlet.Office.Account ..> java.io.PrintWriter
+Servlet.Office.Account ..> java.util.ArrayList
+Servlet.Office.Account ..> javax.servlet.RequestDispatcher
+Servlet.Office.Account ..> javax.servlet.ServletException
+Servlet.Office.Account --|> javax.servlet.http.HttpServlet
+Servlet.Office.Account ..> javax.servlet.http.HttpServletRequest
+Servlet.Office.Account ..> javax.servlet.http.HttpServletResponse
+Servlet.Office.Account ..> org.bson.Document
+Servlet.Office.Customer ..> java.lang.Override
+Servlet.Office.Customer ..> com.mongodb.BasicDBObject
+Servlet.Office.Customer ..> com.mongodb.client.FindIterable
+Servlet.Office.Customer ..> com.mongodb.client.MongoClient
+Servlet.Office.Customer ..> com.mongodb.client.MongoClients
+Servlet.Office.Customer ..> com.mongodb.client.MongoCollection
+Servlet.Office.Customer ..> com.mongodb.client.MongoDatabase
+Servlet.Office.Customer ..> java.io.IOException
+Servlet.Office.Customer ..> java.io.PrintWriter
+Servlet.Office.Customer ..> java.util.ArrayList
+Servlet.Office.Customer ..> javax.servlet.RequestDispatcher
+Servlet.Office.Customer ..> javax.servlet.ServletException
+Servlet.Office.Customer --|> javax.servlet.http.HttpServlet
+Servlet.Office.Customer ..> javax.servlet.http.HttpServletRequest
+Servlet.Office.Customer ..> javax.servlet.http.HttpServletResponse
+Servlet.Office.Customer ..> org.bson.Document
+Servlet.Office.OfficeSearch ..> java.lang.Override
+Servlet.Office.OfficeSearch ..> javax.servlet.annotation.WebServlet
+Servlet.Office.OfficeSearch ..> com.mongodb.BasicDBObject
+Servlet.Office.OfficeSearch ..> com.mongodb.client.FindIterable
+Servlet.Office.OfficeSearch ..> com.mongodb.client.MongoClient
+Servlet.Office.OfficeSearch ..> com.mongodb.client.MongoClients
+Servlet.Office.OfficeSearch ..> com.mongodb.client.MongoCollection
+Servlet.Office.OfficeSearch ..> com.mongodb.client.MongoDatabase
+Servlet.Office.OfficeSearch ..> java.io.IOException
+Servlet.Office.OfficeSearch ..> java.io.PrintWriter
+Servlet.Office.OfficeSearch ..> java.util.ArrayList
+Servlet.Office.OfficeSearch ..> javax.servlet.RequestDispatcher
+Servlet.Office.OfficeSearch ..> javax.servlet.ServletException
+Servlet.Office.OfficeSearch --|> javax.servlet.http.HttpServlet
+Servlet.Office.OfficeSearch ..> javax.servlet.http.HttpServletRequest
+Servlet.Office.OfficeSearch ..> javax.servlet.http.HttpServletResponse
+Servlet.Office.OfficeSearch ..> org.bson.Document
+Servlet.Office.SendMail ..> java.lang.Override
+Servlet.Office.SendMail ..> Model.MailUtil
+Servlet.Office.SendMail ..> com.mongodb.BasicDBObject
+Servlet.Office.SendMail ..> com.mongodb.client.FindIterable
+Servlet.Office.SendMail ..> com.mongodb.client.MongoClient
+Servlet.Office.SendMail ..> com.mongodb.client.MongoClients
+Servlet.Office.SendMail ..> com.mongodb.client.MongoCollection
+Servlet.Office.SendMail ..> com.mongodb.client.MongoDatabase
+Servlet.Office.SendMail ..> java.io.IOException
+Servlet.Office.SendMail ..> java.io.PrintWriter
+Servlet.Office.SendMail ..> java.util.ArrayList
+Servlet.Office.SendMail ..> javax.servlet.RequestDispatcher
+Servlet.Office.SendMail ..> javax.servlet.ServletException
+Servlet.Office.SendMail --|> javax.servlet.http.HttpServlet
+Servlet.Office.SendMail ..> javax.servlet.http.HttpServletRequest
+Servlet.Office.SendMail ..> javax.servlet.http.HttpServletResponse
+Servlet.Office.SendMail ..> org.bson.Document
+Servlet.Office.SendMail ..> org.bson.types.ObjectId
+Servlet.Office.fetchOrder ..> java.lang.Override
+Servlet.Office.fetchOrder ..> javax.servlet.annotation.WebServlet
+Servlet.Office.fetchOrder ..> com.mongodb.BasicDBObject
+Servlet.Office.fetchOrder ..> com.mongodb.client.FindIterable
+Servlet.Office.fetchOrder ..> com.mongodb.client.MongoClient
+Servlet.Office.fetchOrder ..> com.mongodb.client.MongoClients
+Servlet.Office.fetchOrder ..> com.mongodb.client.MongoCollection
+Servlet.Office.fetchOrder ..> com.mongodb.client.MongoDatabase
+Servlet.Office.fetchOrder ..> java.io.IOException
+Servlet.Office.fetchOrder ..> java.io.PrintWriter
+Servlet.Office.fetchOrder ..> java.util.ArrayList
+Servlet.Office.fetchOrder ..> javax.servlet.RequestDispatcher
+Servlet.Office.fetchOrder ..> javax.servlet.ServletException
+Servlet.Office.fetchOrder --|> javax.servlet.http.HttpServlet
+Servlet.Office.fetchOrder ..> javax.servlet.http.HttpServletRequest
+Servlet.Office.fetchOrder ..> javax.servlet.http.HttpServletResponse
+Servlet.Office.fetchOrder ..> org.bson.Document
+Servlet.RegistrationTypeServlet ..> java.lang.Override
+Servlet.RegistrationTypeServlet ..> javax.servlet.annotation.WebServlet
+Servlet.RegistrationTypeServlet ..> java.io.IOException
+Servlet.RegistrationTypeServlet ..> java.io.PrintWriter
+Servlet.RegistrationTypeServlet ..> javax.servlet.ServletException
+Servlet.RegistrationTypeServlet --|> javax.servlet.http.HttpServlet
+Servlet.RegistrationTypeServlet ..> javax.servlet.http.HttpServletRequest
+Servlet.RegistrationTypeServlet ..> javax.servlet.http.HttpServletResponse
+@enduml
