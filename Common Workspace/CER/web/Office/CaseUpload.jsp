@@ -138,7 +138,7 @@
                 position: absolute;
                 right: 1.3%;
                 background-color: #f0f0f0;">
-        <!-- ADD CASE SECTION -->
+        <!-- ADD NEW DOCUMENT TO A CASE SECTION -->
         <div style="width: 48.5%;
                     height: 800px;
                     background-color: #ffffff;
@@ -178,7 +178,7 @@
             </form>           
             
         </div>
-        <!-- ADD DOCUMENT SECTION -->
+        <!-- ADD NEW CASE SECTION -->
         <div style="width: 48.5%;
                     height: 500px;
                     background-color: #ffffff;
