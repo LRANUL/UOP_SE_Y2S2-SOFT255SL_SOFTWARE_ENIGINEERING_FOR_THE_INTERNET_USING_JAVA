@@ -107,14 +107,14 @@ public class CaseSearch extends HttpServlet {
 
         if (CourtLocation!=null) {
             BasicDBObject query = new BasicDBObject();
-            query.put("CourtLocation", CourtLocation);
+            query.put("CourtLocation",  new BasicDBObject("$regex", ".*"+CourtLocation+".*").append("$options", "i"));
             FindIterable document = collection.find(query);
             ArrayList<Document> docs = new ArrayList<Document>();
             document.into(docs);
             request.setAttribute("cases", docs);
 
             RequestDispatcher rd = getServletContext().getRequestDispatcher(
-                    "/Case.jsp");
+                    "/CaseResults.jsp");
             rd.forward(request, response);
             for (Document doc : docs) {
 

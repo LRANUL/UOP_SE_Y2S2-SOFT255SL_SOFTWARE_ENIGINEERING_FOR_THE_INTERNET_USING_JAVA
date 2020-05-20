@@ -20,6 +20,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import java.util.Date;
+import javax.servlet.http.HttpSession;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.json.JSONException;
@@ -65,6 +66,7 @@ public class LoginModel {
     public String verifyLoginCredentials(){
     
         try{
+           
             // Establishing MongoDB URI Connection
             MongoClientURI uri = new MongoClientURI(mongoDB.MongoDBConnectionURL());
             MongoClient mongoClient = new MongoClient(uri);
@@ -106,27 +108,18 @@ public class LoginModel {
                     if("customer".equals(userType) || "attorney".equals(userType)){
                         // User Type = Customer Users or Attorney Users
                         
-                        // Assigning session values
-                        //session.setAttribute("userName");
-                        //session.setAttribute("emailAddress");
                         
                         return "Document Found - Correct Password - Customer - Attorney";
                     }
                     else if("officer".equals(userType)){
                         // User Type = Officer Users
                         
-                        // Assigning session values
-                        //session.setAttribute("userName");
-                        //session.setAttribute("emailAddress");
                         
                         return "Document Found - Correct Password - Officer";
                     }
                     else if("admin".equals(userType)){
                         // User Type = Admin User
                         
-                        // Assigning session values
-                        //session.setAttribute("userName");
-                        //session.setAttribute("emailAddress");
                         
                         return "Document Found - Correct Password - Admin";
                     }

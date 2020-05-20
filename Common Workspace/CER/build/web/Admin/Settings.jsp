@@ -5,6 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%
+
+    String Email = (String) session.getAttribute("Email");
+    /*Sample Data till Auth System is Connected*/
+    Email = "Admin@cer.com";
+
+%>
 <!doctype html>
 <html lang="en">
 
@@ -83,13 +91,27 @@
             </nav>
             <!-- NAV BAR-->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <div
-                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Settings</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
+                    <div
+                        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Settings</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                        </div>
                     </div>
-                </div>
-            </main>
+                    <div>
+                        <h4>Your Details</h4>
+                        <h6>Email: <% out.print(Email);%></h6>
+                        <hr>
+                        <h6>Update Password</h6>
+                        <p>Enter your new password and press Change Password to update credentials</p>
+                        <form name="updatePassword" method="post" action="../Office/Account" >
+                            <input hidden type="text" name="Request" value="OfficerPassword">
+                            <input hidden type="text" name="Email" value="<% out.print(Email);%>">
+                            <input type="password" name="Password" class="form-control bg-white" placeholder="Enter New Password" style="width:250px">
+                            <button type="submit" class="btn btn-outline-danger">Change Password</button>
+                        </form>
+                        <hr>
+                    </div>
+                </main>
         </div>
     </div>
  

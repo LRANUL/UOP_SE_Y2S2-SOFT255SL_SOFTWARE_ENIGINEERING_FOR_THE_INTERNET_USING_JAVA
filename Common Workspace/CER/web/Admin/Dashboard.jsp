@@ -19,6 +19,13 @@
 
     Document DB_Statistics = database.runCommand(new Document("dbstats", 1024));
     request.setAttribute("dbstats", DB_Statistics);
+    String Email = (String) session.getAttribute("Email");
+    
+    /*Sample Data till Auth System is Connected
+    if(Email==null){
+    response.sendRedirect("../Home.jsp");
+    }
+    */
 
 %>
 <!DOCTYPE html>

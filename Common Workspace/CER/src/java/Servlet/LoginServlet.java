@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,7 +40,7 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
+            out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
@@ -75,66 +76,67 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // processRequest(request, response);
-        
+        // Getting Session
+        HttpSession session = request.getSession();
         // Retrieving the user entered values from the frontend
         String emailAddress = request.getParameter("emailAddress");
         String password = request.getParameter("password");
-        
+
         // Creating new object of LoginModel class;
         LoginModel loginProcess = new LoginModel();
-        
+
         // Passing user entered values to the model
         loginProcess.setEmailAddress(emailAddress);
         loginProcess.setPassword(password);
-        
+
         // Calling the verifyLoginCredentials method and returning the verification status
         String verificationStatus = loginProcess.verifyLoginCredentials();
 
         // Resetting login credential error messages to initial state, null
-        request.setAttribute("loginPasswordIncorrect", null); 
-        request.setAttribute("loginNoRecordFound", null); 
-        
+        request.setAttribute("loginPasswordIncorrect", null);
+        request.setAttribute("loginNoRecordFound", null);
+
         // Checking the type of verification status returned
-        if(verificationStatus == "Document Found - Correct Password - Customer - Attorney"){
+        if (verificationStatus == "Document Found - Correct Password - Customer - Attorney") {
             // Login credentials are valid and customer user type or attorney user type
-            
+            // Assigning session values
+            session.setAttribute("Email", emailAddress);
             // Redirecting to the account dashboard
             response.sendRedirect("Account/Account.jsp");
-        }
-        else if(verificationStatus == "Document Found - Correct Password - Officer"){
+        } else if (verificationStatus == "Document Found - Correct Password - Officer") {
             // Login credentials are valid and officer user type
-            
+
             // Sample: sample@cer.com
             String[] emailAddressSplit = emailAddress.split("@");
             String emailAddressSplitPart1 = emailAddressSplit[0]; // Sample: sample            
             String emailAddressSplitPart2 = emailAddressSplit[1]; // Sample: cer.com
 
-            if(emailAddressSplitPart2 == "cer.com"){
+            if (emailAddressSplitPart2 == "cer.com") {
+                // Assigning session values
+                session.setAttribute("Email", emailAddress);
                 // Redirecting to the officer dashboard
                 response.sendRedirect("Office/Dashboard.jsp");
             }
-        }
-        else if(verificationStatus == "Document Found - Correct Password - Admin"){
+        } else if (verificationStatus == "Document Found - Correct Password - Admin") {
             // Login credentials are valid and admin user type
-            
+            // Assigning session values
+            session.setAttribute("Email", emailAddress);
             // Redirecting to the admin dashboard
             response.sendRedirect("Admin/Dashboard.jsp");
-        }
-        else if(verificationStatus == "Document Found - Wrong Password"){
+        } else if (verificationStatus == "Document Found - Wrong Password") {
             // User document is available but user entered passed in invalid
 
-            request.setAttribute("loginPasswordIncorrect", "TRUE"); 
+            request.setAttribute("loginPasswordIncorrect", "TRUE");
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.jsp");
             rd.forward(request, response);
-        }
-        else if(verificationStatus == "Document Not Found"){
+        } else if (verificationStatus == "Document Not Found") {
             // User document is not available
-            
-            request.setAttribute("loginNoRecordFound", "TRUE"); 
+
+            request.setAttribute("loginNoRecordFound", "TRUE");
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.jsp");
             rd.forward(request, response);
         }
-        
+
     }
 
     /**

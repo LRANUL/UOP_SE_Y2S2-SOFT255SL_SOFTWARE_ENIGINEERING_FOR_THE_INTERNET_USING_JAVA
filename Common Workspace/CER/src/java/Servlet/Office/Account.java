@@ -100,7 +100,7 @@ public class Account extends HttpServlet {
             MongoDatabase database = mongoClient.getDatabase("CERdb");
 
             MongoCollection collection = database.getCollection("users");
-            BasicDBObject query = new BasicDBObject().append("cerEmailAddress", Email);
+            BasicDBObject query = new BasicDBObject().append("emailAddress", Email);
             BasicDBObject newDocument = new BasicDBObject();
             String saltedPasswordValue = SALT + Password;
             String hashedPasswordValue = generateHashValue(saltedPasswordValue);
