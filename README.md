@@ -28,3 +28,16 @@ to do the assignment as an individual assignment and is not accepted for evaluat
 Completed assignment should be written into a CD in complete (All the required resources to
 open the application should be included in the CD) and submit to the Program Office of School of
 Computing before 4:00 PM on or before the given submission deadline.
+## License
+
+**Copyright (c) Ranul Ladduwahetty. All rights reserved.**
+
+Licensed under the [MIT](LICENSE.txt) license.
+
+All files and information are copyright by Ranul Ladduwahetty, 
+and may not be duplicated, copied, modified or adapted, 
+in any way without our written permission. 
+Our product may contain our service marks or trademarks as well as those of our affiliates or other companies, 
+in the form of words, graphics, and logos.
+This product is solely an property of Ranul Ladduwahetty and holds all rights to it, any copying, redistribution, use or publication by you of any such Content, is strictly prohibited. 
+Your use of our Product and Services does not grant you any ownership rights to our Product.
