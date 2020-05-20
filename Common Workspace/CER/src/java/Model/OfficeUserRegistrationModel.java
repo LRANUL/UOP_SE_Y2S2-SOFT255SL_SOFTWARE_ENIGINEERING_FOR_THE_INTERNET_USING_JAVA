@@ -168,7 +168,7 @@ public class OfficeUserRegistrationModel {
                                     .append("firstName", firstName)
                                     .append("middleName", middleName)
                                     .append("lastName", lastName))
-                    .append("registrationDatetime", new Date())
+                    .append("registrationDateTime", new Date())
                     .append("sessionActivity",
                             new Document("loginDateTime", "")
                                     .append("logoutDateTime", ""))

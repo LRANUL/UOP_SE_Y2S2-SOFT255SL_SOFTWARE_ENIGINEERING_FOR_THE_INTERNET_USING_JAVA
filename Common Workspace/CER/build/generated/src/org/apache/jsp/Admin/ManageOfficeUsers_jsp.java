@@ -380,7 +380,7 @@ public final class ManageOfficeUsers_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                            <p class=\"searchResultValue\">\r\n");
       out.write("                                ");
 
-                                    out.print((String)request.getAttribute("cerEmailAddress"));
+                                    out.print((String)request.getAttribute("emailAddress"));
                                 
       out.write("\r\n");
       out.write("                            </p>\r\n");

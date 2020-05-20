@@ -113,7 +113,7 @@ public class SearchRegisteredOfficeUserServlet extends HttpServlet {
             
             request.setAttribute("accountStatus", userDocumentObject.getString("accountStatus"));
             request.setAttribute("cerId", userDocumentObject.getString("cerID"));
-            request.setAttribute("cerEmailAddress", userDocumentObject.getString("cerEmailAddress"));
+            request.setAttribute("emailAddress", userDocumentObject.getString("emailAddress"));
             request.setAttribute("nic", userDocumentObject.getString("nic"));
 
             try{
