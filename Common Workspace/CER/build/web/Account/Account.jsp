@@ -8,11 +8,10 @@
 <%
     String Email = (String) session.getAttribute("Email");
 
-    /*Sample Data till Auth System is Connected
     if(Email==null){
     response.sendRedirect("../Home.jsp");
     }
-     */
+    
 %>
 <!doctype html>
 <html lang="en">
