@@ -9,8 +9,7 @@
 <%
 
     String Email = (String) session.getAttribute("Email");
-    /*Sample Data till Auth System is Connected*/
-    Email = "Admin@cer.com";
+  
 
 %>
 <!doctype html>

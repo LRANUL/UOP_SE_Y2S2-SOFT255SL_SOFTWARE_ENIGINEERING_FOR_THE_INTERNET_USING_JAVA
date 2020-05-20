@@ -23,12 +23,10 @@
     request.setAttribute("cases", cases);
     String Email = (String) session.getAttribute("Email");
     
-    /*Sample Data till Auth System is Connected
     if(Email==null){
     response.sendRedirect("../Home.jsp");
     }
-    */
-    Email = "john@cer.com";
+   
 
 %>
 <!DOCTYPE html>
